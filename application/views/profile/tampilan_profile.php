@@ -148,6 +148,12 @@
                  <input type="text" class="form-control" id="map_profile"  name="map_profile">
                </div> 
 
+               <div class="col-md-12 mb-3"> 
+                 <label style="color:#343a40;" for="sambutan">Kata Sambutan</label>
+                 <input type="text" class="form-control" id="sambutan"  name="sambutan">
+               </div> 
+
+
 
                <div class="col-md-6 mb-3"> 
                  <label style="color:#343a40;" for="alamat_profile">Alamat</label>
@@ -338,6 +344,8 @@
         $('#latitude_profile').val(data[0].lat);
         $('#longitude_profile').val(data[0].long);
         $('#map_profile').val(data[0].map_profile);
+        $('#sambutan').val(data[0].sambutan);
+
         $('#alamat_profile').val(data[0].alamat_profile);
         $('#lampiran_logo_lama').val(data[0].logo_profile);
 

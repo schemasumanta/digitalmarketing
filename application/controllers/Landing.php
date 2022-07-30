@@ -51,12 +51,19 @@ class Landing extends CI_Controller {
 		$this->db->where('a.status_kategori',1);
 		$data['kategori'] =$this->db->get('tbl_kategori_produk a')->result();
 
+		$this->db->where('a.status_produk',1);
+		$data['produk'] =$this->db->get('tbl_master_produk a')->result();
 		$this->db->limit(6);
 		$data['clients'] =$this->db->get('tbl_clients a')->result();
 		
 		$this->db->limit(6);
 		$this->db->order_by('rand()');
 		$data['testimoni'] =$this->db->get('tbl_testimoni a')->result();
+
+		$this->db->order_by('rand()');
+		$data['pengawas'] =$this->db->get('tbl_pengawas a')->result();
+		$data['about_us'] =$this->db->get('tbl_about_us a')->result();
+		$data['feature'] =$this->db->get('tbl_feature a')->result();
 
 
 		$this->db->where('status','Realisasi');

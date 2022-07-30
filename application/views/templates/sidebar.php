@@ -64,7 +64,8 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="<?php echo base_url('profile') ?>">Profile</a>
                         <a class="collapse-item" href="<?php echo base_url('galeri/slider') ?>">Slider</a>
-                        <a class="collapse-item" href="utilities-animation.html">About Us</a>
+                        <a class="collapse-item" href="<?php echo base_url('profile/feature') ?>">Fitur</a>
+                        <a class="collapse-item" href="<?php echo base_url('profile/about_us') ?>">About Us</a>
                         <a class="collapse-item" href="<?php echo base_url('profile/testimoni') ?>">Testimoni</a>
                         <a class="collapse-item" href="<?php echo base_url('galeri') ?>">Galeri</a>
 
@@ -83,6 +84,7 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                          <a class="collapse-item" href="<?php echo base_url('profile/client') ?>">Client</a>
+                         <a class="collapse-item" href="<?php echo base_url('profile/pengawas') ?>">Pengawas</a>
                         <a class="collapse-item" href="<?php echo base_url('subscribe') ?>">Email Subscribe</a>
                         <a class="collapse-item" href="<?php echo base_url('profile/syarat') ?>">Syarat & Ketentuan</a>
 

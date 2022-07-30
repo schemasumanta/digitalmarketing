@@ -75,6 +75,42 @@ class Model_tabel extends CI_Model {
             
             break;
 
+             case 'about':
+            $this->db->select('a.*');
+            $this->db->from('tbl_about_us a');
+
+            if($_GET['order'][0]['column'] == 0)
+            {
+                $this->db->order_by('a.about_id',$order);
+            }else{
+                $this->db->order_by($sort,$order);
+            }
+            if ($search!=null && $search!='') {
+                $this->db->like('a.about_id',$search);
+                $this->db->or_like('a.about_isi',$search);
+            }
+            
+            break;
+
+
+             case 'feature':
+            $this->db->select('a.*');
+            $this->db->from('tbl_feature a');
+
+            if($_GET['order'][0]['column'] == 0)
+            {
+                $this->db->order_by('a.feature_id',$order);
+            }else{
+                $this->db->order_by($sort,$order);
+            }
+            if ($search!=null && $search!='') {
+                $this->db->like('a.feature_id',$search);
+                $this->db->or_like('a.feature_isi',$search);
+            }
+            
+            break;
+
+
             case 'clients':
             $this->db->select('a.*');
             $this->db->from('tbl_clients a');
@@ -88,6 +124,23 @@ class Model_tabel extends CI_Model {
             if ($search!=null && $search!='') {
                 $this->db->like('a.clients_id',$search);
                 $this->db->or_like('a.clients_nama',$search);
+            }
+            
+            break;
+
+            case 'pengawas':
+            $this->db->select('a.*');
+            $this->db->from('tbl_pengawas a');
+
+            if($_GET['order'][0]['column'] == 0)
+            {
+                $this->db->order_by('a.pengawas_id',$order);
+            }else{
+                $this->db->order_by($sort,$order);
+            }
+            if ($search!=null && $search!='') {
+                $this->db->like('a.pengawas_id',$search);
+                $this->db->or_like('a.pengawas_nama',$search);
             }
             
             break;

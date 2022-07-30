@@ -47,7 +47,7 @@
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Simulasi</a></li>
+          <!-- <li><a class="nav-link scrollto" href="#services">Simulasi</a></li> -->
           <li><a class="nav-link scrollto " href="#portfolio">Galeri</a></li>
           <li><a class="nav-link scrollto" href="#team">Marketing</a></li>
           <li><a class="nav-link scrollto" href="#pricing">Produk</a></li>
@@ -71,107 +71,65 @@
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex align-items-center">
     <div class="container" data-aos="zoom-out" data-aos-delay="100">
-      <h1>Welcome to <span>BizLand</span></h1>
-      <h2>We are team of talented designers making websites with Bootstrap</h2>
+      <h1>Welcome to <span><?php echo $key->nama_website; ?></span></h1>
+      <h2><?php echo $key->sambutan; ?></h2>
       <div class="d-flex">
         <a href="#about" class="btn-get-started scrollto">Get Started</a>
-        <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>
       </div>
     </div>
   </section><!-- End Hero -->
 
   <main id="main">
-
     <!-- ======= Featured Services Section ======= -->
+    <?php if(count($landing['feature']) > 0) {?>
     <section id="featured-services" class="featured-services">
       <div class="container" data-aos="fade-up">
 
         <div class="row">
+          <?php foreach ($landing['feature'] as $f): ?>
+            
           <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
             <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4 class="title"><a href="">Lorem Ipsum</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              <div class="icon"><?php echo $f->feature_icon; ?></div>
+              <h4 class="title"><a href=""><?php echo $f->feature_judul; ?></a></h4>
+              <p class="description"><?php echo $f->feature_isi; ?></p>
             </div>
           </div>
-
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="200">
-              <div class="icon"><i class="bx bx-file"></i></div>
-              <h4 class="title"><a href="">Sed ut perspiciatis</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="300">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4 class="title"><a href="">Magni Dolores</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="400">
-              <div class="icon"><i class="bx bx-world"></i></div>
-              <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-            </div>
-          </div>
+          <?php endforeach ?>
 
         </div>
 
       </div>
-    </section><!-- End Featured Services Section -->
-
+    </section>
+  <?php } ?>
     <!-- ======= About Section ======= -->
+    <?php if (count($landing['about_us'])>0) { ?>
+      <?php foreach ($landing['about_us'] as $ab): ?>
+        
+  
     <section id="about" class="about section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
           <h2>About</h2>
-          <h3>Find Out More <span>About Us</span></h3>
-          <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+          <h3><span>About Us</span></h3>
+       
         </div>
 
         <div class="row">
           <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-            <img src="<?php echo base_url() ?>assets_landing/img/about.jpg" class="img-fluid" alt="">
+            <img src="<?php echo base_url().$ab->about_foto ?>" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
-            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-            <p class="fst-italic">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
-            </p>
-            <ul>
-              <li>
-                <i class="bx bx-store-alt"></i>
-                <div>
-                  <h5>Ullamco laboris nisi ut aliquip consequat</h5>
-                  <p>Magni facilis facilis repellendus cum excepturi quaerat praesentium libre trade</p>
-                </div>
-              </li>
-              <li>
-                <i class="bx bx-images"></i>
-                <div>
-                  <h5>Magnam soluta odio exercitationem reprehenderi</h5>
-                  <p>Quo totam dolorum at pariatur aut distinctio dolorum laudantium illo direna pasata redi</p>
-                </div>
-              </li>
-            </ul>
-            <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum
-            </p>
+          <?php echo  $ab->about_isi; ?>
           </div>
         </div>
 
       </div>
     </section><!-- End About Section -->
 
-
+    <?php endforeach ?>
+  <?php   } ?>
     <!-- ======= Counts Section ======= -->
     <section id="counts" class="counts">
       <div class="container" data-aos="fade-up">
@@ -213,8 +171,11 @@
 
       </div>
     </section><!-- End Counts Section -->
-
     <section id="clients" class="clients section-bg">
+       <div class="section-title">
+          <h2 style="margin-top: 25px">Our Clients</h2>
+       
+        </div>
       <div class="container" data-aos="zoom-in">
         <div class="row">
           <?php foreach ($landing['clients'] as $cl): ?>
@@ -227,10 +188,7 @@
         </div>
 
       </div>
-    </section><!-- End Clients Section -->
-
-   
-    <!-- ======= Testimonials Section ======= -->
+    </section>
     <section id="testimonials" class="testimonials">
       <div class="container" data-aos="zoom-in">
 
@@ -348,20 +306,21 @@
         <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
           <?php if (strtolower($ktg->nama_kategori)=="simpanan") { ?>
             <div class="box featured">
-
             <?php }else{ ?>
               <div class="box">
               <?php } ?>
               <h3><?php echo $ktg->nama_kategori; ?></h3>
               <ul>
-                <li>Aida dere</li>
-                <li>Nec feugiat nisl</li>
-                <li>Nulla at volutpat dola</li>
-                <li class="na">Pharetra massa</li>
-                <li class="na">Massa ultricies mi</li>
+                <?php foreach ($landing['produk'] as $prd) {
+
+                if ($prd->id_kategori==$ktg->id_kategori) { ?>
+
+                <li><?php echo $prd->nama_produk; ?></li>
+                
+               <?php  }} ?>
               </ul>
               <div class="btn-wrap">
-                <a href="#" class="btn-buy">Buy Now</a>
+                <a href="<?php echo base_url() ?>pengajuan/tambah_pengajuan/<?php echo $ktg->id_kategori ?>" class="btn-buy">Ajukan Sekarang</a>
               </div>
             </div>
           </div>
@@ -443,6 +402,8 @@
     </div>
   </section>
 
+
+
 </main>
 <footer id="footer">
 
@@ -462,6 +423,25 @@
 
     </div>
   </div>
+
+    <?php if (count($landing['pengawas']) > 0) { ?>
+
+   <section id="clients" class="clients section-bg">
+      <div class="container" data-aos="zoom-in">
+        <div class="row">
+          <?php foreach ($landing['pengawas'] as $cl): ?>
+            
+          <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
+            <img src="<?php echo base_url().$cl->pengawas_logo ?>" class="img-fluid" alt="">
+          </div>
+          <?php endforeach ?>
+
+        </div>
+
+      </div>
+    </section>
+
+ <?php } ?>
 
   <div class="footer-top">
     <div class="container">
