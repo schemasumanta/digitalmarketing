@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `activity` (
   PRIMARY KEY (`id_activity`)
 ) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=latin1;
 
--- Membuang data untuk tabel market_db.activity: ~14 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.activity: ~16 rows (lebih kurang)
 INSERT INTO `activity` (`id_activity`, `user_activity`, `date_activity`, `time_activity`, `activity`) VALUES
 	(2, 16, '2022-02-17', '07:22:49', 'Mengubah profil akun'),
 	(50, 24, '2022-02-27', '16:19:43', 'Mengubah profil akun'),
@@ -74,9 +74,21 @@ CREATE TABLE IF NOT EXISTS `syarat_ketentuan` (
   PRIMARY KEY (`id_syarat`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.syarat_ketentuan: ~0 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.syarat_ketentuan: ~1 rows (lebih kurang)
 INSERT INTO `syarat_ketentuan` (`id_syarat`, `syarat`) VALUES
-	(1, '<p>Dengan menekan tombol "Setuju & Ajukan Pinjaman" di bawah ini, saya menyatakan hal-hal sebagai berikut :</p><ol><li>Data dan informasi yang saya berikan dalam pengajuan ini adalah sesuai keadaaan yang sebenar-benarnya.<br><br></li><li>Saya menyetujui bahwa PT. BPR BKK Karangmalang (Perseroda) , selanjutnya disebut Bank, berwenang untuk:<br><br><ul style="list-style-type:disc;"><li>Memeriksa kebenaran data yang saya sampaikan dalam pengajuan ini.</li><br><li>Mencari dan memperoleh keterangan dan referensi dari sumber manapun dengan cara yang dianggap sah oleh Bank. </li><br><li>Menyetujui atau menolak pengajuan pinjaman saya berdasarkan analisa Bank.</li><br><li>Tidak mengembalikan seluruh dokumen yang telah saya serahkan kepada Bank.</li></ul><br><br></li><li>Memberikan secara terbatas dan/atau tidak terbatas data yang telah saya sampaikan dalam pengajuan ini kepada pihak ketiga dalam rangka       kepentingan pemrosesan pengajuan pinjaman.<br><br></li><li>Saya memahami dan mengerti bahwa Bank tidak berkewajiban untuk memberikan fasilitas kredit kepada saya hingga saya memenuhi semua       persyaratan yang berlaku pada Bank dan telah menandatangani dokumen yang diperlukan Bank dalam pemberian kredit.<br><br></li><li>Apabila ternyata data dan informasi, serta pernyataan yang saya berikan/buat tidak sesuai dengan keadaan yang sebenarnya, maka segala risiko dan       konsekuensi yang diakibatkannya menjadi sepenuhnya tanggung jawab saya.<br></li></ol><p><br></p><p><br></p>');
+	(1, '<p>Dengan menekan tombol "Setuju &amp; Ajukan Pinjaman" di bawah ini, saya menyatakan hal-hal sebagai berikut :</p><ol><li>Data dan informasi yang saya berikan dalam pengajuan ini adalah sesuai keadaaan yang sebenar-benarnya.<br><br></li><li>Saya menyetujui bahwa PT. BPR BKK Karangmalang (Perseroda) , selanjutnya disebut Bank, berwenang untuk:<br><br><ul style="list-style-type:disc;"><li>Memeriksa kebenaran data yang saya sampaikan dalam pengajuan ini.</li><br><li>Mencari dan memperoleh keterangan dan referensi dari sumber manapun dengan cara yang dianggap sah oleh Bank. </li><br><li>Menyetujui atau menolak pengajuan pinjaman saya berdasarkan analisa Bank.</li><br><li>Tidak mengembalikan seluruh dokumen yang telah saya serahkan kepada Bank.</li></ul><br><br></li><li>Memberikan secara terbatas dan/atau tidak terbatas data yang telah saya sampaikan dalam pengajuan ini kepada pihak ketiga dalam rangka       kepentingan pemrosesan pengajuan pinjaman.<br><br></li><li>Saya memahami dan mengerti bahwa Bank tidak berkewajiban untuk memberikan fasilitas kredit kepada saya hingga saya memenuhi semua       persyaratan yang berlaku pada Bank dan telah menandatangani dokumen yang diperlukan Bank dalam pemberian kredit.<br><br></li><li>Apabila ternyata data dan informasi, serta pernyataan yang saya berikan/buat tidak sesuai dengan keadaan yang sebenarnya, maka segala risiko dan       konsekuensi yang diakibatkannya menjadi sepenuhnya tanggung jawab saya.<br></li></ol><p><br></p><p><br></p>');
+
+-- membuang struktur untuk table market_db.tbl_about_us
+CREATE TABLE IF NOT EXISTS `tbl_about_us` (
+  `about_id` int(11) NOT NULL AUTO_INCREMENT,
+  `about_isi` text NOT NULL,
+  `about_foto` text NOT NULL,
+  PRIMARY KEY (`about_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+-- Membuang data untuk tabel market_db.tbl_about_us: ~1 rows (lebih kurang)
+INSERT INTO `tbl_about_us` (`about_id`, `about_isi`, `about_foto`) VALUES
+	(2, '<p style="text-align: justify; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px 0px 10px; color: rgb(71, 71, 71); font-family: open_sansregular; font-size: 15px;"><span style="font-size: 14px; font-family: Helvetica;"><b>Sekilas Tentang BPR BKK KARANGMALANG</b></span></p><p style="text-align: justify; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px 0px 10px; color: rgb(71, 71, 71); font-family: open_sansregular; font-size: 15px;"><span style="font-size: 14px; font-family: Helvetica;">Berdiri pada tahun 1974 bernama Badan Kredit Kecamatan (BKK) Karangmalang yang merupakan Proyek Officer Jawa Tengah atas kuasa Undang-undang No 5 Tahun 1974 tentang Pokok-pokok Pemerintahan di Daerah.</span></p><p style="text-align: justify; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px 0px 10px; color: rgb(71, 71, 71); font-family: open_sansregular; font-size: 15px;"><span style="font-size: 14px; font-family: Helvetica;">Modal awal berupa pinjaman dari Anggaran Pendapatan Belanja Daerah (APBD) Provinsi Jawa Tengah yang dipisahkan pada tanggal 28 Oktober 1974 sebesar Rp. 1.000.000,- (Satu juta rupiah) dengan suku bunga 12% per tahun, jangka waktu 5(lima) tahun. Pinjaman tersebut telah lunas pada tanggal 20 Maret 1979.</span></p><p style="text-align: justify; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px 0px 10px; color: rgb(71, 71, 71); font-family: open_sansregular; font-size: 15px;"><span style="font-size: 14px; font-family: Helvetica;">Pada tahun 1981 meningkat statusnya menjadi Badan Usaha Milik Daerah (BUMD) sesuai dengan Perda No. 11 Tahun 1981.</span></p><p style="text-align: justify; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px 0px 10px; color: rgb(71, 71, 71); font-family: open_sansregular; font-size: 15px;"><span style="font-size: 14px; font-family: Helvetica;">Pada 11 Juni 1985, menempati gedung yang merupakan paket pembangunan dari Provinsi Jawa Tengah.</span></p><p style="text-align: justify; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px 0px 10px; color: rgb(71, 71, 71); font-family: open_sansregular; font-size: 15px;"><span style="font-size: 14px; font-family: Helvetica;">Pada 8 Oktober 1991 Badan Kredit Kecamatan Karangmalang ( BKK Karangmalang) berubah statusnya menjadi Bank Perkreditan Rakyat Badan Kredit Kecamatan Karangmalang ( BPR BKK Karangmalang ) sesuai dengan Keputusan Menteri Keuangan Republik Indonesia No. : KEP.486/KM.13/1991 Tentang Pemberian Izin Sebagai Bank Perkreditan Rakyat Kepada Badan Kredit Kecamatan (BKK) Karangmalang</span></p>', 'assets/img/about/foto_about1659126063EP2C-Energy_background18-1080x675.jpg');
 
 -- membuang struktur untuk table market_db.tbl_clients
 CREATE TABLE IF NOT EXISTS `tbl_clients` (
@@ -96,6 +108,22 @@ INSERT INTO `tbl_clients` (`clients_id`, `clients_nama`, `clients_logo`, `client
 	(6, 'Life Groups', 'assets/img/foto_clients/galeri1658860839client-3.png', 1),
 	(7, 'Lilly', 'assets/img/foto_clients/galeri1658860849client-4.png', 1);
 
+-- membuang struktur untuk table market_db.tbl_feature
+CREATE TABLE IF NOT EXISTS `tbl_feature` (
+  `feature_id` int(11) NOT NULL AUTO_INCREMENT,
+  `feature_icon` text DEFAULT NULL,
+  `feature_judul` varchar(150) DEFAULT NULL,
+  `feature_isi` text DEFAULT NULL,
+  PRIMARY KEY (`feature_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+-- Membuang data untuk tabel market_db.tbl_feature: ~4 rows (lebih kurang)
+INSERT INTO `tbl_feature` (`feature_id`, `feature_icon`, `feature_judul`, `feature_isi`) VALUES
+	(1, '<i class="bx bxl-dribbble"></i>', 'Lorem Ipsum', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore'),
+	(2, '<i class="bx bx-file"></i>', 'Sed ut perspiciatis', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore'),
+	(3, '<i class="bx bx-tachometer"></i>', 'Magni Dolores', 'Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia'),
+	(4, '<i class="bx bx-world"></i>', 'Nemo Enim', 'At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis');
+
 -- membuang struktur untuk table market_db.tbl_follow_up
 CREATE TABLE IF NOT EXISTS `tbl_follow_up` (
   `id_fu` int(11) NOT NULL AUTO_INCREMENT,
@@ -107,7 +135,7 @@ CREATE TABLE IF NOT EXISTS `tbl_follow_up` (
   PRIMARY KEY (`id_fu`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.tbl_follow_up: ~3 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_follow_up: ~4 rows (lebih kurang)
 INSERT INTO `tbl_follow_up` (`id_fu`, `id_user`, `id_nasabah`, `tanggal_fu`, `hasil_fu`, `lampiran_fu`) VALUES
 	(7, 23, '16', '2022-07-06 03:48:05', 'Telepon untuk schedule meeting', 'assets/img/foto_fu/fu_1657054085Kusaka.Kabane.full.3096562.png'),
 	(8, 26, 'NSB-2207-00001', '2022-07-15 09:48:57', 'Pengajuan', 'assets/img/foto_fu/fu_16578533378ede4d440c9402d8d9eac223dcb1b715.jpg'),
@@ -139,9 +167,9 @@ CREATE TABLE IF NOT EXISTS `tbl_history` (
   `id_user` int(11) DEFAULT NULL,
   `aktivitas` text NOT NULL,
   PRIMARY KEY (`kode_history`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=latin1;
 
--- Membuang data untuk tabel market_db.tbl_history: ~50 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_history: ~85 rows (lebih kurang)
 INSERT INTO `tbl_history` (`kode_history`, `tanggal`, `ip_address`, `id_user`, `aktivitas`) VALUES
 	(1, '2022-07-03 23:48:20', '::1', 23, 'Menambah Data Potensi Wilayah Baru dengan nama Suhenda'),
 	(2, '2022-07-04 00:40:55', '::1', 23, 'Mengubah Data Potensi Wilayah Baru dengan nama 13'),
@@ -194,7 +222,40 @@ INSERT INTO `tbl_history` (`kode_history`, `tanggal`, `ip_address`, `id_user`, `
 	(49, '2022-07-26 18:59:25', '::1', 15, 'Menambah Data Clients Baru'),
 	(50, '2022-07-26 18:59:37', '::1', 15, 'Menghapus Data Clients'),
 	(51, '2022-07-26 19:31:12', '::1', 15, 'Mengubah Data Testimoni'),
-	(52, '2022-07-26 19:36:42', '::1', 15, 'Mengubah Data Testimoni');
+	(52, '2022-07-26 19:36:42', '::1', 15, 'Mengubah Data Testimoni'),
+	(53, '2022-07-29 20:21:03', '::1', 15, 'Menambah Data About Us'),
+	(54, '2022-07-29 20:26:30', '::1', 15, 'Mengubah Data About Us'),
+	(55, '2022-07-29 20:26:59', '::1', 15, 'Mengubah Data About Us'),
+	(56, '2022-07-29 20:29:54', '::1', 15, 'Mengubah Data About Us'),
+	(57, '2022-07-29 20:31:44', '::1', 15, 'Mengubah Data About Us'),
+	(58, '2022-07-29 20:34:07', '::1', 15, 'Mengubah Data About Us'),
+	(59, '2022-07-29 20:34:13', '::1', 15, 'Mengubah Data About Us'),
+	(60, '2022-07-29 20:37:10', '::1', 15, 'Mengubah Data About Us'),
+	(61, '2022-07-30 06:12:51', '::1', 15, 'Mengubah Data About Us'),
+	(62, '2022-07-30 06:19:28', '::1', 15, 'Mengubah Data About Us'),
+	(63, '2022-07-30 06:20:10', '::1', 15, 'Mengubah Data About Us'),
+	(64, '2022-07-30 06:22:22', '::1', 15, 'Menambah Data Syarat dan Ketentuan'),
+	(65, '2022-07-30 06:22:29', '::1', 15, 'Menambah Data Syarat dan Ketentuan'),
+	(66, '2022-07-30 06:24:33', '::1', 15, 'Mengubah Data About Us'),
+	(67, '2022-07-30 06:25:51', '::1', 15, 'Menambah Data Syarat dan Ketentuan'),
+	(68, '2022-07-30 06:25:58', '::1', 15, 'Menambah Data Syarat dan Ketentuan'),
+	(69, '2022-07-30 06:29:45', '::1', 15, 'Mengubah Data About Us'),
+	(70, '2022-07-30 06:33:56', '::1', 15, 'Mengubah Data About Us'),
+	(71, '2022-07-30 06:53:45', '::1', 15, 'Mengubah Data Profil Perusahaan'),
+	(72, '2022-07-30 07:11:37', '::1', 15, 'Menambah Data pengawas Baru'),
+	(73, '2022-07-30 07:11:44', '::1', 15, 'Mengubah Data pengawas'),
+	(74, '2022-07-30 07:11:48', '::1', 15, 'Mengubah Data pengawas'),
+	(75, '2022-07-30 07:12:12', '::1', 15, 'Menambah Data pengawas Baru'),
+	(76, '2022-07-30 07:12:52', '::1', 15, 'Menambah Data pengawas Baru'),
+	(77, '2022-07-30 07:12:59', '::1', 15, 'Menambah Data pengawas Baru'),
+	(78, '2022-07-30 07:13:08', '::1', 15, 'Menambah Data pengawas Baru'),
+	(79, '2022-07-30 07:13:17', '::1', 15, 'Menambah Data pengawas Baru'),
+	(80, '2022-07-30 07:13:24', '::1', 15, 'Menghapus Data pengawas'),
+	(81, '2022-07-30 07:13:30', '::1', 15, 'Menambah Data pengawas Baru'),
+	(82, '2022-07-30 07:35:24', '::1', 15, 'Menambah Data Fitur'),
+	(83, '2022-07-30 07:38:40', '::1', 15, 'Mengubah Data Fitur'),
+	(84, '2022-07-30 07:38:49', '::1', 15, 'Mengubah Data Fitur'),
+	(85, '2022-07-30 07:41:24', '::1', 15, 'Menghapus Data Feature');
 
 -- membuang struktur untuk table market_db.tbl_kategori_produk
 CREATE TABLE IF NOT EXISTS `tbl_kategori_produk` (
@@ -353,7 +414,7 @@ CREATE TABLE IF NOT EXISTS `tbl_master_wilayah` (
   PRIMARY KEY (`id_wilayah`)
 ) ENGINE=InnoDB AUTO_INCREMENT=280302 DEFAULT CHARSET=latin1;
 
--- Membuang data untuk tabel market_db.tbl_master_wilayah: ~92.078 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_master_wilayah: ~91.653 rows (lebih kurang)
 INSERT INTO `tbl_master_wilayah` (`id_wilayah`, `kode_wilayah`, `sub_wilayah`, `nama_wilayah`, `level`) VALUES
 	(1, 10000, 0, ' D.K.I. JAKARTA', 1),
 	(2, 20000, 0, ' JAWA BARAT', 1),
@@ -92043,7 +92104,7 @@ CREATE TABLE IF NOT EXISTS `tbl_nasabah` (
   PRIMARY KEY (`id_nasabah`)
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.tbl_nasabah: ~0 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_nasabah: ~1 rows (lebih kurang)
 INSERT INTO `tbl_nasabah` (`id_nasabah`, `id_user`, `tanggal_input`, `id_cabang`, `nama_nasabah`, `telp_nasabah`, `alamat_nasabah`, `provinsi_nasabah`, `kabupaten_nasabah`, `kecamatan_nasabah`, `kelurahan_nasabah`, `usaha_nasabah`, `omset_nasabah`, `foto_usaha`, `status_nasabah`, `tgl_realisasi`, `no_referensi`, `latitude`, `id_user_deal`, `longitude`) VALUES
 	(16, 23, '2022-07-04 10:16:40', 3, 'Suhenda', '085921923978', 'JL, SUNAN GIRI', '280000', '280200', '280218', '85588', 'Peternakan Ayam', '5000000', 'assets/img/foto_potensi/usaha_1656904600beninca.jpg', 'Realisasi', '2022-07-06', 'X12120-1212344', '-6.1669376', 23, '106.74176');
 
@@ -92073,13 +92134,31 @@ CREATE TABLE IF NOT EXISTS `tbl_pengajuan` (
   PRIMARY KEY (`id_pengajuan`)
 ) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.tbl_pengajuan: ~4 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_pengajuan: ~5 rows (lebih kurang)
 INSERT INTO `tbl_pengajuan` (`id_pengajuan`, `kode_pengajuan`, `nik`, `nama`, `nama_suami_istri`, `nama_ibu_kandung`, `alamat_rumah`, `foto_ktp`, `nama_usaha_pekerjaan`, `alamat_usaha_pekerjaan`, `omset_usaha`, `besar_plafon`, `foto_usaha`, `id_cabang`, `id_user`, `id_produk`, `tanggal_input`, `tgl_realisasi`, `status`, `no_referensi`, `ttd`) VALUES
 	(34, 'NSB-2207-00001', '0100023659658974', 'Suhenda', 'Saemi', 'Suebah', 'Tangerang', 'assets/img/foto_pengajuan/ktp1657806090A20Y7LcCMAAeaEC.jpg', 'Manta Apps', 'Lebak - Banten', 500000, 50000, 'assets/img/foto_pengajuan/usaha16578060905f160edaa66efa16bfa0be2b51333b92.jpg', 1, 26, 1, '2022-07-14 20:41:30', '2022-07-15 10:22:09', 'Realisasi', 'RTEG', 'assets/img/foto_pengajuan/ttd_nasabah1657806090.png'),
 	(35, 'NSB-2207-00002', '3602240741952000', 'Sajidin', 'Marni', 'Muniah', 'Tangerang', 'assets/img/foto_pengajuan/ktp1657806238A20Y7LcCMAAeaEC.jpg', 'wiraswasta', 'Banten', 50000000, 5000000, 'assets/img/foto_pengajuan/usaha1657806238__inazuma_eleven_ares_no_tenbin_ff_stadium___by_zafiro_satoshi-db8vi5c.png', 1, 26, 1, '2022-07-14 20:43:58', NULL, 'Nasabah Baru', NULL, 'assets\\img\\foto_pengajuan\\ttd_nasabah1657806238.png'),
 	(36, 'NSB-2207-00003', '0100023659658974', 'Suhenda', 'Saemi', 'sapa\'ah', 'test', 'assets/img/foto_pengajuan/ktp165780637513.jpg', 'wiraswasta', 'sfssf', 2540000, 34343434, 'assets/img/foto_pengajuan/usaha16578063755f160edaa66efa16bfa0be2b51333b92.jpg', 1, 26, 1, '2022-07-14 20:46:15', NULL, 'Nasabah Baru', NULL, 'assets\\img\\foto_pengajuan\\ttd_nasabah1657806375.png'),
 	(37, 'NSB-2207-00004', '2313654912100003', 'iwi', 'atox', 'markonah', 'palembang', 'assets/img/foto_pengajuan/ktp16578065845f160edaa66efa16bfa0be2b51333b92.jpg', 'nganngur', 'jakarta', 3000000, 200000, 'assets/img/foto_pengajuan/usaha1657806584__inazuma_eleven_ares_no_tenbin_ff_stadium___by_zafiro_satoshi-db8vi5c.png', 1, 26, 1, '2022-07-14 20:49:44', NULL, 'Nasabah Baru', NULL, 'assets\\img\\foto_pengajuan\\ttd_nasabah1657806584.png'),
 	(38, 'NSB-2207-00005', '0100023659658974', 'Suhenda', 'Saemi', 'sapa\'ah', 'TEST', 'assets/img/foto_pengajuan/ktp1657809575__inazuma_eleven_ares_no_tenbin_ff_stadium___by_zafiro_satoshi-db8vi5c.png', 'Manta Apps', 'TEST', 2540000, 5000000, 'assets/img/foto_pengajuan/usaha1657809575ashley.jpg', 1, 26, 1, '2022-07-14 21:39:35', NULL, 'Nasabah Baru', NULL, 'assets\\img\\foto_pengajuan\\ttd_nasabah1657809575.png');
+
+-- membuang struktur untuk table market_db.tbl_pengawas
+CREATE TABLE IF NOT EXISTS `tbl_pengawas` (
+  `pengawas_id` int(11) NOT NULL AUTO_INCREMENT,
+  `pengawas_nama` varchar(250) DEFAULT NULL,
+  `pengawas_logo` text DEFAULT NULL,
+  `pengawas_status` int(11) DEFAULT NULL,
+  PRIMARY KEY (`pengawas_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+
+-- Membuang data untuk tabel market_db.tbl_pengawas: ~6 rows (lebih kurang)
+INSERT INTO `tbl_pengawas` (`pengawas_id`, `pengawas_nama`, `pengawas_logo`, `pengawas_status`) VALUES
+	(2, 'Bank Indonesia', 'assets/img/foto_pengawas/galeri165916513238469-baner1.png', 1),
+	(3, 'BPR', 'assets/img/foto_pengawas/galeri165916517219982-bpr.png', 1),
+	(4, '3P', 'assets/img/foto_pengawas/galeri165916517994433-3p.png', 1),
+	(5, 'LPS', 'assets/img/foto_pengawas/galeri165916518823172-lps.png', 1),
+	(6, 'Ayo Ke Bank', 'assets/img/foto_pengawas/galeri165916519796148-baner2.jpg', 1),
+	(7, 'OJK', 'assets/img/foto_pengawas/galeri16591652108042-ico_ojk.png', 1);
 
 -- membuang struktur untuk table market_db.tbl_portofolio
 CREATE TABLE IF NOT EXISTS `tbl_portofolio` (
@@ -92105,6 +92184,7 @@ INSERT INTO `tbl_portofolio` (`id_portofolio`, `id_user`, `sambutan_portofolio`,
 CREATE TABLE IF NOT EXISTS `tbl_profile` (
   `id_profile` int(11) NOT NULL AUTO_INCREMENT,
   `nama_website` text NOT NULL,
+  `sambutan` text NOT NULL,
   `pemilik` text NOT NULL,
   `alamat_profile` text NOT NULL,
   `email_profile` text NOT NULL,
@@ -92122,9 +92202,9 @@ CREATE TABLE IF NOT EXISTS `tbl_profile` (
   PRIMARY KEY (`id_profile`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.tbl_profile: ~0 rows (lebih kurang)
-INSERT INTO `tbl_profile` (`id_profile`, `nama_website`, `pemilik`, `alamat_profile`, `email_profile`, `telp_profile`, `map_profile`, `website`, `logo_profile`, `facebook`, `instagram`, `twitter`, `youtube`, `skype`, `lat`, `long`) VALUES
-	(1, 'PT. BPR BKK Karangmalang (Perseroda)', 'PT. BPR BKK Karangmalang (Perseroda)', 'Jl. Dewi Sartika Puro Karangmalang', 'bprkarangmalang@gmail.comm', '08112818682', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.1683310974527!2d111.02541591420632!3d-7.446620875445263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a1cc63d46e543%3A0xc4d7e6091129de5d!2sPD.%20BPR%20BKK%20Karangmalang%20(Kantor%20Pusat)!5e0!3m2!1sid!2sid!4v1646798240116!5m2!1sid!2sid', 'www.bprbkk-karangmalang.com', 'assets_landing/img/logo_bkk.svg', 'https://www.facebook.com/BPRKARANGMALANG', 'https://www.instagram.com/bpr_bkk_karangmalang/?hl=id', '', 'https://www.youtube.com/channel/UCp2wWU4N-Jp3z9NntK4YpFg', '', '', '');
+-- Membuang data untuk tabel market_db.tbl_profile: ~1 rows (lebih kurang)
+INSERT INTO `tbl_profile` (`id_profile`, `nama_website`, `sambutan`, `pemilik`, `alamat_profile`, `email_profile`, `telp_profile`, `map_profile`, `website`, `logo_profile`, `facebook`, `instagram`, `twitter`, `youtube`, `skype`, `lat`, `long`) VALUES
+	(1, 'PT. BPR BKK Karangmalang (Perseroda)', 'Dapatkan pelayanan dengan kualitas terbaik', 'PT. BPR BKK Karangmalang (Perseroda)', 'Jl. Dewi Sartika Puro Karangmalang', 'bprkarangmalang@gmail.comm', '08112818682', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.1683310974527!2d111.02541591420632!3d-7.446620875445263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a1cc63d46e543%3A0xc4d7e6091129de5d!2sPD.%20BPR%20BKK%20Karangmalang%20(Kantor%20Pusat)!5e0!3m2!1sid!2sid!4v1646798240116!5m2!1sid!2sid', 'www.bprbkk-karangmalang.com', 'assets_landing/img/logo_bkk.svg', 'https://www.facebook.com/BPRKARANGMALANG', 'https://www.instagram.com/bpr_bkk_karangmalang/?hl=id', '', 'https://www.youtube.com/channel/UCp2wWU4N-Jp3z9NntK4YpFg', '', '', '');
 
 -- membuang struktur untuk table market_db.tbl_subscribe
 CREATE TABLE IF NOT EXISTS `tbl_subscribe` (
@@ -92149,7 +92229,7 @@ CREATE TABLE IF NOT EXISTS `tbl_testimoni` (
   PRIMARY KEY (`testimoni_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.tbl_testimoni: ~0 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_testimoni: ~1 rows (lebih kurang)
 INSERT INTO `tbl_testimoni` (`testimoni_id`, `testimoni_nama`, `testimoni_jabatan`, `testimoni_foto`, `testimoni_isi`) VALUES
 	(1, 'Suherman', 'CEO & Director', 'assets/img/foto_testimoni/galeri1658864202background.png', 'Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic qua');
 
@@ -92159,9 +92239,9 @@ CREATE TABLE IF NOT EXISTS `tbl_visitor` (
   `visitor_ip` varchar(50) NOT NULL DEFAULT '',
   `visitor_date` datetime NOT NULL,
   PRIMARY KEY (`visitor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.tbl_visitor: ~7 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_visitor: ~62 rows (lebih kurang)
 INSERT INTO `tbl_visitor` (`visitor_id`, `visitor_ip`, `visitor_date`) VALUES
 	(1, '::1', '2022-07-26 21:09:24'),
 	(2, '::1', '2022-07-26 21:09:39'),
@@ -92177,23 +92257,54 @@ INSERT INTO `tbl_visitor` (`visitor_id`, `visitor_ip`, `visitor_date`) VALUES
 	(12, '::1', '2022-07-26 21:36:00'),
 	(13, '::1', '2022-07-26 21:36:46'),
 	(14, '::1', '2022-07-26 21:37:22'),
-	(15, '::1', '2022-07-26 21:38:04');
-
--- membuang struktur untuk table market_db.tb_about
-CREATE TABLE IF NOT EXISTS `tb_about` (
-  `id_about` int(11) NOT NULL AUTO_INCREMENT,
-  `judul` text NOT NULL,
-  `sub_judul` text NOT NULL,
-  `desk_singkat` text NOT NULL,
-  `deskripsi` text NOT NULL,
-  `youtube` text NOT NULL,
-  `gambar` varchar(250) NOT NULL,
-  PRIMARY KEY (`id_about`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
-
--- Membuang data untuk tabel market_db.tb_about: ~0 rows (lebih kurang)
-INSERT INTO `tb_about` (`id_about`, `judul`, `sub_judul`, `desk_singkat`, `deskripsi`, `youtube`, `gambar`) VALUES
-	(1, 'ABOUT US', 'Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem.', 'Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\r\n\r\nUllamco laboris nisi ut aliquip ex ea commodo consequat.\r\nDuis aute irure dolor in reprehenderit in voluptate velit.\r\nVoluptate repellendus pariatur reprehenderit corporis sint.\r\nUllamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.\r\nUllamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 'https://youtu.be/DFMQTKnTMAA', 'about-video.jpg');
+	(15, '::1', '2022-07-26 21:38:04'),
+	(16, '::1', '2022-07-29 21:55:34'),
+	(17, '::1', '2022-07-29 21:55:34'),
+	(18, '::1', '2022-07-29 21:58:02'),
+	(19, '::1', '2022-07-29 21:58:22'),
+	(20, '::1', '2022-07-29 21:58:33'),
+	(21, '::1', '2022-07-29 22:05:28'),
+	(22, '::1', '2022-07-29 22:06:27'),
+	(23, '::1', '2022-07-29 22:20:03'),
+	(24, '::1', '2022-07-30 08:32:23'),
+	(25, '::1', '2022-07-30 08:32:55'),
+	(26, '::1', '2022-07-30 08:34:03'),
+	(27, '::1', '2022-07-30 08:34:23'),
+	(28, '::1', '2022-07-30 08:35:32'),
+	(29, '::1', '2022-07-30 08:35:56'),
+	(30, '::1', '2022-07-30 08:38:49'),
+	(31, '::1', '2022-07-30 08:40:30'),
+	(32, '::1', '2022-07-30 08:40:33'),
+	(33, '::1', '2022-07-30 08:40:43'),
+	(34, '::1', '2022-07-30 08:40:48'),
+	(35, '::1', '2022-07-30 08:41:33'),
+	(36, '::1', '2022-07-30 08:41:39'),
+	(37, '::1', '2022-07-30 08:45:14'),
+	(38, '::1', '2022-07-30 08:46:12'),
+	(39, '::1', '2022-07-30 08:46:32'),
+	(40, '::1', '2022-07-30 08:46:53'),
+	(41, '::1', '2022-07-30 08:47:58'),
+	(42, '::1', '2022-07-30 08:48:44'),
+	(43, '::1', '2022-07-30 08:49:16'),
+	(44, '::1', '2022-07-30 08:49:30'),
+	(45, '::1', '2022-07-30 08:49:59'),
+	(46, '::1', '2022-07-30 08:50:24'),
+	(47, '::1', '2022-07-30 08:50:47'),
+	(48, '::1', '2022-07-30 08:53:53'),
+	(49, '::1', '2022-07-30 08:54:02'),
+	(50, '::1', '2022-07-30 09:01:47'),
+	(51, '::1', '2022-07-30 09:12:40'),
+	(52, '::1', '2022-07-30 09:16:07'),
+	(53, '::1', '2022-07-30 09:16:32'),
+	(54, '::1', '2022-07-30 09:16:50'),
+	(55, '::1', '2022-07-30 09:17:26'),
+	(56, '::1', '2022-07-30 09:17:43'),
+	(57, '::1', '2022-07-30 09:18:21'),
+	(58, '::1', '2022-07-30 09:18:37'),
+	(59, '::1', '2022-07-30 09:35:36'),
+	(60, '::1', '2022-07-30 15:12:32'),
+	(61, '::1', '2022-07-30 15:15:19'),
+	(62, '::1', '2022-07-30 15:24:40');
 
 -- membuang struktur untuk table market_db.tb_hero
 CREATE TABLE IF NOT EXISTS `tb_hero` (
@@ -92242,7 +92353,7 @@ CREATE TABLE IF NOT EXISTS `tb_relation_link` (
   PRIMARY KEY (`id_relation`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.tb_relation_link: ~0 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tb_relation_link: ~1 rows (lebih kurang)
 INSERT INTO `tb_relation_link` (`id_relation`, `nama_link1`, `url_link1`, `nama_link2`, `url_link2`, `nama_link3`, `url_link3`, `nama_link4`, `url_link4`, `nama_link5`, `url_link5`) VALUES
 	(1, 'Web 1', 'https://bprbkk-karangmalang.com/', 'Web 2', 'https://bprbkk-karangmalang.com/', 'Web 3', 'https://bprbkk-karangmalang.com/', 'Web 4', 'https://bprbkk-karangmalang.com/', 'Web 4', 'https://bprbkk-karangmalang.com/');
 
