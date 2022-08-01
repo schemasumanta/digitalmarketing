@@ -283,6 +283,33 @@
   </div>
 </div>
 </div>
+
+<div class="modal fade" data-backdrop="static" id="ModalTerbaik" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-warning text-dark">
+       <h3 class="modal-title" id="myModalLabel" style=" font: sans-serif; "><i class="fas fa-users mr-2"></i> Marketing Terbaik</h3>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+
+     </div>
+     <form class="form-horizontal" method="post" action="<?php echo base_url('user/terbaik') ?>">
+      <div class="modal-body">
+        <input type="hidden" name="kode_user_terbaik" id="kode_user_terbaik" value=""> 
+        <input type="hidden" name="isi_terbaik" id="isi_terbaik" value="">  
+        <div class="alert alert-warning"><p class="notif_terbaik"></p></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-flat mr-2" data-dismiss="modal"><i class="far fa-times-circle mr-2"></i> Batal</button>
+        <button class="btn_terbaik btn btn-success btn-flat" type="submit" id="btn_terbaik"><i class="fas fa-check mr-2"></i>YA</button>
+      </div>
+
+
+    </form>
+  </div>
+</div>
+</div>
+
+
 </div>
 
 <script type="text/javascript">
@@ -355,7 +382,7 @@
   ],   
   columnDefs: [
   {
-    targets: [0,4,-1],
+    targets: [0,7],
     className: 'text-center'
   },
   ]
@@ -457,6 +484,25 @@
 
     return false;
   });
+
+
+    $('#show_data').on('click','.item_terbaik_user',function(){
+    if ($(this).hasClass('btn-secondary')) {
+      $('.notif_terbaik').html('Jadikan Terbaik... ?');
+      $('#isi_terbaik').val(1);
+
+    }else{
+      $('.notif_terbaik').html('Nonaktifkan Status Terbaik... ?');
+      $('#isi_terbaik').val(0);
+    }
+    var kode= $(this).attr('data');
+    $('#ModalTerbaik').modal('show');
+    $('#kode_user_terbaik').val(kode);
+
+    return false;
+  });
+
+
 
   $('#show_data').on('click','.item_edit_user',function(){
     let id_user = $(this).attr('data');

@@ -51,6 +51,15 @@ class User extends CI_Controller {
 				$opsi .='<a href="javascript:;" class="btn btn-success btn-sm btn-circle  item_aktivasi_user" data="'.$l->id_user.'"><i class="fa fa-check-circle"></i></a>';
 			}
 
+			if ($l->level == "Marketing") {
+				if ($l->terbaik == 1) {
+					$opsi .='<a href="javascript:;" class="btn btn-warning btn-sm btn-circle  item_terbaik_user" data="'.$l->id_user.'"><i class="fa fa-trophy"></i></a>';
+				}else{
+					$opsi .='<a href="javascript:;" class="btn btn-secondary btn-sm btn-circle  item_terbaik_user" data="'.$l->id_user.'"><i class="fa fa-trophy"></i></a>';
+				}
+			}
+
+
 
 			$opsi .='</div>';
 
@@ -102,6 +111,39 @@ class User extends CI_Controller {
 		$data = $this->db->update('tbl_master_user');
 		echo json_encode($data);
 
+	}
+
+	public function terbaik()
+	{
+
+		$this->db->set('terbaik',$this->input->post('isi_terbaik'));
+		$this->db->where('id_user',$this->input->post('kode_user_terbaik'));
+		$result = $this->db->update('tbl_master_user');
+		
+		if ($result) {
+			$data_history = array(
+				'id_user' => $this->session->id_user, 
+				'ip_address'=>get_ip(),
+				'aktivitas' => "Mengubah Status Terbaik ".$this->input->post('kode_user_terbaik'),
+			);
+
+			$this->db->insert('tbl_history', $data_history);
+
+			$data['title'] = 'Berhasil';
+			$data['text'] = 'Status Terbaik Berhasil di Ubah!';
+			$data['icon'] = 'success';
+
+
+		}else{
+
+			$data['title'] = 'Gagal';
+			$data['text'] = 'Status Terbaik Gagal di Ubah!';
+			$data['icon'] = 'error';
+
+		}	
+
+		$this->session->set_flashdata($data);
+		redirect('user','refresh');
 	}
 
 
