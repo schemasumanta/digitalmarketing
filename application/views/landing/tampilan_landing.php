@@ -23,10 +23,22 @@
     <link href="<?php echo base_url() ?>assets_landing/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets_landing/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="<?php echo base_url() ?>assets_landing/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
+    <link href="<?php echo base_url() ?>assets/css/select2.min.css" rel="stylesheet">
     <!-- Template Main CSS File -->
     <link href="<?php echo base_url() ?>assets_landing/css/style.css" rel="stylesheet">
 
+    <style type="text/css">
+      .select2-selection__rendered {
+        line-height: 31px !important;
+      }
+      .select2-container .select2-selection--single {
+        height: 40px !important;
+      }
+      .select2-selection__arrow {
+        height: 34px !important;
+      }
+
+    </style>
   <!-- =======================================================
   * Template Name: BizLand - v3.7.0
   * Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
@@ -82,54 +94,54 @@
   <main id="main">
     <!-- ======= Featured Services Section ======= -->
     <?php if(count($landing['feature']) > 0) {?>
-    <section id="featured-services" class="featured-services">
-      <div class="container" data-aos="fade-up">
+      <section id="featured-services" class="featured-services">
+        <div class="container" data-aos="fade-up">
 
-        <div class="row">
-          <?php foreach ($landing['feature'] as $f): ?>
-            
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
-            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
-              <div class="icon"><?php echo $f->feature_icon; ?></div>
-              <h4 class="title"><a href=""><?php echo $f->feature_judul; ?></a></h4>
-              <p class="description"><?php echo $f->feature_isi; ?></p>
-            </div>
+          <div class="row">
+            <?php foreach ($landing['feature'] as $f): ?>
+
+              <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+                  <div class="icon"><?php echo $f->feature_icon; ?></div>
+                  <h4 class="title"><a href=""><?php echo $f->feature_judul; ?></a></h4>
+                  <p class="description"><?php echo $f->feature_isi; ?></p>
+                </div>
+              </div>
+            <?php endforeach ?>
+
           </div>
-          <?php endforeach ?>
 
         </div>
-
-      </div>
-    </section>
-  <?php } ?>
+      </section>
+    <?php } ?>
     <!-- ======= About Section ======= -->
     <?php if (count($landing['about_us'])>0) { ?>
       <?php foreach ($landing['about_us'] as $ab): ?>
-        
-  
-    <section id="about" class="about section-bg">
-      <div class="container" data-aos="fade-up">
 
-        <div class="section-title">
-          <h2>About</h2>
-          <h3><span>About Us</span></h3>
-       
-        </div>
 
-        <div class="row">
-          <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-            <img src="<?php echo base_url().$ab->about_foto ?>" class="img-fluid" alt="">
+        <section id="about" class="about section-bg">
+          <div class="container" data-aos="fade-up">
+
+            <div class="section-title">
+              <h2>About</h2>
+              <h3><span>About Us</span></h3>
+
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+                <img src="<?php echo base_url().$ab->about_foto ?>" class="img-fluid" alt="">
+              </div>
+              <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                <?php echo  $ab->about_isi; ?>
+              </div>
+            </div>
+
           </div>
-          <div class="col-lg-6 pt-4 pt-lg-0 content d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="100">
-          <?php echo  $ab->about_isi; ?>
-          </div>
-        </div>
+        </section><!-- End About Section -->
 
-      </div>
-    </section><!-- End About Section -->
-
-    <?php endforeach ?>
-  <?php   } ?>
+      <?php endforeach ?>
+    <?php   } ?>
     <!-- ======= Counts Section ======= -->
     <section id="counts" class="counts">
       <div class="container" data-aos="fade-up">
@@ -172,30 +184,30 @@
       </div>
     </section><!-- End Counts Section -->
     <section id="clients" class="clients section-bg">
-       <div class="section-title">
-          <h2 style="margin-top: 25px">Our Clients</h2>
-       
-        </div>
-      <div class="container" data-aos="zoom-in">
-        <div class="row">
-          <?php foreach ($landing['clients'] as $cl): ?>
-            
+     <div class="section-title">
+      <h2 style="margin-top: 25px">Our Clients</h2>
+
+    </div>
+    <div class="container" data-aos="zoom-in">
+      <div class="row">
+        <?php foreach ($landing['clients'] as $cl): ?>
+
           <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
             <img src="<?php echo base_url().$cl->clients_logo ?>" class="img-fluid" alt="">
           </div>
-          <?php endforeach ?>
-
-        </div>
+        <?php endforeach ?>
 
       </div>
-    </section>
-    <section id="testimonials" class="testimonials">
-      <div class="container" data-aos="zoom-in">
 
-        <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
-          <div class="swiper-wrapper">
-            <?php foreach ($landing['testimoni'] as $tm): ?>
-              
+    </div>
+  </section>
+  <section id="testimonials" class="testimonials">
+    <div class="container" data-aos="zoom-in">
+
+      <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+        <div class="swiper-wrapper">
+          <?php foreach ($landing['testimoni'] as $tm): ?>
+
             <div class="swiper-slide">
               <div class="testimonial-item">
                 <img src="<?php echo base_url().$tm->testimoni_foto ?>" class="testimonial-img" alt="">
@@ -203,121 +215,134 @@
                 <h4><?php echo $tm->testimoni_jabatan; ?></h4>
                 <p>
                   <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                <?php echo $tm->testimoni_isi; ?>
+                  <?php echo $tm->testimoni_isi; ?>
                   <i class="bx bxs-quote-alt-right quote-icon-right"></i>
                 </p>
               </div>
 
             <?php endforeach ?>
 
-            </div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section><!-- End Testimonials Section -->
-
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Galeri</h2>
-          <h3>Check our <span>Gallery</span></h3>
-        </div>
-
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-
-              <li data-filter="*" class="filter-active">All</li>
-              <?php foreach ($landing['kategori'] as $ktg): ?>
-                <li data-filter=".filter-<?php echo $ktg->id_kategori  ?>"><?php echo $ktg->nama_kategori; ?></li>
-              <?php endforeach ?>
-            </ul>
           </div>
         </div>
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-         <?php foreach ($landing['galeri'] as $gl): ?>
-          <div class="col-lg-4 col-md-6 portfolio-item filter-<?php echo $gl->id_kategori  ?>">
-            <img src="<?php echo base_url().$gl->gambar_foto ?>" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4><?php echo $gl->judul_foto; ?></h4>
-              <p><?php echo $gl->deskripsi_foto; ?></p>
-              <a href="<?php echo base_url().$gl->gambar_foto ?>" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-
-            </div>
-          </div>
-        <?php endforeach ?>
-
-
-
+        <div class="swiper-pagination"></div>
       </div>
 
     </div>
-  </section><!-- End Portfolio Section -->
-  <!-- ======= Team Section ======= -->
-  <section id="team" class="team section-bg">
+  </section><!-- End Testimonials Section -->
+
+  <!-- ======= Portfolio Section ======= -->
+  <section id="portfolio" class="portfolio">
     <div class="container" data-aos="fade-up">
+
       <div class="section-title">
-        <h2>MARKETING</h2>
-        <h3>Tim Marketing <span>Kami</span></h3>
-        <p>Marketing PT. BPR BKK Karangmalang (Perseroda) selalu melayani nasabah dengan segenap hati.</p>
+        <h2>Galeri</h2>
+        <h3>Check our <span>Gallery</span></h3>
       </div>
-      <div class="row">
-        <?php foreach ($landing['marketing'] as $mkt): ?>
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="member" style="cursor: pointer;" onclick="buka_portofolio(<?php echo $mkt->id_user; ?>)">
-              <div class="member-img">
-                <img src="<?php echo base_url().$mkt->foto ?>" class="img-fluid" alt="">
-                <div class="social">
-                  <a href="<?php echo $mkt->twitter_portofolio ?>" target="_blank"><i class="bi bi-twitter"></i></a>
-                  <a href="<?php echo $mkt->facebook_portofolio ?>" target="_blank"><i class="bi bi-facebook"></i></a>
-                  <a href="<?php echo $mkt->instagram_portofolio ?>" target="_blank"><i class="bi bi-instagram"></i></a>
-                  <a href="<?php echo $mkt->linkedin_portofolio ?>" target="_blank"><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4><?php echo $mkt->nama; ?></h4>
-                <span>Kantor Cabang <?php echo $mkt->nama_cabang; ?> <?php if ($mkt->telepon_portofolio!="") {?>
-                  | <?php echo $mkt->telepon_portofolio; } ?>
-                </span>
-              </div>
-            </div>
+
+      <div class="row" data-aos="fade-up" data-aos-delay="100">
+        <div class="col-lg-12 d-flex justify-content-center">
+          <ul id="portfolio-flters">
+
+            <li data-filter="*" class="filter-active">All</li>
+            <?php foreach ($landing['kategori'] as $ktg): ?>
+              <li data-filter=".filter-<?php echo $ktg->id_kategori  ?>"><?php echo $ktg->nama_kategori; ?></li>
+            <?php endforeach ?>
+          </ul>
+        </div>
+      </div>
+      <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+       <?php foreach ($landing['galeri'] as $gl): ?>
+        <div class="col-lg-4 col-md-6 portfolio-item filter-<?php echo $gl->id_kategori  ?>">
+          <img src="<?php echo base_url().$gl->gambar_foto ?>" class="img-fluid" alt="">
+          <div class="portfolio-info">
+            <h4><?php echo $gl->judul_foto; ?></h4>
+            <p><?php echo $gl->deskripsi_foto; ?></p>
+            <a href="<?php echo base_url().$gl->gambar_foto ?>" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+
           </div>
-        <?php endforeach ?>
+        </div>
+      <?php endforeach ?>
+
+
+
+    </div>
+
+  </div>
+</section><!-- End Portfolio Section -->
+<!-- ======= Team Section ======= -->
+<section id="team" class="team section-bg">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title">
+      <h2>MARKETING</h2>
+      <h3>Tim Marketing <span>Kami</span></h3>
+      <p>Marketing PT. BPR BKK Karangmalang (Perseroda) selalu melayani nasabah dengan segenap hati.</p>
+    </div>
+    <div class="row d-flex flex-row mb-3 justify-content-center">
+      <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="100">
+
+        <span class="input-group-text bg-primary text-light ">Cabang</span>
+        <select class="form-control " id="cabang_marketing" name="cabang_marketing">
+          <option value="0"  selected style="width: 100%">Pilih Cabang</option>
+          <?php foreach ($landing['cabang'] as $cb): ?>
+            <option value="<?php echo $cb->id_cabang ?>"><?php echo $cb->nama_cabang; ?></option>
+          <?php endforeach ?>
+        </select>
       </div>
     </div>
-  </section><!-- End Team Section -->
+    <div class="row list_mkt">
 
-  <!-- ======= Pricing Section ======= -->
-  <section id="pricing" class="pricing">
-    <div class="container" data-aos="fade-up">
+      <?php foreach ($landing['marketing'] as $mkt): ?>
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+          <div class="member" style="cursor: pointer;" onclick="buka_portofolio(<?php echo $mkt->id_user; ?>)">
+            <div class="member-img">
+              <img src="<?php echo base_url().$mkt->foto ?>" class="img-fluid" alt="">
+              <div class="social">
+                <a href="<?php echo $mkt->twitter_portofolio ?>" target="_blank"><i class="bi bi-twitter"></i></a>
+                <a href="<?php echo $mkt->facebook_portofolio ?>" target="_blank"><i class="bi bi-facebook"></i></a>
+                <a href="<?php echo $mkt->instagram_portofolio ?>" target="_blank"><i class="bi bi-instagram"></i></a>
+                <a href="<?php echo $mkt->linkedin_portofolio ?>" target="_blank"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4><?php echo $mkt->nama; ?></h4>
+              <span>Kantor Cabang <?php echo $mkt->nama_cabang; ?> <?php if ($mkt->telepon_portofolio!="") {?>
+                | <?php echo $mkt->telepon_portofolio; } ?>
+              </span>
+            </div>
+          </div>
+        </div>
+      <?php endforeach ?>
+    </div>
+  </div>
+</section><!-- End Team Section -->
 
-      <div class="section-title">
-        <h2>Produk</h2>
-        <h3>Check our <span>Produk</span></h3>
+<!-- ======= Pricing Section ======= -->
+<section id="pricing" class="pricing">
+  <div class="container" data-aos="fade-up">
 
-      </div>
+    <div class="section-title">
+      <h2>Produk</h2>
+      <h3>Check our <span>Produk</span></h3>
 
-      <div class="row">
-       <?php foreach ($landing['kategori'] as $ktg): ?>
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-          <?php if (strtolower($ktg->nama_kategori)=="simpanan") { ?>
-            <div class="box featured">
-            <?php }else{ ?>
-              <div class="box">
-              <?php } ?>
-              <h3><?php echo $ktg->nama_kategori; ?></h3>
-              <ul>
-                <?php foreach ($landing['produk'] as $prd) {
+    </div>
+
+    <div class="row">
+     <?php foreach ($landing['kategori'] as $ktg): ?>
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        <?php if (strtolower($ktg->nama_kategori)=="simpanan") { ?>
+          <div class="box featured">
+          <?php }else{ ?>
+            <div class="box">
+            <?php } ?>
+            <h3><?php echo $ktg->nama_kategori; ?></h3>
+            <ul>
+              <?php foreach ($landing['produk'] as $prd) {
 
                 if ($prd->id_kategori==$ktg->id_kategori) { ?>
 
-                <li><?php echo $prd->nama_produk; ?></li>
-                
-               <?php  }} ?>
+                  <li><?php echo $prd->nama_produk; ?></li>
+
+                <?php  }} ?>
               </ul>
               <div class="btn-wrap">
                 <a href="<?php echo base_url() ?>pengajuan/tambah_pengajuan/<?php echo $ktg->id_kategori ?>" class="btn-buy">Ajukan Sekarang</a>
@@ -424,59 +449,59 @@
     </div>
   </div>
 
-    <?php if (count($landing['pengawas']) > 0) { ?>
+  <?php if (count($landing['pengawas']) > 0) { ?>
 
    <section id="clients" class="clients section-bg">
-      <div class="container" data-aos="zoom-in">
-        <div class="row">
-          <?php foreach ($landing['pengawas'] as $cl): ?>
-            
+    <div class="container" data-aos="zoom-in">
+      <div class="row">
+        <?php foreach ($landing['pengawas'] as $cl): ?>
+
           <div class="col-lg-2 col-md-4 col-6 d-flex align-items-center justify-content-center">
             <img src="<?php echo base_url().$cl->pengawas_logo ?>" class="img-fluid" alt="">
           </div>
-          <?php endforeach ?>
-
-        </div>
+        <?php endforeach ?>
 
       </div>
-    </section>
 
- <?php } ?>
+    </div>
+  </section>
 
-  <div class="footer-top">
-    <div class="container">
-      <div class="row">
+<?php } ?>
 
-        <div class="col-lg-6 col-md-6 footer-contact">
-          <h3><img src="<?php echo base_url().$key->logo_profile ?>" style="margin-right: 20px"><span><?php echo $key->nama_website; ?></span></h3>
-          <p>
-            <?php echo $key->alamat_profile; ?><br>
-            <strong>Phone:</strong> <?php echo $key->telp_profile; ?><br>
-            <strong>Email:</strong><?php echo $key->email_profile; ?><br>
-          </p>
-        </div>
+<div class="footer-top">
+  <div class="container">
+    <div class="row">
 
-
-        <div class="col-lg-6 col-md-6 footer-links">
-          <h4>Our Social Networks</h4>
-          <div class="social-links mt-3">
-            <a href="<?php echo $key->twitter ?>" class="twitter"><i class="bx bxl-twitter"></i></a>
-            <a href="<?php echo $key->facebook ?>" class="facebook"><i class="bx bxl-facebook"></i></a>
-            <a href="<?php echo $key->instagram ?>" class="instagram"><i class="bx bxl-instagram"></i></a>
-            <a href="<?php echo $key->youtube ?>" class="youtube"><i class="bx bxl-youtube"></i></a>
-          </div>
-        </div>
-
+      <div class="col-lg-6 col-md-6 footer-contact">
+        <h3><img src="<?php echo base_url().$key->logo_profile ?>" style="margin-right: 20px"><span><?php echo $key->nama_website; ?></span></h3>
+        <p>
+          <?php echo $key->alamat_profile; ?><br>
+          <strong>Phone:</strong> <?php echo $key->telp_profile; ?><br>
+          <strong>Email:</strong><?php echo $key->email_profile; ?><br>
+        </p>
       </div>
+
+
+      <div class="col-lg-6 col-md-6 footer-links">
+        <h4>Our Social Networks</h4>
+        <div class="social-links mt-3">
+          <a href="<?php echo $key->twitter ?>" class="twitter"><i class="bx bxl-twitter"></i></a>
+          <a href="<?php echo $key->facebook ?>" class="facebook"><i class="bx bxl-facebook"></i></a>
+          <a href="<?php echo $key->instagram ?>" class="instagram"><i class="bx bxl-instagram"></i></a>
+          <a href="<?php echo $key->youtube ?>" class="youtube"><i class="bx bxl-youtube"></i></a>
+        </div>
+      </div>
+
     </div>
   </div>
+</div>
 
-  <div class="container py-4">
-    <div class="copyright">
-      &copy; Copyright <strong><span><?php echo $key->nama_website; ?></span></strong>. All Rights Reserved
-    </div>
-
+<div class="container py-4">
+  <div class="copyright">
+    &copy; Copyright <strong><span><?php echo $key->nama_website; ?></span></strong>. All Rights Reserved
   </div>
+
+</div>
 </footer><!-- End Footer -->
 
 <div id="preloader"></div>
@@ -493,13 +518,12 @@
 <script src="<?php echo base_url() ?>assets_landing/vendor/waypoints/noframework.waypoints.js"></script>
 <script src="<?php echo base_url() ?>assets_landing/vendor/php-email-form/validate.js"></script>
 <script src="<?php echo base_url() ?>assets/js/sweetalert2.all.js"></script>
+<script src="<?php echo base_url() ?>assets/js/select2.min.js"></script>
 
 <!-- Template Main JS File -->
 <script src="<?php echo base_url() ?>assets_landing/js/main.js"></script>
 <script type="text/javascript">
   $(document).ready(function(){
-
-
    const notif = $('.flashdatart').data('title');
    if (notif) {
     Swal.fire({
@@ -514,6 +538,10 @@
     });
   }
 
+  $('#cabang_marketing').select2({
+    placeholder:"Pilih Cabang",
+    allowClear:true,
+  });
 
   $('.btn_member_area').on('click',function(){
     window.location.href='<?php echo base_url('dashboard') ?>';
@@ -560,6 +588,50 @@
   }
 
 });
+
+  $('#cabang_marketing').on('change',function(){
+    let id_cabang = $(this).val();
+    $.ajax({
+      type : "GET",
+      url  : "<?php echo base_url('landing/get_marketing')?>",
+      dataType : "JSON",
+      data : {'id_cabang':id_cabang},
+      success: function(data){
+        if (data.length > 0) {
+          let mkt = '';
+          for (i=0;i<data.length; i++){
+            mkt+='<div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100"><div class="member" style="cursor: pointer;" onclick="buka_portofolio('+data[i].id_user+')"><div class="member-img"><img src="<?php echo base_url()?>'+data[i].foto+'" class="img-fluid" alt=""><div class="social"><a href="'+data[i].twitter_portofolio+'" target="_blank"><i class="bi bi-twitter"></i></a><a href="'+data[i].facebook_portofolio+'" target="_blank"><i class="bi bi-facebook"></i></a><a href="'+data[i].instagram_portofolio+'" target="_blank"><i class="bi bi-instagram"></i></a><a href="'+data[i].linkedin_portofolio+'" target="_blank"><i class="bi bi-linkedin"></i></a></div></div><div class="member-info"><h4>'+data[i].nama+'</h4><span>Kantor Cabang '+data[i].nama_cabang;
+
+            if (data[i].telepon_portofolio!="") {
+              mkt+=' | '+data[i].telepon_portofolio;
+            }
+
+            mkt+='</span></div></div></div>';
+
+          }
+
+            $('.list_mkt').html(mkt);
+
+
+      }else{
+           Swal.fire({
+            title:'Error',
+            text:'Data Tidak Di Temukan!',
+            icon:'error'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.close();
+              $('#cabang_marketing').val(0).trigger('change');
+            }
+          });
+          return false;
+        }
+    }
+
+
+  });
+
+  });
 })
 
   function buka_portofolio(id)

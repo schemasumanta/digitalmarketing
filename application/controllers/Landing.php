@@ -39,6 +39,8 @@ class Landing extends CI_Controller {
 	public function data_landing()
 	{
 		$data['profil'] =$this->db->get('tbl_profile')->result();
+
+
 		$this->db->where('a.status_user',1);
 		$this->db->where('a.terbaik',1);
 		$this->db->where('a.level',"Marketing");
@@ -46,16 +48,20 @@ class Landing extends CI_Controller {
 		$this->db->join('tbl_master_cabang c','c.id_cabang=a.id_cabang','left');
 		$this->db->join('tbl_portofolio d','d.id_user=a.id_user','left');
 		$data['marketing'] =$this->db->get('tbl_master_user a')->result();
+
+
 		$data['galeri'] =$this->db->get('tbl_galeri_foto')->result();
 
 		$this->db->where('a.status_kategori',1);
 		$data['kategori'] =$this->db->get('tbl_kategori_produk a')->result();
 
+		$this->db->where('a.status_cabang',1);
+		$data['cabang'] =$this->db->get('tbl_master_cabang a')->result();
+
 		$this->db->where('a.status_produk',1);
 		$data['produk'] =$this->db->get('tbl_master_produk a')->result();
 		$this->db->limit(6);
 		$data['clients'] =$this->db->get('tbl_clients a')->result();
-		
 		$this->db->limit(6);
 		$this->db->order_by('rand()');
 		$data['testimoni'] =$this->db->get('tbl_testimoni a')->result();
@@ -91,7 +97,7 @@ class Landing extends CI_Controller {
 		}	
 	}
 
-public function testimoni()
+	public function testimoni()
 	{
 		$data_subscribe = array(
 			'email_subscribe' => $this->input->post('email_langganan'),
@@ -107,6 +113,32 @@ public function testimoni()
 		}	
 	}
 
+
+	public function get_marketing()
+	{
+		$id_cabang = $this->input->get('id_cabang');
+
+		if ($id_cabang > 0) {
+			$this->db->where('a.status_user',1);
+			$this->db->where('a.id_cabang',$id_cabang);
+			$this->db->where('a.level',"Marketing");
+			$this->db->join('tbl_master_jabatan b','b.id_jabatan=a.id_jabatan','left');
+			$this->db->join('tbl_master_cabang c','c.id_cabang=a.id_cabang','left');
+			$this->db->join('tbl_portofolio d','d.id_user=a.id_user','left');
+			$data  =$this->db->get('tbl_master_user a')->result();
+		}else{
+
+			$this->db->where('a.status_user',1);
+			$this->db->where('a.terbaik',1);
+			$this->db->where('a.level',"Marketing");
+			$this->db->join('tbl_master_jabatan b','b.id_jabatan=a.id_jabatan','left');
+			$this->db->join('tbl_master_cabang c','c.id_cabang=a.id_cabang','left');
+			$this->db->join('tbl_portofolio d','d.id_user=a.id_user','left');
+			$data  =$this->db->get('tbl_master_user a')->result();
+			
+		}
+		echo json_encode($data);
+	}
 	
 
 
