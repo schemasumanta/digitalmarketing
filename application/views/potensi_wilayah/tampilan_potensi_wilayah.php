@@ -133,7 +133,7 @@
                  </div>
                  <div class="col-md-4 mb-3"> 
                    <label style="color:#343a40;" for="omset_nasabah">Omset</label>
-                   <input type="text" class="form-control" id="omset_nasabah"  name="omset_nasabah" required onkeypress="return hanyaAngka(event)" onfocusout="SeparatorRibuan(this.value,this.id)">
+                   <input type="text" class="form-control" id="omset_nasabah"  name="omset_nasabah" required>
                  </div>
 
                  <div class="col-md-8 mb-3"> 
@@ -463,6 +463,13 @@ $(document).ready(function(){
   });
 }
 
+
+
+$('#omset_nasabah').maskNumber({
+  thousands:'.',
+  integer:true,
+});
+
 $('#prov_nasabah').select2({
   placeholder :'Pilih Provinsi',
   allowClear :true,
@@ -617,7 +624,7 @@ $('#show_data').on('click','.item_detail_potensi_wilayah',function(){
       $('.kelurahan_nasabah').html(data.nasabah[0].kel);
       $('.alamat_nasabah').html(data.nasabah[0].alamat_nasabah);
       $('.usaha_nasabah').html(data.nasabah[0].usaha_nasabah);
-      $('.omset_nasabah').html(data.nasabah[0].omset_nasabah);
+      SeparatorRibuanClass(data.nasabah[0].omset_nasabah.toString(),'omset_nasabah');
       var options = {
         center: [data.nasabah[0].latitude, data.nasabah[0].longitude],
         zoom: 13,
@@ -1054,6 +1061,20 @@ function SeparatorRibuan(bilangan,id){
     separator = sisa ? '.' : '';
     hasil = awalan + separator + ribuan.join('.');
     $('#'+id).val(hasil);
+
+
+  }
+}
+
+function SeparatorRibuanClass(bilangan,kelas){
+  let angka = bilangan.replace(/\./g,'');
+  let sisa  = angka.length % 3;
+  awalan  = angka.substr(0, sisa);
+  ribuan  = angka.substr(sisa).match(/\d{3}/g);
+  if (ribuan) {
+    separator = sisa ? '.' : '';
+    hasil ='Rp. '+awalan + separator + ribuan.join('.');
+    $('.'+kelas).html(hasil);
 
 
   }

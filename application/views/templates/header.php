@@ -3,6 +3,7 @@
 
 <head>
 
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -37,12 +38,123 @@
             height: 34px !important;
         }
 
-    </style>
+        input[type="file"]{
+          opacity: 0 !important;
+          padding: 0 !important;
+          width: 100%!important;
 
-      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="">
+      }
+      .imagecheck-figure > img {
+          width: 100%!important;
+      }
 
-    <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/leaflet.css">
+  </style>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==" crossorigin="">
+
+  <link rel="stylesheet" href="<?php echo base_url() ?>assets/css/leaflet.css">
 </head>
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
+
+     <div class="modal fade" data-backdrop="static" id="modalubahpassworduser" tabindex="-1" role="dialog" aria-labelledby="modalubahpassworduserLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header bg-danger text-light">
+                    <h5 id="modalubahpassworduserLabel">UBAH PASSWORD</h5>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="form_ubah_password_user" action="<?php echo base_url('dashboard/ubah_password') ?>">
+                        <div class="form-group row" class="collapse" id="customer_collapse">
+
+                            <div class="col-md-12 mb-3">
+                                <label for="pwd1">Password Baru</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="password_baru_user" name="password_baru_user" placeholder="Masukkan Password" required>
+                                    <div class="input-group-text input-group-text-prepend password_baru_user pt-2" style="cursor: pointer;" onclick="show_password_user('password_baru_user')"><i class="fa fa-eye"></i></div>
+                                </div>
+                                <small class="mt-1 error-password_baru_user text-danger"></small>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="pwd1">Ulangi Password</label>
+                                <div class="input-group">
+                                    <input type="password" class="form-control" id="confirm_password_baru_user" name="confirm_password_baru_user" placeholder="Ulangi Password" required>
+                                    <div class="input-group-text input-group-text-prepend confirm_password_baru_user pt-2" style="cursor: pointer;" onclick="show_password_user('confirm_password_baru_user')"><i class="fa fa-eye"></i></div>
+
+                                </div>
+                                <small class="mt-1 error-confirm_password_baru_user text-danger"></small>
+
+                            </div>
+                        </div>
+                    </form>
+                    <div class="modal-footer">
+                        <div class="form-group row" class="collapse" id="customer_collapse">
+                            <div class="col-sm-12 btn-group">
+                                <button type="button" class="btn btn-danger mr-2" data-dismiss="modal"><b>BATAL</b></button>
+
+                                <button type="button" class="btn btn-success" id="btn_ubah_password_user"><b>UBAH</b></button>
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+
+
+
+    <div class="modal fade" data-backdrop="static" id="modalubahprofil" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-light">
+            <h3 class="modal-title" id="myModalLabel" style=" font: sans-serif; "><i class="fas fa-user mr-2"></i>UBAH PROFILE</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+        </div>
+        <form class="form-horizontal" method="post" id="form_profil_user" action="<?php echo base_url('dashboard/ubah_profil') ?>" enctype="multipart/form-data">
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                 <label style="color:#343a40;" for="nama_lengkap_user">Nama Lengkap</label>
+                 <input class="form-control" type="text" name="nama_lengkap_user" id="nama_lengkap_user" value="<?php echo $this->session->nama ?>">
+             </div>
+             <div class="col-md-12 mb-3">
+                 <label style="color:#343a40;" for="email_user">Email</label>
+                 <input class="form-control" type="email" name="email_user" id="email_user" value="<?php echo $this->session->email ?>">
+             </div>
+             <div class="col-md-12 mb-3"> 
+              <label class="imagecheck">Foto
+                <input type="hidden" name="lampiran_avatar_lama" value="<?php echo $this->session->foto ?>">
+                <input type="file" accept="image/x-png,image/gif,image/jpeg" class="form-control" name="lampiran_avatar" id="lampiran_avatar" onchange="previewFile(this.id)" capture="camera">
+                <figure class="imagecheck-figure">
+                    <?php if ($this->session->foto!='') { ?>
+                        <img src="<?php echo base_url().$this->session->foto;?>"  class="imagecheck-image" id="preview_lampiran_avatar" >
+                        
+                    <?php }else{ ?>
+                        <img src="<?php echo base_url('assets/img/img03.jpg');?>"  class="imagecheck-image" id="preview_lampiran_avatar" >
+                    <?php } ?>
+                </figure>
+            </label>
+        </div>
+
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-danger btn-flat mr-2" data-dismiss="modal"><i class="far fa-times-circle mr-2"></i> Batal</button>
+    <button type="submit" class="btn_ubah_profil_user btn btn-success btn-flat" id="btn_ubah_profil_user" type="button"><i class="fas fa-check mr-2"></i>Simpan</button>
+</div>
+</form>
+</div>
+</div>
+</div>

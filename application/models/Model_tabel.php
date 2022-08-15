@@ -75,7 +75,7 @@ class Model_tabel extends CI_Model {
             
             break;
 
-             case 'about':
+            case 'about':
             $this->db->select('a.*');
             $this->db->from('tbl_about_us a');
 
@@ -93,7 +93,7 @@ class Model_tabel extends CI_Model {
             break;
 
 
-             case 'feature':
+            case 'feature':
             $this->db->select('a.*');
             $this->db->from('tbl_feature a');
 
@@ -313,10 +313,15 @@ class Model_tabel extends CI_Model {
             case 'pengajuan':
             $this->db->select('a.*,b.nama as marketing,c.nama_produk');
             $this->db->from('tbl_pengajuan a');
+            $this->db->where('a.status!=','Realisasi');
+            $this->db->where('a.status!=','Tolak');
+
             $this->db->join('tbl_master_user b','b.id_user=a.id_user','left');
             $this->db->join('tbl_master_produk c','c.id_produk=a.id_produk','left');
+
             if ($this->session->level=="Marketing") {
-                $this->db->where('a.id_user',$this->session->id_user);
+                $this->db->where('a.id_cabang',$this->session->cabang);
+            //     $this->db->where('a.id_user',$this->session->id_user);
             }
             if($_GET['order'][0]['column'] == 0)
             {
@@ -327,25 +332,36 @@ class Model_tabel extends CI_Model {
 
             if ($search!=null && $search!='') {
                 $this->db->like('a.kode_pengajuan',$search);
-                $this->db->or_like('a.nik',$search);
-                if ($this->session->level!="Marketing") {
-                    $this->db->or_like('b.nama',$search);
+                $this->db->where('a.status!=','Realisasi');
+                if ($this->session->level=="Marketing") {
+                    $this->db->where('a.id_cabang',$this->session->cabang);
+            //     $this->db->where('a.id_user',$this->session->id_user);
                 }
-                $this->db->or_like('a.tanggal_input',$search);
+
                 $this->db->or_like('a.nama',$search);
-                $this->db->or_like('a.nama_usaha_pekerjaan',$search);
-                $this->db->or_like('a.omset_usaha',$search);
-                $this->db->or_like('c.nama_produk',$search);
-                $this->db->or_like('a.besar_plafon',$search);
+                $this->db->where('a.status!=','Realisasi');
+                $this->db->where('a.status!=','Tolak');
+                if ($this->session->level=="Marketing") {
+                    $this->db->where('a.id_cabang',$this->session->cabang);
+            //     $this->db->where('a.id_user',$this->session->id_user);
+                }
+
+
             }
 
             break;
 
+
+
             case 'potensi_wilayah':
             $this->db->select('a.*,b.nama as marketing');
             $this->db->from('tbl_nasabah a');
+            $this->db->where('a.status_nasabah!=','Realisasi');
             $this->db->join('tbl_master_user b','b.id_user=a.id_user','left');
-            $this->db->where('a.id_cabang',$this->session->cabang);
+
+            if ($this->session->level=="Marketing") {
+                $this->db->where('a.id_cabang',$this->session->cabang);
+            }
 
             if($_GET['order'][0]['column'] == 0)
             {
@@ -355,10 +371,18 @@ class Model_tabel extends CI_Model {
             }
 
             if ($search!=null && $search!='') {
-                $this->db->like('a.id_nasabah',$search);
-                $this->db->or_like('a.nama_nasabah',$search);
-                $this->db->or_like('a.tanggal_input',$search);
-                $this->db->or_like('a.alamat_nasabah',$search);
+                $this->db->like('a.nama_nasabah',$search);
+                $this->db->where('a.status_nasabah!=','Realisasi');
+                if ($this->session->level=="Marketing") {
+                    $this->db->where('a.id_cabang',$this->session->cabang);
+                }
+                
+                $this->db->or_like('a.usaha_nasabah',$search);
+                $this->db->where('a.status_nasabah!=','Realisasi');
+                if ($this->session->level=="Marketing") {
+                    $this->db->where('a.id_cabang',$this->session->cabang);
+                }
+
 
             }
             break;

@@ -81,7 +81,7 @@
                         <nav id="nav-menu-container">
                           <ul class="nav-menu">
                             <li class=""><a class="active" href="<?php echo base_url('landing') ?>">Home</a></li>
-                            <li><a href="<?php echo base_url() ?>portofolio/portofolio_marketing/<?php echo $marketing ?>#produk_layanan">Produk dan Layanan</a></li>
+                            <li><a href="<?php echo base_url() ?>marketing/bpr/<?php echo $marketing ?>#produk_layanan">Produk dan Layanan</a></li>
                             <li><a href="<?php echo base_url() ?>landing/simulasi_kredit">Simulasi Kredit</a></li>
                           </ul>
                         </nav>
@@ -196,7 +196,7 @@
                             <div class="row p-2">
                               <label for="omset_usaha" class="col-sm-3 col-form-label">Omset Usaha</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control rupiah" name="omset_usaha" class="rupiah" id="omset_usaha" onkeypress="return hanyaAngka(event)" onfocusout="SeparatorRibuan(this.value,this.id)"/>
+                                <input type="text" class="form-control rupiah" name="omset_usaha" class="rupiah" id="omset_usaha"/>
                                 <small class="error-omset_usaha text-danger"></small>
 
                               </div>
@@ -204,7 +204,7 @@
                             <div class="row p-2">
                               <label for="besar_plafon" class="col-sm-3 col-form-label">Besar Plafon</label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control rupiah" name="besar_plafon" class="rupiah" id="besar_plafon" onkeypress="return hanyaAngka(event)" onfocusout="SeparatorRibuan(this.value,this.id)" />
+                                <input type="text" class="form-control rupiah" name="besar_plafon" class="rupiah" id="besar_plafon"  />
                                 <small class="error-besar_plafon text-danger"></small>
 
                               </div>
@@ -280,6 +280,8 @@
                   </div>
 
                   <script src="<?php echo base_url() ?>assets/js/vendor/jquery-2.2.4.min.js"></script>
+                  <script src="<?php echo base_url() ?>assets/js/jquery.masknumber.js"></script>
+
                   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
                   crossorigin="anonymous"></script>
                   <script src="<?php echo base_url() ?>assets/js/vendor/bootstrap.min.js"></script>
@@ -570,6 +572,16 @@ $(document).ready(function(){
   });
 }
 
+
+$('#omset_usaha').maskNumber({
+  thousands:'.',
+  integer:true,
+});
+
+$('#besar_plafon').maskNumber({
+  thousands:'.',
+  integer:true,
+});
 
 });
 

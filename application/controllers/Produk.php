@@ -63,7 +63,10 @@ class Produk extends CI_Controller {
 			$opsi .='</div>';
 
 			$l->opsi = $opsi;
-
+			if ($l->keterangan_produk!='') {
+			$l->keterangan_produk = substr($l->keterangan_produk,0,500);
+				
+			}
 			if ($l->foto_produk!='') {
 				$l->foto_produk = '<img src="'.base_url().$l->foto_produk.'" width="35px">';
 			}

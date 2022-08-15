@@ -85,7 +85,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
               </div>
               <div class="modal-body">
-               <form id="form_portofolio" method="post" enctype="multipart/form-data" action="<?php echo base_url('portofolio/simpan') ?>">
+               <form id="form_portofolio" method="post" enctype="multipart/form-data" action="<?php echo base_url('marketing/simpan') ?>">
                  <div class="row "> 
                   <div class="col-6">  
                     <div class="col-md-12 mb-3"> 
@@ -249,7 +249,7 @@
     autoWidth:false,
     aLengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
     ajax: {
-     url: '<?php echo base_url('portofolio/tabel_portofolio')?>',
+     url: '<?php echo base_url('marketing/tabel_portofolio')?>',
      type: 'get',
      data: function (data) {
      }
@@ -325,7 +325,7 @@
 
     $.ajax({
       type : "POST",
-      url  : "<?php echo base_url('portofolio/aktivasi_kategori')?>",
+      url  : "<?php echo base_url('marketing/aktivasi_kategori')?>",
       dataType : "JSON",
       data : {'kode': kode,'isi': isi},
       success: function(data){
@@ -379,12 +379,12 @@
     let id_portofolio = $(this).attr('data');
     $.ajax({
       type : "GET",
-      url  : "<?php echo base_url('portofolio/detail_portofolio')?>",
+      url  : "<?php echo base_url('marketing/detail_portofolio')?>",
       dataType : "JSON",
       data : {'id_portofolio':id_portofolio},
       success: function(data){
         $('#modal_portofolio').modal('show');
-        $('#form_portofolio').attr('action','<?php echo base_url('portofolio/ubah') ?>');
+        $('#form_portofolio').attr('action','<?php echo base_url('marketing/ubah') ?>');
         $('#btn_simpan').html('UBAH');
         $('#label_header_produk').html('<i class="fas fa-id-card mr-2"></i> UBAH PORTOFOLIO');
         $('#id_portofolio').val(id_portofolio);
@@ -411,7 +411,7 @@
 
   $('#btn_tambah').on('click',function(){
     $('#modal_portofolio').modal('show');
-    $('#form_portofolio').attr('action','<?php echo base_url('portofolio/simpan') ?>');
+    $('#form_portofolio').attr('action','<?php echo base_url('marketing/simpan') ?>');
     $('#btn_simpan').html('SIMPAN');
 
     $('#form_portofolio').trigger("reset");

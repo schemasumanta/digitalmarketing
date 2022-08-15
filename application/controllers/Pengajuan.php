@@ -131,7 +131,7 @@ class Pengajuan extends CI_Controller {
 			$data['icon'] = 'error';
 		}	
 		$this->session->set_flashdata($data);
-		redirect('pengajuan/tambah_pengajuan/'.$this->input->post('produk').'/'.$this->input->post('marketing'),'refresh');
+		redirect('portofolio/portofolio_marketing/'.$this->input->post('marketing'),'refresh');
 	}
 	public function cetak($kode_pengajuan)
 	{
@@ -149,7 +149,32 @@ class Pengajuan extends CI_Controller {
 	} 
 
 
+	public function tolak()
+	{
+		$this->db->where('kode_pengajuan',$this->input->post('id_pengajuan_tolak'));
+		$tolak = $this->db->update('tbl_pengajuan',array('status' => 'Tolak', ));
 
+		if ($tolak) {
+
+			$data_history = array(
+				'id_user' => $this->session->id_user, 
+				'ip_address'=>get_ip(),
+				'aktivitas' => "Menolak Pengajuan Nasabah dengan Kode Pengajuan ".$this->input->post('id_pengajuan_tolak'),
+			);
+			$this->db->insert('tbl_history', $data_history);
+
+			$data['title'] = 'Berhasil';
+			$data['text'] = 'Data Pengajuan Berhasil Ditolak!';
+			$data['icon'] = 'success';
+		}else{
+			$data['title'] = 'Gagal';
+			$data['text'] = 'Data Pengajuan Gagal Ditolak!';
+			$data['icon'] = 'error';
+		}	
+		$this->session->set_flashdata($data);
+		redirect('pengajuan','refresh');
+
+	}
 
 	public function syarat()
 	{
@@ -197,6 +222,7 @@ class Pengajuan extends CI_Controller {
 			$l->tanggal_input = date_format(date_create($l->tanggal_input),'d-m-Y');
 
 			$l->omset_usaha = number_format($l->omset_usaha,0,",","."); 
+			$l->besar_plafon = number_format($l->besar_plafon,0,",","."); 
 			$data[] = $l;
 
 		}
@@ -218,9 +244,20 @@ class Pengajuan extends CI_Controller {
 			'tgl_realisasi' =>date('Y-m-d H:i:s'), 
 			'status' =>'Realisasi', 
 		);
+
 		$this->db->where('kode_pengajuan',$this->input->post('id_nasabah_realisasi'));
 		$result= $this->db->update('tbl_pengajuan', $data_realisasi);
 		if ($result) {
+			$data_fu = array(
+				'id_user' =>$this->session->id_user,
+				'id_nasabah' =>$this->input->post('id_nasabah_realisasi'), 
+				'hasil_fu' =>$this->input->post('no_ref'), 
+				'tanggal_fu' =>date('Y-m-d H:i:s'), 
+			);
+
+			$result= $this->db->insert('tbl_follow_up', $data_fu);
+
+
 			$data_history = array(
 				'id_user' => $this->session->id_user, 
 				'ip_address'=>get_ip(),

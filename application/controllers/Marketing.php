@@ -1,9 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Portofolio extends CI_Controller {
+class Marketing extends CI_Controller {
 
-	public function portofolio_marketing($id_user='')
+	public function bpr($id_user='')
 	{
 		$this->db->where('a.id_user',$id_user);
 		$this->db->join('tbl_master_jabatan b','b.id_jabatan=a.id_jabatan','left');
@@ -42,6 +42,13 @@ class Portofolio extends CI_Controller {
 		$this->load->view('portofolio/tampilan_portofolio',$data);
 		$this->load->view('templates/footer');
 	}
+
+	public function detail_produk()
+	{
+		$this->db->where('id_produk',$this->input->get('id_produk'));
+		$data = $this->db->get('tbl_master_produk')->result();
+		echo  json_encode($data);
+	}
 public function detail_portofolio()
 {
 	$this->db->where('id_portofolio',$this->input->get('id_portofolio'));
@@ -64,7 +71,7 @@ public function detail_portofolio()
 
 			$opsi ='
 			<div class="btn-group">
-			<a href="'.base_url().'portofolio/portofolio_marketing/'.$l->id_user.'" class="btn btn-sm btn-circle  btn-success" target="_blank"><i class="fa fa-eye"></i></a>';
+			<a href="'.base_url().'marketing/bpr/'.$l->id_user.'" class="btn btn-sm btn-circle  btn-success" target="_blank"><i class="fa fa-eye"></i></a>';
 
 			if ($this->session->level=="Marketing") {
 				

@@ -56,6 +56,7 @@ aria-hidden="true">
 
 <!-- Sweet Alert -->
 <script src="<?php echo base_url() ?>assets/js/sweetalert2.all.js"></script>
+<script src="<?php echo base_url() ?>assets/js/jquery.masknumber.js"></script>
 <!-- Page level custom scripts -->
 <!-- <script src="<?php echo base_url() ?>assets/js/demo/chart-area-demo.js"></script> -->
 <!-- <script src="<?php echo base_url() ?>assets/js/demo/chart-pie-demo.js"></script> -->
@@ -66,6 +67,61 @@ aria-hidden="true">
 
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
+
+<script type="text/javascript">
+    function show_password_user(id) {
+        if ($('#' + id).attr('type') == "password") {
+            $('#' + id).attr('type', 'text');
+            $('.' + id).html('<i class="fa fa-eye-slash"></i>');
+        } else {
+            $('#' + id).attr('type', 'password');
+            $('.' + id).html('<i class="fa fa-eye"></i>');
+
+        }
+    }
+
+
+    $('#btn_ubah_password_user').on('click', function() {
+        let cek = 0;
+
+        let password = $('#password_baru_user').val();
+        let confirm = $('#confirm_password_baru_user').val();
+        if (password == "") {
+            cek++;
+            $('#password_baru_user').focus();
+            $('.error-password_baru_user').html('Silahkan Masukkan Password Baru');
+        } else {
+            $('.error-password_baru_user').html('');
+        }
+        if (password !== confirm) {
+            cek++;
+            $('#confirm_password_baru_user').focus();
+            $('#confirm_password_baru_user').val();
+            $('.error-confirm_password_baru_user').html('Konfirmasi Password Tidak Valid');
+        } else {
+            $('.error-confirm_password_baru_user').html('');
+        }
+        if (cek > 0) {
+            return false;
+        } else {
+            $('#form_ubah_password_user').submit();
+
+        }
+
+    });
+
+    function previewFile(id) {
+      let file = $('#'+id)[0].files[0];
+      let reader = new FileReader();
+      reader.addEventListener("load", function () {
+        $('#preview_'+id).attr('src',reader.result);
+    }, false);
+      if (file) {
+        reader.readAsDataURL(file);
+    }
+}
+
+</script>
 </body>
 
 </html>

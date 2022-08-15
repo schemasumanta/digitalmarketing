@@ -123,6 +123,17 @@ public function realisasi()
 	$this->db->where('id_nasabah',$this->input->post('id_nasabah_realisasi'));
 	$result= $this->db->update('tbl_nasabah', $data_realisasi);
 	if ($result) {
+
+		$data_fu = array(
+			'id_user' =>$this->session->id_user,
+			'id_nasabah' =>$this->input->post('id_nasabah_realisasi'), 
+			'hasil_fu' =>$this->input->post('no_ref'), 
+			'tanggal_fu' =>date('Y-m-d H:i:s'), 
+		);
+
+		$result= $this->db->insert('tbl_follow_up', $data_fu);
+
+		
 		$data_history = array(
 			'id_user' => $this->session->id_user, 
 			'ip_address'=>get_ip(),

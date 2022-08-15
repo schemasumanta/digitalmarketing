@@ -636,7 +636,7 @@
 
   function buka_portofolio(id)
   {
-    window.location.href="<?php echo base_url() ?>portofolio/portofolio_marketing/"+id
+    window.location.href="<?php echo base_url() ?>marketing/bpr/"+id
   }
 </script>
 </body>

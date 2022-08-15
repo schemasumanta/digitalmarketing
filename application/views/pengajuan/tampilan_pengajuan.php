@@ -69,15 +69,15 @@
             </table>
           </div>
         </div>
-      
 
 
-</div>
-<!-- /.col -->
-</div>
-<!-- /.row -->
-</section>
-<!-- /.content -->
+
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
 </div>
 </div>
 
@@ -202,8 +202,8 @@
             <span style="width: 200px;font-weight: bold;display: inline-block;">Alamat</span><span class=" alamat_nasabah"></span>
           </div>
           <div class="col-md-6 mb-3 mt-3 btn-group">
-                <a href="javascript:;" target="_blank" id="foto_ktp" class="btn btn-success w-50 mr-3">Lihat KTP</a>
-                <a href="" id="foto_usaha" class="btn btn-primary w-50" target="_blank">Lihat Foto Usaha</a>
+            <a href="javascript:;" target="_blank" id="foto_ktp" class="btn btn-success w-50 mr-3">Lihat KTP</a>
+            <a href="" id="foto_usaha" class="btn btn-primary w-50" target="_blank">Lihat Foto Usaha</a>
           </div>
           <div class="col-md-12 mb-3 mt-3">
             <table class="table table-bordered table-striped display table-sm">
@@ -226,13 +226,43 @@
         </div>
       </div>
       <div class="modal-footer">
-           <a href="javascript:;" type="button" class="btn btn-primary btn-flat mr-2" id="cetak_data_pengajuan" target="_blank"><i class="fas fa-print mr-2"></i>Cetak</a>
-        <button type="button" class="btn btn-danger btn-flat mr-2" data-dismiss="modal"><i class="far fa-times-circle mr-2"></i> Tutup</button>
+       <a href="javascript:;" type="button" class="btn btn-primary btn-flat mr-2" id="cetak_data_pengajuan" target="_blank"><i class="fas fa-print mr-2"></i>Cetak</a>
+       <a href="javascript:;" type="button" class="btn btn-danger btn-flat mr-2 tolak_pengajuan" data=""><i class="fas fa-user-times mr-2"></i>Tolak</a>
+
+       <button type="button" class="btn btn-secondary btn-flat mr-2" data-dismiss="modal"><i class="far fa-times-circle mr-2"></i> Tutup</button>
+     </div>
+   </form>
+ </div>
+</div>
+</div>
+
+<div class="modal fade" data-backdrop="static" id="ModalTolak" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-light">
+       <h3 class="modal-title" id="myModalLabel" style=" font: sans-serif; "><i class="fas fa-users-times mr-2"></i> Tolak Pengajuan</h3>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">x</span></button>
+
+     </div>
+     <form class="form-horizontal" method="post" action="<?php echo base_url('pengajuan/tolak') ?>">
+      <div class="modal-body">
+
+        <input type="hidden" name="id_pengajuan_tolak" id="id_pengajuan_tolak" value=""> 
+        <div class="alert alert-danger"><p class="notif">Tolak Pengajuan Nasabah...?</p></div>
+
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger btn-flat mr-2" data-dismiss="modal"><i class="far fa-times-circle mr-2"></i> Batal</button>
+        <button  type="submit" class="btn_tolak btn btn-success btn-flat" id="btn_tolak"><i class="fas fa-check mr-2"></i>YA</button>
+      </div>
+
+
     </form>
   </div>
 </div>
 </div>
+
+
 <script type="text/javascript">
 
  function previewFile(id) {
@@ -384,11 +414,18 @@ $('#show_data').on('click','.item_detail_pengajuan',function(){
         $('#foto_usaha').attr('href','<?php echo  base_url(); ?>'+data.pengajuan[0].foto_usaha);
       }
 
-       if (data.pengajuan[0].foto_ktp!='') {
+      if (data.pengajuan[0].foto_ktp!='') {
         $('#foto_ktp').attr('href','<?php echo  base_url(); ?>'+data.pengajuan[0].foto_ktp);
       }
+      if (data.pengajuan[0].status=="Nasabah Baru") {
+      $('.tolak_pengajuan').attr('data',kode_pengajuan);
+      $('.tolak_pengajuan').removeClass('d-none');
+      }else{
+      $('.tolak_pengajuan').addClass('d-none');
 
-        $('#cetak_data_pengajuan').attr('href','<?php echo  base_url(); ?>pengajuan/cetak/'+kode_pengajuan);
+      }
+
+      $('#cetak_data_pengajuan').attr('href','<?php echo  base_url(); ?>pengajuan/cetak/'+kode_pengajuan);
 
       SeparatorRibuan(data.pengajuan[0].omset_usaha.toString(),'omset_usaha');
       SeparatorRibuan(data.pengajuan[0].besar_plafon.toString(),'besar_plafon');
@@ -414,7 +451,11 @@ $('#show_data').on('click','.item_detail_pengajuan',function(){
   return false;
 });
 
-
+$(document).on('click','.tolak_pengajuan',function(){
+let id_pengajuan_tolak = $(this).attr('data');
+$('#ModalTolak').modal('show');
+$('#id_pengajuan_tolak').val(id_pengajuan_tolak);
+});
 
 $('#btn_realisasi').on('click',function(){
  let no_ref = $('#no_ref').val();

@@ -194,90 +194,136 @@
 
 
 
+  function uploadImage(id,image) {
+    var data = new FormData();
+    data.append("image", image);
+    $.ajax({
+      url: "<?php echo site_url('profile/upload_image')?>",
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: data,
+      type: "POST",
+      success: function(url) {
+        $('#'+id).summernote("insertImage", url);
+      },
+      error: function(id,data) {
+        console.log(data);
+      }
+    });
+  }
 
-  $(document).ready(function(){
-
-   const notif = $('.flashdatart').data('title');
-   if (notif) {
-    Swal.fire({
-      title:notif,
-      text:$('.flashdatart').data('text'),
-      icon:$('.flashdatart').data('icon'),
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.close(); 
-
+  function deleteImage(src) {
+    $.ajax({
+      data: {src : src},
+      type: "POST",
+      url: "<?php echo site_url('profile/delete_image')?>",
+      cache: false,
+      success: function(response) {
       }
     });
   }
 
 
+  $(document).ready(function(){
 
-  dataTable = $('#tabel_produk').DataTable( {
-    paginationType:'full_numbers',
-    processing: true,
-    serverSide: true,
-    searching: true,
+    $('#keterangan_produk').summernote({
+      placeholder: 'Keterangan',
+      tabsize: 2,
+      height: 500,
+      callbacks: {
+        onImageUpload: function(image) {
+          uploadImage('keterangan_produk',image[0]);
+        },
+        onMediaDelete : function(target) {
+          deleteImage(target[0].src);
+        }
+      }
 
-    filter: false,
-    autoWidth:false,
-    aLengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-    ajax: {
-     url: '<?php echo base_url('produk/tabel_produk')?>',
-     type: 'get',
-     data: function (data) {
-     }
-   },
-   language: {
-     sProcessing: 'Sedang memproses...',
-     sLengthMenu: 'Tampilkan _MENU_ entri',
-     sZeroRecords: 'Tidak ditemukan data yang sesuai',
-     sInfo: 'Menampilkan _START_ sampai _END_ dari _TOTAL_ entri',
-     sInfoEmpty: 'Menampilkan 0 sampai 0 dari 0 entri',
-     sInfoFiltered: '(disaring dari _MAX_ entri keseluruhan)',
-     sInfoPostFix: '',
-     sSearch: 'Cari:',
-     sUrl: '',
-     oPaginate: {
-      sFirst: '<<',
-      sPrevious: '<',
-      sNext: '>',
-      sLast: '>>'
+    });
+
+
+    const notif = $('.flashdatart').data('title');
+    if (notif) {
+      Swal.fire({
+        title:notif,
+        text:$('.flashdatart').data('text'),
+        icon:$('.flashdatart').data('icon'),
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.close(); 
+
+        }
+      });
     }
-  },
-  order: [1, 'asc'],
-  columns: [
-  {'data':'no'},
-  {'data':'nama_kategori'},
-  {'data':'nama_produk'},
-  {'data':'foto_produk'},
-  {'data':'keterangan_produk'},
-  {'data':'opsi',orderable:false},
-
-  ],   
-  columnDefs: [
-  {
-    targets: [0,3,-1],
-    className: 'text-center'
-  },
-  ]
-
-});
 
 
-  function table_data(){
-   dataTable.ajax.reload(null,true);
- }
+
+    dataTable = $('#tabel_produk').DataTable( {
+      paginationType:'full_numbers',
+      processing: true,
+      serverSide: true,
+      searching: true,
+
+      filter: false,
+      autoWidth:false,
+      aLengthMenu: [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+      ajax: {
+       url: '<?php echo base_url('produk/tabel_produk')?>',
+       type: 'get',
+       data: function (data) {
+       }
+     },
+     language: {
+       sProcessing: 'Sedang memproses...',
+       sLengthMenu: 'Tampilkan _MENU_ entri',
+       sZeroRecords: 'Tidak ditemukan data yang sesuai',
+       sInfo: 'Menampilkan _START_ sampai _END_ dari _TOTAL_ entri',
+       sInfoEmpty: 'Menampilkan 0 sampai 0 dari 0 entri',
+       sInfoFiltered: '(disaring dari _MAX_ entri keseluruhan)',
+       sInfoPostFix: '',
+       sSearch: 'Cari:',
+       sUrl: '',
+       oPaginate: {
+        sFirst: '<<',
+        sPrevious: '<',
+        sNext: '>',
+        sLast: '>>'
+      }
+    },
+    order: [1, 'asc'],
+    columns: [
+    {'data':'no'},
+    {'data':'nama_kategori'},
+    {'data':'nama_produk'},
+    {'data':'foto_produk'},
+    {'data':'keterangan_produk'},
+    {'data':'opsi',orderable:false},
+
+    ],   
+    columnDefs: [
+    {
+      targets: [0,3,-1],
+      className: 'text-center'
+    },
+    ]
+
+  });
 
 
- $(".refresh").click(function(){
-   location.reload();
+    function table_data(){
+     dataTable.ajax.reload(null,true);
+   }
+
+
+   $(".refresh").click(function(){
+     location.reload();
+   });
+
+
+
+
  });
-
-
-
-
-});
 
   function previewFile(id) {
     let file = $('#'+id)[0].files[0];
@@ -376,7 +422,8 @@
         $('#id_produk').val(id_produk);
         $('#nama_produk').val(data[0].nama_produk);
         $('#kategori').val(data[0].id_kategori).trigger('change');
-        $('#keterangan_produk').val(data[0].keterangan_produk);
+        // $('#keterangan_produk').val(data[0].keterangan_produk);
+        $('#keterangan_produk').summernote('code',data[0].keterangan_produk);
         $('#lampiran_produk_lama').val(data[0].foto_produk);
         if(data[0].foto_produk!='')
         {
@@ -436,10 +483,10 @@
     return false;
   }
 
-    $('#btn_simpan').attr('disabled','disabled');
-    $('#btn_simpan').html('<img src="<?php echo base_url() ?>assets/img/spinner.gif">');
+  $('#btn_simpan').attr('disabled','disabled');
+  $('#btn_simpan').html('<img src="<?php echo base_url() ?>assets/img/spinner.gif">');
 
-    $('#form_produk').submit();
+  $('#form_produk').submit();
 
 });
 
