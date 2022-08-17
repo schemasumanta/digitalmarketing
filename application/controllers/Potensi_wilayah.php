@@ -97,9 +97,6 @@ public function tabel_potensi_wilayah(){
 	echo json_encode($output); 
 }
 
-
-
-
 public function index()
 {
 	$this->db->where('level',1);

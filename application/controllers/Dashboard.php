@@ -11,12 +11,71 @@ class Dashboard extends CI_Controller {
 		date_default_timezone_set('Asia/Jakarta');	
 	}
 
+	public function detail_produk()
+	{
+		$this->db->where('id_produk',$this->input->get('id_produk'));
+		$data = $this->db->get('tbl_informasi_produk')->result();
+		echo  json_encode($data);
+	}
+
+
+	public function get_option_laporan()
+	{
+		$this->db->select('id_user,nama');
+		$this->db->where('level','Marketing');
+		$this->db->where('status_user',1);
+		$data['marketing'] = $this->db->get('tbl_master_user')->result();
+
+		$this->db->select('id_cabang,nama_cabang');
+		$this->db->where('status_cabang',1);
+		$data['cabang'] = $this->db->get('tbl_master_cabang')->result();
+		echo json_encode($data);
+	}
 	public function index()
 	{
+		$this->db->select('sum(besar_plafon) as jumlah');
+		$this->db->where('YEAR(tanggal_input)',date('Y'));
+		if ($this->session->level!="Admin" && $this->session->level!="Supervisor") {
+			$this->db->where('id_cabang',$this->session->cabang);
+		}
+		$data['pengajuan_total'] = $this->db->get('tbl_pengajuan')->result();
 
+		$this->db->where('status','Realisasi');
+		if ($this->session->level!="Admin" && $this->session->level!="Supervisor") {
+			$this->db->where('id_cabang',$this->session->cabang);
+		}
+		$data['total_progress'] = $this->db->get('tbl_pengajuan')->num_rows();
+
+
+		if ($this->session->level!="Admin" && $this->session->level!="Supervisor") {
+			$this->db->where('id_cabang',$this->session->cabang);
+		}
+
+		$data['jumlah_pengajuan'] = $this->db->get('tbl_pengajuan')->num_rows();
+
+
+		$this->db->where('status!=','Realisasi');
+		$this->db->where('status!=','Tolak');
+		if ($this->session->level!="Admin" && $this->session->level!="Supervisor") {
+			$this->db->where('id_cabang',$this->session->cabang);
+		}
+		$data['nasabah_baru'] = $this->db->get('tbl_pengajuan')->num_rows();
+		$this->db->select('count(nama_nasabah) as jumlah');
+		$this->db->where('YEAR(tanggal_input)',date('Y'));
+		if ($this->session->level!="Admin" && $this->session->level!="Supervisor") {
+			$this->db->where('id_cabang',$this->session->cabang);
+		}
+
+		$data['potensi_total'] = $this->db->get('tbl_nasabah')->result();
+
+		$this->db->where('a.status_kategori',1);
+		$data['kategori_produk'] = $this->db->get('tbl_kategori_produk a')->result();
+		$this->db->where('a.status_produk',1);
+		$this->db->join('tbl_informasi_produk b','b.id_produk=a.id_produk','left');
+		$data['produk'] = $this->db->get('tbl_master_produk a')->result();
 		$this->load->view('templates/header');
 		$this->load->view('templates/sidebar');
-		$this->load->view('dashboard/tampilan_dashboard');  
+		$this->load->view('dashboard/tampilan_dashboard',$data);  
 		$this->load->view('templates/footer');
 	}
 
@@ -63,15 +122,12 @@ class Dashboard extends CI_Controller {
 			}
 		}
 
-
-
 		$data_profil = array(
 			'nama' => $this->input->post('nama_lengkap_user'),
 			'email' => $this->input->post('email_user'),
 			'foto' => $foto, 
 
 		);
-
 		$this->db->where('id_user',$this->session->id_user);
 		$result = $this->db->update('tbl_master_user',$data_profil);
 		if ($result) {
@@ -89,6 +145,33 @@ class Dashboard extends CI_Controller {
 		}
 		$this->session->set_flashdata($data);
 		redirect('dashboard', 'refresh');
+	}
+
+
+	public function tarik_laporan()
+	{
+		$jenis = $this->input->post('jenis_laporan');
+		$kategori = $this->input->post('kategori_laporan');
+		$marketing = $this->input->post('nama_marketing_laporan');
+		$cabang = $this->input->post('cabang_laporan');
+		$tanggal_awal = $this->input->post('tanggal_awal_laporan');
+		$tanggal_akhir = $this->input->post('tanggal_akhir_laporan');
+		$data['tanggal_awal'] = $tanggal_awal;
+		$data['tanggal_akhir'] = $tanggal_akhir;
+
+		if ($kategori=="Potensi Wilayah") {
+			
+		}else{
+			$this->db->select('a.*,b.nama as nama_marketing, c.nama_cabang');
+			$this->db->where('date(a.tanggal_input) >=',$tanggal_awal);
+			$this->db->where('date(a.tanggal_input) <=',$tanggal_akhir);
+			$this->db->join('tbl_master_user b','b.id_user=a.id_user');
+			$this->db->join('tbl_master_cabang c','c.id_cabang=a.id_cabang');
+
+			$data['laporan'] = $this->db->get('tbl_pengajuan a')->result();
+
+			$this->load->view('laporan/draft_laporan_pengajuan',$data);
+		}
 	}
 
 }

@@ -69,6 +69,61 @@ aria-hidden="true">
 
 
 <script type="text/javascript">
+    $('#jenis_laporan').on('change',function(){
+        let jenis = $(this).val();
+        let level = '<?php echo $this->session->level ?>';
+        if (level=="Admin" || level=="Supervisor") {
+            if (jenis=="Marketing") {
+              $('.marketing_laporan').removeClass('d-none');
+          }else{
+              $('.marketing_laporan').addClass('d-none');
+          }
+          if (jenis=="Cabang") {
+              $('.cabang_laporan').removeClass('d-none');
+          }else{
+              $('.cabang_laporan').addClass('d-none');
+          }
+      }
+  });
+
+
+    $(document).on('click','.item_tarik_laporan',function(e){
+        e.preventDefault();
+        let level = '<?php echo $this->session->level ?>';
+        if (level=="Admin" || level=="Supervisor") {
+            $.ajax({
+              type : "GET",
+              url  : "<?php echo base_url('dashboard/get_option_laporan')?>",
+              dataType : "JSON",
+              success: function(data){
+                  $('#ModalLaporan').modal('show');
+
+                  $('.cabang_laporan').addClass('d-none');
+                  $('.marketing_laporan').addClass('d-none');
+                  let marketing ='<option value="All">All</option>';
+                  for (var i = 0; i <data.marketing.length; i++) {
+                    marketing+='<option value="'+data.marketing[i].id_user+'">'+data.marketing[i].nama+'</option>';
+                }
+                $('#nama_marketing_laporan').html(marketing);
+
+                let cabang ='<option value="All">All</option>';
+                for (var i = 0; i <data.cabang.length; i++) {
+                    cabang+='<option value="'+data.cabang[i].id_cabang+'">'+data.cabang[i].nama_cabang+'</option>';
+                }
+                $('#cabang_laporan').html(cabang);
+
+
+            }
+        });
+
+
+        }else{
+            $('#ModalLaporan').modal('show');
+            $('.cabang_laporan').addClass('d-none');
+            $('.marketing_laporan').addClass('d-none');
+        }
+    });
+
     function show_password_user(id) {
         if ($('#' + id).attr('type') == "password") {
             $('#' + id).attr('type', 'text');
@@ -120,6 +175,69 @@ aria-hidden="true">
         reader.readAsDataURL(file);
     }
 }
+
+$('#btn_tarik_laporan').on('click',function(){
+    let jenis = $('#jenis_laporan').val();
+    if (jenis==null) {
+        $('#jenis_laporan').focus();
+        Swal.fire({
+            title:'Error',
+            text:'Silahkan Pilih Jenis Laporan!',
+            icon:'error'
+        }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.close();
+          }
+      });
+        return false;
+    }
+
+    let tanggal_awal_laporan = $('#tanggal_awal_laporan').val();
+    if (tanggal_awal_laporan=='') {
+        $('#tanggal_awal_laporan').focus();
+        Swal.fire({
+            title:'Error',
+            text:'Silahkan Masukkan Tanggal Awal!',
+            icon:'error'
+        }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.close();
+          }
+      });
+        return false;
+    }
+
+    let tanggal_akhir_laporan = $('#tanggal_akhir_laporan').val();
+    if (tanggal_akhir_laporan=='') {
+        $('#tanggal_akhir_laporan').focus();
+        Swal.fire({
+            title:'Error',
+            text:'Silahkan Masukkan Tanggal Akhir!',
+            icon:'error'
+        }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.close();
+          }
+      });
+        return false;
+    }
+    if (tanggal_akhir_laporan < tanggal_awal_laporan) {
+        $('#tanggal_akhir_laporan').focus();
+        Swal.fire({
+            title:'Error',
+            text:'Rentang Tanggal Tidak Valid!',
+            icon:'error'
+        }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.close();
+          }
+      });
+        return false;
+    }
+
+    $('#form_tarik_laporan').submit();
+
+});
 
 </script>
 </body>

@@ -39,12 +39,7 @@
       }
 
     </style>
-  <!-- =======================================================
-  * Template Name: BizLand - v3.7.0
-  * Template URL: https://bootstrapmade.com/bizland-bootstrap-business-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
 </head>
 
 <body>
@@ -58,10 +53,10 @@
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#team">Marketing</a></li>
+          <!-- <li><a class="nav-link scrollto" href="#about">About</a></li> -->
           <!-- <li><a class="nav-link scrollto" href="#services">Simulasi</a></li> -->
           <li><a class="nav-link scrollto " href="#portfolio">Galeri</a></li>
-          <li><a class="nav-link scrollto" href="#team">Marketing</a></li>
           <li><a class="nav-link scrollto" href="#pricing">Produk</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
 
@@ -92,9 +87,55 @@
   </section><!-- End Hero -->
 
   <main id="main">
+    <section id="team" class="team section-bg">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title">
+      <h2>MARKETING</h2>
+      <h3>Tim Marketing <span>Kami</span></h3>
+      <p>Marketing PT. BPR BKK Karangmalang (Perseroda) selalu melayani nasabah dengan segenap hati.</p>
+    </div>
+    <div class="row d-flex flex-row mb-3 justify-content-center">
+      <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="100">
+
+        <span class="input-group-text bg-primary text-light ">Cabang</span>
+        <select class="form-control " id="cabang_marketing" name="cabang_marketing">
+          <option value="0"  selected style="width: 100%">Pilih Cabang</option>
+          <?php foreach ($landing['cabang'] as $cb): ?>
+            <option value="<?php echo $cb->id_cabang ?>"><?php echo $cb->nama_cabang; ?></option>
+          <?php endforeach ?>
+        </select>
+      </div>
+    </div>
+    <div class="row list_mkt">
+
+      <?php foreach ($landing['marketing'] as $mkt): ?>
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+          <div class="member" style="cursor: pointer;" onclick="buka_portofolio(<?php echo $mkt->id_user; ?>)">
+            <div class="member-img">
+              <img src="<?php echo base_url().$mkt->foto ?>" class="img-fluid" alt="">
+              <div class="social">
+                <a href="<?php echo $mkt->twitter_portofolio ?>" target="_blank"><i class="bi bi-twitter"></i></a>
+                <a href="<?php echo $mkt->facebook_portofolio ?>" target="_blank"><i class="bi bi-facebook"></i></a>
+                <a href="<?php echo $mkt->instagram_portofolio ?>" target="_blank"><i class="bi bi-instagram"></i></a>
+                <a href="<?php echo $mkt->linkedin_portofolio ?>" target="_blank"><i class="bi bi-linkedin"></i></a>
+              </div>
+            </div>
+            <div class="member-info">
+              <h4><?php echo $mkt->nama; ?></h4>
+              <span>Kantor Cabang <?php echo $mkt->nama_cabang; ?> <?php if ($mkt->telepon_portofolio!="") {?>
+                | <?php echo $mkt->telepon_portofolio; } ?>
+              </span>
+            </div>
+          </div>
+        </div>
+      <?php endforeach ?>
+    </div>
+  </div>
+</section><!-- End Team Section -->
+
     <!-- ======= Featured Services Section ======= -->
     <?php if(count($landing['feature']) > 0) {?>
-      <section id="featured-services" class="featured-services">
+      <section id="featured-services" class="featured-services d-none">
         <div class="container" data-aos="fade-up">
 
           <div class="row">
@@ -119,7 +160,7 @@
       <?php foreach ($landing['about_us'] as $ab): ?>
 
 
-        <section id="about" class="about section-bg">
+        <section id="about" class="about section-bg d-none">
           <div class="container" data-aos="fade-up">
 
             <div class="section-title">
@@ -143,7 +184,7 @@
       <?php endforeach ?>
     <?php   } ?>
     <!-- ======= Counts Section ======= -->
-    <section id="counts" class="counts">
+    <section id="counts" class="counts d-none">
       <div class="container" data-aos="fade-up">
 
         <div class="row">
@@ -183,7 +224,7 @@
 
       </div>
     </section><!-- End Counts Section -->
-    <section id="clients" class="clients section-bg">
+    <section id="clients" class="clients section-bg d-none">
      <div class="section-title">
       <h2 style="margin-top: 25px">Our Clients</h2>
 
@@ -270,51 +311,7 @@
   </div>
 </section><!-- End Portfolio Section -->
 <!-- ======= Team Section ======= -->
-<section id="team" class="team section-bg">
-  <div class="container" data-aos="fade-up">
-    <div class="section-title">
-      <h2>MARKETING</h2>
-      <h3>Tim Marketing <span>Kami</span></h3>
-      <p>Marketing PT. BPR BKK Karangmalang (Perseroda) selalu melayani nasabah dengan segenap hati.</p>
-    </div>
-    <div class="row d-flex flex-row mb-3 justify-content-center">
-      <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="100">
 
-        <span class="input-group-text bg-primary text-light ">Cabang</span>
-        <select class="form-control " id="cabang_marketing" name="cabang_marketing">
-          <option value="0"  selected style="width: 100%">Pilih Cabang</option>
-          <?php foreach ($landing['cabang'] as $cb): ?>
-            <option value="<?php echo $cb->id_cabang ?>"><?php echo $cb->nama_cabang; ?></option>
-          <?php endforeach ?>
-        </select>
-      </div>
-    </div>
-    <div class="row list_mkt">
-
-      <?php foreach ($landing['marketing'] as $mkt): ?>
-        <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-          <div class="member" style="cursor: pointer;" onclick="buka_portofolio(<?php echo $mkt->id_user; ?>)">
-            <div class="member-img">
-              <img src="<?php echo base_url().$mkt->foto ?>" class="img-fluid" alt="">
-              <div class="social">
-                <a href="<?php echo $mkt->twitter_portofolio ?>" target="_blank"><i class="bi bi-twitter"></i></a>
-                <a href="<?php echo $mkt->facebook_portofolio ?>" target="_blank"><i class="bi bi-facebook"></i></a>
-                <a href="<?php echo $mkt->instagram_portofolio ?>" target="_blank"><i class="bi bi-instagram"></i></a>
-                <a href="<?php echo $mkt->linkedin_portofolio ?>" target="_blank"><i class="bi bi-linkedin"></i></a>
-              </div>
-            </div>
-            <div class="member-info">
-              <h4><?php echo $mkt->nama; ?></h4>
-              <span>Kantor Cabang <?php echo $mkt->nama_cabang; ?> <?php if ($mkt->telepon_portofolio!="") {?>
-                | <?php echo $mkt->telepon_portofolio; } ?>
-              </span>
-            </div>
-          </div>
-        </div>
-      <?php endforeach ?>
-    </div>
-  </div>
-</section><!-- End Team Section -->
 
 <!-- ======= Pricing Section ======= -->
 <section id="pricing" class="pricing">
@@ -365,7 +362,7 @@
       </div>
 
       <div class="row" data-aos="fade-up" data-aos-delay="100">
-        <div class="col-lg-6">
+        <div class="col-lg-4">
           <div class="info-box mb-4">
             <i class="bx bx-map"></i>
             <h3>Our Address</h3>
@@ -373,7 +370,7 @@
           </div>
         </div>
 
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-6">
           <div class="info-box  mb-4">
             <i class="bx bx-envelope"></i>
             <h3>Email Us</h3>
@@ -381,7 +378,7 @@
           </div>
         </div>
 
-        <div class="col-lg-3 col-md-6">
+        <div class="col-lg-4 col-md-6">
           <div class="info-box  mb-4">
             <i class="bx bx-phone-call"></i>
             <h3>Call Us</h3>
@@ -393,11 +390,11 @@
 
       <div class="row" data-aos="fade-up" data-aos-delay="100">
 
-        <div class="col-lg-6 ">
+        <div class="col-lg-12 ">
           <iframe class="mb-4 mb-lg-0" src="<?php echo $key->map_profile ?>" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
         </div>
 
-        <div class="col-lg-6">
+        <div class="col-lg-6 d-none">
           <form action="forms/contact.php" method="post" role="form" class="php-email-form">
             <div class="row">
               <div class="col form-group">
@@ -432,7 +429,7 @@
 </main>
 <footer id="footer">
 
-  <div class="footer-newsletter">
+  <div class="footer-newsletter d-none">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-6">

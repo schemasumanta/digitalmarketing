@@ -100,12 +100,20 @@
             <div class="sidebar-heading">
                 Marketing Panel
             </div>
+
              <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url('marketing') ?>">
                     <i class="fas fa-fw fa-user"></i>
                     <span>Portofolio</span></a>
             </li>
 
+             <?php if ($this->session->level=="Admin" || $this->session->level=="Supervisor") { ?>
+             <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url('produk/informasi') ?>">
+                    <i class="fas fa-fw fa-database"></i>
+                    <span>Informasi Produk</span></a>
+            </li>
+           <?php } ?>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -126,28 +134,17 @@
                     <span>Potensi Wilayah</span></a>
             </li>
 
-            <?php if ($this->session->level=="Admin") { ?>
             <hr class="sidebar-divider">
                 <div class="sidebar-heading">
                 Laporan
             </div>
-            <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLaporan"
-                    aria-expanded="true" aria-controls="collapseLaporan">
+                <a class="nav-link item_tarik_laporan" href="javascript:;" >
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>Laporan</span>
-                </a>
-                <div id="collapseLaporan" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="login.html">Per Marketing</a>
-                        <a class="collapse-item" href="login.html">Per Cabang</a>
-                        <a class="collapse-item" href="login.html">Per Periode</a>
-                    </div>
-                </div>
+                    <span>Laporan</span></a>
             </li>
+
            
-           <?php } ?>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

@@ -183,6 +183,25 @@ class Model_tabel extends CI_Model {
             
             break;
 
+            case 'informasi':
+            $this->db->select('a.*,b.nama_produk,c.nama_kategori');
+            $this->db->join('tbl_master_produk b','b.id_produk=a.id_produk');
+            $this->db->join('tbl_kategori_produk c','c.id_kategori=b.id_kategori');
+
+            $this->db->from('tbl_informasi_produk a');
+            if($_GET['order'][0]['column'] == 0)
+            {
+                $this->db->order_by('a.informasi_produk',$order);
+            }else{
+                $this->db->order_by($sort,$order);
+            }
+            if ($search!=null && $search!='') {
+                $this->db->like('a.id_produk',$search);
+                $this->db->or_like('b.nama_produk',$this->session->kode);
+                $this->db->or_like('c.nama_kategori',$this->session->kode);
+                $this->db->or_like('a.informasi_produk',$this->session->kode);
+            }
+            break;
             case 'produk':
             $this->db->select('a.*,b.nama_kategori');
             $this->db->join('tbl_kategori_produk b','b.id_kategori=a.id_kategori');

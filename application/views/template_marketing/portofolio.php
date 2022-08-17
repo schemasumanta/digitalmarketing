@@ -392,6 +392,11 @@
 									<div class="modal-content">
 
 										<form class="form-horizontal">
+											<div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal" class="btn btn-light" aria-label="Close"><span aria-hidden="true">x</span></button>
+											</div>
+
+
 											<div class="modal-body">
 												<div class="row p-3">
 													<div class="col-md-12 mb-3 ">
@@ -406,13 +411,13 @@
 											</div>
 											<div class="modal-footer">
 												<a id="btn_ajukan" href=""
-														class="btn w-100"
-														data-text="Ajukan Sekarang" style="border:1px solid white!important;font-size: 18px;background: #00f721;color:white;border-radius: 15px">
-													<span>Ajukan</span>
-													<span>Sekarang</span>
-												</a>
-											</div>
-										</form>
-									</div>
+												class="btn w-100"
+												data-text="Ajukan Sekarang" style="border:1px solid white!important;font-size: 18px;background: #00f721;color:white;border-radius: 15px">
+												<span>Ajukan</span>
+												<span>Sekarang</span>
+											</a>
+										</div>
+									</form>
 								</div>
 							</div>
+						</div>

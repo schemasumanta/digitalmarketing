@@ -34,6 +34,69 @@ class Produk extends CI_Controller {
 		echo json_encode($data);
 	}
 
+		public function detail_informasi()
+	{
+		$this->db->where('id_informasi',$this->input->get('id_informasi'));
+		$data = $this->db->get('tbl_informasi_produk')->result();
+		echo json_encode($data);
+	}
+
+	public function informasi()
+	{
+
+		$this->db->select('a.*,b.informasi_produk');
+		$this->db->where('a.status_produk',1);
+		$this->db->where('b.informasi_produk',null);
+		$this->db->join('tbl_informasi_produk b','b.id_produk=a.id_produk','left');
+		$data['produk'] = $this->db->get('tbl_master_produk a')->result();
+		$this->load->view('templates/header');
+		$this->load->view('templates/sidebar');
+		$this->load->view('produk/informasi_produk',$data);
+		$this->load->view('templates/footer');
+	}
+
+	public function tabel_informasi(){
+		$data   = array();
+		$sort     = isset($_GET['columns'][$_GET['order'][0]['column']]['data']) ? strval($_GET['columns'][$_GET['order'][0]['column']]['data']) : 'nama_produk';
+		$order    = isset($_GET['order'][0]['dir']) ? strval($_GET['order'][0]['dir']) : 'asc';
+		$search    = isset($_GET['search']['value']) ? strval($_GET['search']['value']):null;
+		$no = $this->input->get('start');
+
+		$list = $this->model_tabel->get_datatables('informasi',$sort,$order,$search);
+
+		foreach ($list as $l) {
+			$no++;
+			$l->no = $no;
+			$opsi ='
+			<div class="btn-group">
+			<a href="javascript:;" class="btn btn-sm btn-circle  btn-primary   item_edit_informasi" data="'.$l->id_informasi.'"><i class="fa fa-edit"></i></a>';
+			$opsi .='<a href="javascript:;" class="btn btn-danger btn-sm btn-circle  item_hapus_informasi" data="'.$l->id_informasi.'"><i class="fa fa-trash"></i></a>';
+			$opsi .='</div>';
+
+			if ($l->informasi_produk!='') {
+				$l->informasi_produk = substr($l->informasi_produk,0,500);
+			}
+
+			$l->opsi = $opsi;
+			if ($l->informasi_foto!='') {
+				$l->informasi_foto = '<img src="'.base_url().$l->informasi_foto.'" width="35px">';
+			}
+			$data[] = $l;
+
+		}
+
+
+
+		$output = array(
+			"draw"              => $_GET['draw'],
+			"recordsTotal"      => $this->model_tabel->count_all('informasi',$sort,$order,$search),
+			"recordsFiltered"   => $this->model_tabel->count_filtered('informasi',$sort,$order,$search),
+			"data"              => $data,
+		);  
+		echo json_encode($output); 
+	}
+
+
 	public function tabel_produk(){
 		$data   = array();
 		$sort     = isset($_GET['columns'][$_GET['order'][0]['column']]['data']) ? strval($_GET['columns'][$_GET['order'][0]['column']]['data']) : 'nama_produk';
@@ -64,7 +127,7 @@ class Produk extends CI_Controller {
 
 			$l->opsi = $opsi;
 			if ($l->keterangan_produk!='') {
-			$l->keterangan_produk = substr($l->keterangan_produk,0,500);
+				$l->keterangan_produk = substr($l->keterangan_produk,0,500);
 				
 			}
 			if ($l->foto_produk!='') {
@@ -170,6 +233,147 @@ class Produk extends CI_Controller {
 		echo json_encode($data);
 
 	}
+	public function simpan_informasi()
+	{
+
+
+		if (!is_dir('assets/img/foto_informasi/')) {
+			mkdir('assets/img/foto_informasi/');
+		}
+
+		$foto = '';
+
+		if($_FILES['lampiran_informasi']['name'] != '')
+		{
+			$filename = trim($_FILES['lampiran_informasi']['name']);
+			$location ='assets/img/foto_informasi/produk_'.time().$filename;
+			$file_extension = pathinfo($location, PATHINFO_EXTENSION);
+			$file_extension = strtolower($file_extension);
+			$image_ext = array("jpg", "png", "jpeg", "gif");
+			if (in_array($file_extension, $image_ext)) {
+				if (move_uploaded_file($_FILES['lampiran_informasi']['tmp_name'], $location)) {
+					$foto = $location;
+				}
+			}
+		}
+		
+		$data_produk = array(
+			'id_produk' => $this->input->post('id_produk'),
+			'informasi_produk' => $this->input->post('informasi_produk'),
+			'informasi_foto' => $foto,
+		);
+		$result= $this->db->insert('tbl_informasi_produk', $data_produk);
+		if ($result) {
+			$data_history = array(
+				'id_user' => $this->session->id_user, 
+				'ip_address'=>get_ip(),
+				'aktivitas' => "Menambah Data Informasi Produk Baru dengan nama ".$this->input->post('id_produk'),
+			);
+			$this->db->insert('tbl_history', $data_history);
+			$data['title'] = 'Berhasil';
+			$data['text'] = 'Informasi Produk Berhasil Ditambahkan!';
+			$data['icon'] = 'success';
+
+
+		}else{
+
+			$data['title'] = 'Gagal';
+			$data['text'] = 'Informasi Produk Gagal Ditambahkan!';
+			$data['icon'] = 'error';
+
+		}	
+
+		$this->session->set_flashdata($data);
+		redirect('produk/informasi','refresh');
+
+	}
+
+
+
+
+	public function ubah_informasi()
+	{
+
+
+		if (!is_dir('assets/img/foto_informasi/')) {
+			mkdir('assets/img/foto_informasi/');
+		}
+
+		$foto = $this->input->post('lampiran_informasi_lama');
+
+		if($_FILES['lampiran_informasi']['name'] != '')
+		{
+			$filename = trim($_FILES['lampiran_informasi']['name']);
+			$location ='assets/img/foto_informasi/produk_'.time().$filename;
+			$file_extension = pathinfo($location, PATHINFO_EXTENSION);
+			$file_extension = strtolower($file_extension);
+			$image_ext = array("jpg", "png", "jpeg", "gif");
+			if (in_array($file_extension, $image_ext)) {
+				if (move_uploaded_file($_FILES['lampiran_informasi']['tmp_name'], $location)) {
+					$foto = $location;
+				}
+			}
+		}
+		
+		$data_produk = array(
+			'informasi_produk' => $this->input->post('informasi_produk'),
+			'informasi_foto' => $foto,
+		);
+		$this->db->where('id_informasi',$this->input->post('id_informasi'));
+		$result= $this->db->update('tbl_informasi_produk', $data_produk);
+		if ($result) {
+			$data_history = array(
+				'id_user' => $this->session->id_user, 
+				'ip_address'=>get_ip(),
+				'aktivitas' => "Mengubah Data Informasi Produk dengan ID ".$this->input->post('id_produk'),
+			);
+			$this->db->insert('tbl_history', $data_history);
+			$data['title'] = 'Berhasil';
+			$data['text'] = 'Informasi Produk Berhasil Diubah!';
+			$data['icon'] = 'success';
+
+		}else{
+
+			$data['title'] = 'Gagal';
+			$data['text'] = 'Informasi Produk Gagal Diubah!';
+			$data['icon'] = 'error';
+
+		}	
+
+		$this->session->set_flashdata($data);
+		redirect('produk/informasi','refresh');
+
+	}
+
+	public function hapus_informasi()
+	{
+		$this->db->where('id_informasi',$this->input->post('id_informasi_hapus'));
+		$delete  = $this->db->delete('tbl_informasi_produk');
+		if ($delete) {
+			$data_history = array(
+				'id_user' => $this->session->id_user, 
+				'ip_address'=>get_ip(),
+				'aktivitas' => "Menghapus Data Informasi Produk dengan ID ".$this->input->post('id_informasi_hapus'),
+			);
+			$this->db->insert('tbl_history', $data_history);
+			$data['title'] = 'Berhasil';
+			$data['text'] = 'Informasi Produk Berhasil Dihapus!';
+			$data['icon'] = 'success';
+
+
+		}else{
+
+			$data['title'] = 'Gagal';
+			$data['text'] = 'Informasi Produk Gagal Dihapus!';
+			$data['icon'] = 'error';
+
+		}	
+
+		$this->session->set_flashdata($data);
+		redirect('produk/informasi','refresh');
+	}
+
+
 
 	public function simpan()
 	{
