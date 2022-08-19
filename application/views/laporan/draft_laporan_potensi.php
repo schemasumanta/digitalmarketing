@@ -73,11 +73,11 @@
 							<table id="mytable" class="display table table-bordered"> 
 								<thead>
 									<tr style="border-bottom: 0px solid black;">
-										<th colspan="9" style="border-bottom: 0px solid black;">
+										<th colspan="12" style="border-bottom: 0px solid black;">
 											<div class="row">
 												<div class="col-lg-12" style="border: 0px solid black;text-align: center;font-weight: bold;">
 													<h4><b><center>PT. BPR BKK KARANGMALANG (PERSERODA)</center></b></h4>
-													<h4><b><center>DATA PENGAJUAN NASABAH VIA  DIGITAL MARKETING</center></b></h4>
+													<h4><b><center>DATA POTENSI WILAYAH DIGITAL MARKETING</center></b></h4>
 
 													<span style="text-align: right;">Periode</span><span>&nbsp;&nbsp;:&nbsp;<?php $tanggal=explode('-', $tanggal_awal);
 													$bulan = array(
@@ -106,15 +106,18 @@
 										</th>
 									</tr>
 									<tr style="border-top:0px solid black;">
-										<th colspan="9" style="border-top: 0px solid black;"></th>
+										<th colspan="12" style="border-top: 0px solid black;"></th>
 									</tr>
 									<tr style="font-size: 12px;text-align: center;">
 										<th width="2%">No</th>
 										<th width="15%">Nama Lengkap</th> 
-										<th width="30%">Alamat</th> 
-										<th width="10%">Plafond</th> 
-										<th width="10%">Tanggal Pengajuan</th>
-										<th>Status</th>
+										<th width="10%">Alamat</th> 
+										<th width="10%">Desa</th> 
+										<th width="10%">Kecamatan</th> 
+										<th width="10%">Kabupaten</th> 
+										<th width="10%">Telepon</th> 
+										<th width="10%">Omset</th> 
+										<th width="10%">Status</th> 
 										<th>No Ref.</th>
 										<th>Pegawai</th>
 										<th>Cabang</th>
@@ -126,11 +129,14 @@
 									<?php $no=1; foreach ($laporan as $key): ?>
 									<tr>
 										<td class="text-center"><?php echo $no++;  ?></td>
-										<td ><?php echo $key->nama;  ?></td>
-										<td ><?php echo $key->alamat_rumah;  ?></td>
-										<td class="text-right"><?php echo number_format($key->besar_plafon,0,",","."); ?></td>
-										<td><?php echo date_format(date_create($key->tanggal_input),'d-m-Y'); ?></td>
-										<td ><?php echo $key->status;  ?></td>
+										<td ><?php echo $key->nama_nasabah;  ?></td>
+										<td ><?php echo $key->alamat_nasabah;  ?></td>
+										<td ><?php echo $key->kelurahan;  ?></td>
+										<td ><?php echo $key->kecamatan;  ?></td>
+										<td ><?php echo $key->kabupaten;  ?></td>
+										<td ><?php echo $key->telp_nasabah;  ?></td>
+										<td class="text-right"><?php echo number_format($key->omset_nasabah,0,",","."); ?></td>
+										<td ><?php echo $key->status_nasabah;  ?></td>
 										<td ><?php echo $key->no_referensi;  ?></td>
 										<td ><?php echo $key->nama_marketing;  ?></td>
 										<td ><?php echo $key->nama_cabang;  ?></td>
@@ -139,7 +145,7 @@
 								<?php endforeach ?>
 									<?php else : ?>
 								<tr>
-										<td colspan ="9" class="text-center text-danger"><h4>Data Tidak Ditemukan</h4></td>
+										<td colspan ="12" class="text-center text-danger"><h4>Data Tidak Ditemukan</h4></td>
 									<?php endif ?>
 
 							</tbody>
@@ -170,7 +176,7 @@
 <script src="<?php echo base_url(); ?>assets/js/modules-datatables.js"></script>
 <script type="text/javascript">
 
-	function exportTableToExcel(mytable, filename = 'Laporan PENGAJUAN PER <?php echo $jenis?> '+<?php echo date("Ymd"); ?>){
+	function exportTableToExcel(mytable, filename = 'Laporan POTENSI PER <?php echo $jenis?> '+<?php echo date("Ymd"); ?>){
 
 		$('.tombol').remove();
 		var downloadLink;

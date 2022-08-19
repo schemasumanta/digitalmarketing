@@ -131,7 +131,7 @@ class Pengajuan extends CI_Controller {
 			$data['icon'] = 'error';
 		}	
 		$this->session->set_flashdata($data);
-		redirect('portofolio/portofolio_marketing/'.$this->input->post('marketing'),'refresh');
+		redirect('marketing/bpr/'.$this->input->post('marketing'),'refresh');
 	}
 	public function cetak($kode_pengajuan)
 	{
