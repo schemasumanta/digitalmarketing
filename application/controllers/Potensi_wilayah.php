@@ -37,6 +37,13 @@ class Potensi_wilayah extends CI_Controller {
 
 	echo json_encode($data);
 }
+
+public function cek_telepon()
+{
+	$this->db->where('telp_nasabah',$this->input->get('telp_nasabah'));
+	$data = $this->db->get('tbl_nasabah')->num_rows();
+	echo json_encode($data);
+}
 public function tabel_potensi_wilayah(){
 	$data   = array();
 	$sort     = isset($_GET['columns'][$_GET['order'][0]['column']]['data']) ? strval($_GET['columns'][$_GET['order'][0]['column']]['data']) : 'id_nasabah';

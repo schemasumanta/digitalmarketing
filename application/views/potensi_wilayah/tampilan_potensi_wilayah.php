@@ -92,7 +92,9 @@
                  </div> 
                  <div class="col-md-4 mb-3"> 
                    <label style="color:#343a40;" for="telp_nasabah">Telepon</label>
-                   <input type="text" class="form-control" id="telp_nasabah"  name="telp_nasabah" required onkeypress="return hanyaAngka(event)">
+                   <input type="text" class="form-control" id="telp_nasabah"  name="telp_nasabah" required onkeypress="return hanyaAngka(event)" maxlength="13" minlength="10">
+                   <input type="hidden" class="form-control" id="telp_nasabah_lama"  name="telp_nasabah_lama" required onkeypress="return hanyaAngka(event)" maxlength="13" minlength="10">
+
                  </div> 
                  <div class="col-md-6 mb-3"> 
                    <label style="color:#343a40;" for="prov_nasabah">Provinsi</label>
@@ -575,6 +577,7 @@ $('#show_data').on('click','.item_edit_potensi_wilayah',function(){
       $('#id_nasabah').val(id_nasabah);
       $('#nama_nasabah').val(data[0].nama_nasabah);
       $('#telp_nasabah').val(data[0].telp_nasabah);
+      $('#telp_nasabah_lama').val(data[0].telp_nasabah);
       $('#alamat_nasabah').val(data[0].alamat_nasabah);
       SeparatorRibuan(data[0].omset_nasabah.toString(),'omset_nasabah');
       $('#usaha_nasabah').val(data[0].usaha_nasabah);
@@ -740,6 +743,8 @@ $('#btn_simpan').on('click',function(){
   }
 
   let telp_nasabah = $('#telp_nasabah').val();
+  let telp_nasabah_lama = $('#telp_nasabah_lama').val();
+
   if (telp_nasabah=="") {
     $('#telp_nasabah').focus();
     Swal.fire({
@@ -753,72 +758,11 @@ $('#btn_simpan').on('click',function(){
     });
     return false;
   }
-  let prov_nasabah = $('#prov_nasabah').val();
-  if (prov_nasabah==null) {
+  if (telp_nasabah.length < 10 || telp_nasabah.length > 13 ) {
+    $('#telp_nasabah').focus();
     Swal.fire({
-      title:'Provinsi Kosong',
-      text:'Silahkan Pilih Provinsi!',
-      icon:'error'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.close();
-        $('#prov_nasabah').select2('open');
-      }
-    });
-    return false;
-  }
-
-  let kab_nasabah = $('#kab_nasabah').val();
-  if (kab_nasabah==null) {
-    Swal.fire({
-      title:'Kab Kota Kosong',
-      text:'Silahkan Pilih Kab Kota !',
-      icon:'error'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.close();
-        $('#kab_nasabah').select2('open');
-      }
-    });
-    return false;
-  }  
-
-  let kec_nasabah = $('#kec_nasabah').val();
-  if (kec_nasabah==null) {
-    Swal.fire({
-      title:'Kecamatan Kosong',
-      text:'Silahkan Pilih Kecamatan!',
-      icon:'error'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.close();
-        $('#kec_nasabah').select2('open');
-      }
-    });
-    return false;
-  }
-
-  let kel_nasabah = $('#kel_nasabah').val();
-  if (kel_nasabah==null) {
-    Swal.fire({
-      title:'Kelurahan Kosong',
-      text:'Silahkan Pilih Kelurahan!',
-      icon:'error'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.close();
-        $('#kel_nasabah').select2('open');
-      }
-    });
-    return false;
-  }
-
-  let alamat_nasabah = $('#alamat_nasabah').val();
-  if (alamat_nasabah=="") {
-    $('#alamat_nasabah').focus();
-    Swal.fire({
-      title:'Alamat Kosong',
-      text:'Silahkan Masukkan Alamat Lengkap!',
+      title:'Nomor Telepon Tidak Valid',
+      text:'Nomor Telepon Min 10 Digit dan Max 13 Digit!',
       icon:'error'
     }).then((result) => {
       if (result.isConfirmed) {
@@ -829,26 +773,150 @@ $('#btn_simpan').on('click',function(){
   }
   let link = $('#form_potensi').attr('action');
 
-  if (link.includes('simpan')!==false) {
-    let lampiran_usaha = $('#lampiran_usaha').val();
-    if (lampiran_usaha=="") {
-      $('#lampiran_usaha').focus();
-      Swal.fire({
-        title:'Foto Usaha Kosong',
-        text:'Silahkan Upload Foto Usaha!',
-        icon:'error'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.close();
-        }
-      });
-      return false;
+
+  let format_telepon = /^[0]/;
+  if (format_telepon.test(telp_nasabah)==false) {
+   $('#telp_nasabah').focus();
+   Swal.fire({
+    title:'Nomor Telepon Tidak Valid',
+    text:'Nomor Telepon Harus diawali Angka 0!',
+    icon:'error'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.close();
+    }
+  });
+  return false;
+}
+let cek = 0;
+
+$.ajax({
+  type : "GET",
+  url  : "<?php echo base_url('potensi_wilayah/cek_telepon')?>",
+  dataType : "JSON",
+  async:false,
+  data : {'telp_nasabah': telp_nasabah},
+  success: function(data){
+    if (link.includes('simpan')!==false) {
+      if (data > 0) {
+        cek+=1;
+      }
+    }else{
+     if (data > 0 && telepon_lama !=telp_nasabah ) {
+      cek+=1;
     }
   }
-  $('#btn_simpan').attr('disabled','disabled');
-  $('#btn_simpan').html('<img src="<?php echo base_url() ?>assets/img/spinner.gif">');
+}
+});
+if (cek > 0) {
+ $('#telp_nasabah').focus();
+ Swal.fire({
+  title:'Nomor Telepon Sudah Digunakan',
+  text:'Silahkan Masukkan Nomor Telepon Lainnya!',
+  icon:'error'
+}).then((result) => {
+  if (result.isConfirmed) {
+    Swal.close();
+  }
+});
+return false;
+}
 
-  $('#form_potensi').submit();
+let prov_nasabah = $('#prov_nasabah').val();
+if (prov_nasabah==null) {
+  Swal.fire({
+    title:'Provinsi Kosong',
+    text:'Silahkan Pilih Provinsi!',
+    icon:'error'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.close();
+      $('#prov_nasabah').select2('open');
+    }
+  });
+  return false;
+}
+
+let kab_nasabah = $('#kab_nasabah').val();
+if (kab_nasabah==null) {
+  Swal.fire({
+    title:'Kab Kota Kosong',
+    text:'Silahkan Pilih Kab Kota !',
+    icon:'error'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.close();
+      $('#kab_nasabah').select2('open');
+    }
+  });
+  return false;
+}  
+
+let kec_nasabah = $('#kec_nasabah').val();
+if (kec_nasabah==null) {
+  Swal.fire({
+    title:'Kecamatan Kosong',
+    text:'Silahkan Pilih Kecamatan!',
+    icon:'error'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.close();
+      $('#kec_nasabah').select2('open');
+    }
+  });
+  return false;
+}
+
+let kel_nasabah = $('#kel_nasabah').val();
+if (kel_nasabah==null) {
+  Swal.fire({
+    title:'Kelurahan Kosong',
+    text:'Silahkan Pilih Kelurahan!',
+    icon:'error'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.close();
+      $('#kel_nasabah').select2('open');
+    }
+  });
+  return false;
+}
+
+let alamat_nasabah = $('#alamat_nasabah').val();
+if (alamat_nasabah=="") {
+  $('#alamat_nasabah').focus();
+  Swal.fire({
+    title:'Alamat Kosong',
+    text:'Silahkan Masukkan Alamat Lengkap!',
+    icon:'error'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.close();
+    }
+  });
+  return false;
+}
+
+if (link.includes('simpan')!==false) {
+  let lampiran_usaha = $('#lampiran_usaha').val();
+  if (lampiran_usaha=="") {
+    $('#lampiran_usaha').focus();
+    Swal.fire({
+      title:'Foto Usaha Kosong',
+      text:'Silahkan Upload Foto Usaha!',
+      icon:'error'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.close();
+      }
+    });
+    return false;
+  }
+}
+$('#btn_simpan').attr('disabled','disabled');
+$('#btn_simpan').html('<img src="<?php echo base_url() ?>assets/img/spinner.gif">');
+
+$('#form_potensi').submit();
 });
 
 function showPosition(position) {
