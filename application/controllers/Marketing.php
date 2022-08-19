@@ -182,7 +182,7 @@ public function detail_portofolio()
 		}	
 
 		$this->session->set_flashdata($data);
-		redirect('portofolio','refresh');
+		redirect('marketing','refresh');
 
 	}
 
@@ -246,7 +246,7 @@ public function detail_portofolio()
 		}	
 
 		$this->session->set_flashdata($data);
-		redirect('portofolio','refresh');
+		redirect('marketing','refresh');
 
 	}
 }
