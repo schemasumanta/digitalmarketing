@@ -71,7 +71,8 @@
                             </div>
                             <div class="row no-gutters align-items-center">
                                 <div class="col-auto">
-                                    <?php $persentase = round($total_progress / $jumlah_pengajuan * 100); ?>
+                                    <?php if ($jumlah_pengajuan > 0) {$persentase = round($total_progress / $jumlah_pengajuan * 100);}else{$persentase=0;};?>
+
                                     <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $persentase; ?>%</div>
                                 </div>
                                 <div class="col">
