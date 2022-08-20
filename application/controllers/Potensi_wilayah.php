@@ -60,7 +60,7 @@ public function tabel_potensi_wilayah(){
 		$opsi ='
 		<div class="btn-group">
 		<a href="javascript:;" class="btn btn-sm btn-circle  btn-success  item_detail_potensi_wilayah" data="'.$l->id_nasabah.'"><i class="fa fa-eye"></i></a>';
-		if ($l->id_user==$this->session->id_user) {
+		if ($l->id_cabang==$this->session->cabang) {
 			if ($l->status_nasabah!='Realisasi') {
 				$opsi.='<a href="javascript:;" class="btn btn-sm btn-circle  btn-primary  item_edit_potensi_wilayah" data="'.$l->id_nasabah.'"><i class="fa fa-edit"></i></a>';
 			}
