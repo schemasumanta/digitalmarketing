@@ -330,14 +330,14 @@ class Model_tabel extends CI_Model {
 
 
             case 'pengajuan':
-            $this->db->select('a.*,b.nama as marketing,c.nama_produk');
+            $this->db->select('a.*,b.nama as marketing,c.nama_produk,d.nama_cabang');
             $this->db->from('tbl_pengajuan a');
             $this->db->where('a.status!=','Realisasi');
             $this->db->where('a.status!=','Tolak');
 
             $this->db->join('tbl_master_user b','b.id_user=a.id_user','left');
             $this->db->join('tbl_master_produk c','c.id_produk=a.id_produk','left');
-
+            $this->db->join('tbl_master_cabang d','d.id_cabang=a.id_cabang');
             if ($this->session->level=="Marketing") {
                 $this->db->where('a.id_cabang',$this->session->cabang);
             //     $this->db->where('a.id_user',$this->session->id_user);
@@ -373,11 +373,11 @@ class Model_tabel extends CI_Model {
 
 
             case 'potensi_wilayah':
-            $this->db->select('a.*,b.nama as marketing');
+            $this->db->select('a.*,b.nama as marketing,c.nama_cabang');
             $this->db->from('tbl_nasabah a');
             $this->db->where('a.status_nasabah!=','Realisasi');
             $this->db->join('tbl_master_user b','b.id_user=a.id_user','left');
-
+            $this->db->join('tbl_master_cabang c','c.id_cabang=a.id_cabang');
             if ($this->session->level=="Marketing") {
                 $this->db->where('a.id_cabang',$this->session->cabang);
             }

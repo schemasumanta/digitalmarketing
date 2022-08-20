@@ -53,11 +53,10 @@
                 <tr class="bg-primary text-light ">
                   <th class="text-center" width="1%">No</th>
                   <th >Marketing</th>
+                  <th >Cabang</th>
                   <th >Tanggal</th>
                   <th >Nama Nasabah</th>
                   <th >Telepon</th>
-                  <th >Usaha</th>
-                  <th >Omset</th>
                   <th >Alamat</th>
                   <th >Status</th>
 
@@ -516,11 +515,10 @@ order: [1, 'asc'],
 columns: [
 {'data':'no'},
 {'data':'marketing'},
+{'data':'nama_cabang'},
 {'data':'tanggal_input'},
 {'data':'nama_nasabah'},
 {'data':'telp_nasabah'},
-{'data':'usaha_nasabah'},
-{'data':'omset_nasabah'},
 {'data':'alamat_nasabah'},
 {'data':'status_nasabah'},
 
@@ -536,13 +534,6 @@ columnDefs: [
   className: 'text-right'
 },
 
-<?php if ($this->session->level=="Marketing") { ?>
-  {
-    targets: [1],
-    visible:false,
-  },
-
-<?php } ?>
 ]
 
 });
