@@ -28,8 +28,8 @@ class Cabang extends CI_Controller {
 
 	public function tabel_cabang(){
 		$data   = array();
-		$sort     = isset($_GET['columns'][$_GET['order'][0]['column']]['data']) ? strval($_GET['columns'][$_GET['order'][0]['column']]['data']) : 'nama';
-		$order    = isset($_GET['order'][0]['dir']) ? strval($_GET['order'][0]['dir']) : 'asc';
+		$sort     = isset($_GET['columns'][$_GET['order'][0]['column']]['data']) ? strval($_GET['columns'][$_GET['order'][0]['column']]['data']) : 'id_cabang';
+		$order    = isset($_GET['order'][0]['dir']) ? strval($_GET['order'][0]['dir']) : 'ASC';
 		$search    = isset($_GET['search']['value']) ? strval($_GET['search']['value']):null;
 		$no = $this->input->get('start');
 
@@ -103,6 +103,8 @@ class Cabang extends CI_Controller {
 		$data_cabang = array(
 			'nama_cabang' => $this->input->post('nama_cabang'),
 			'telp_cabang' => $this->input->post('telp_cabang'),
+			'alamat_cabang' => $this->input->post('alamat_cabang'),
+
 			'status_cabang' =>1,
 		);
 		$result= $this->db->insert('tbl_master_cabang', $data_cabang);
@@ -138,6 +140,8 @@ class Cabang extends CI_Controller {
 		$data_cabang = array(
 			'nama_cabang' => $this->input->post('nama_cabang'),
 			'telp_cabang' => $this->input->post('telp_cabang'),
+			'alamat_cabang' => $this->input->post('alamat_cabang'),
+			
 		);
 		$this->db->where('id_cabang',$this->input->post('id_cabang'));
 		$result= $this->db->update('tbl_master_cabang', $data_cabang);

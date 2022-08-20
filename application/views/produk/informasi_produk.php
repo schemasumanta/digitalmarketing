@@ -385,20 +385,23 @@
   });
 
   $('#btn_simpan').on('click',function(){
+    let link = $('#form_informasi').attr('action');
+    if (link.includes('simpan')!=false) {
+      let id_produk = $('#id_produk').val();
+      if (id_produk==null) {
+       $('#id_produk').focus();
+       Swal.fire({
+        title:'Produk Kosong',
+        text:'Silahkan Pilih Produk!',
+        icon:'error'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.close();
+        }
+      });
+      return false;
+    }
 
-    let id_produk = $('#id_produk').val();
-    if (id_produk==null) {
-     $('#id_produk').focus();
-     Swal.fire({
-      title:'Produk Kosong',
-      text:'Silahkan Pilih Produk!',
-      icon:'error'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.close();
-      }
-    });
-    return false;
   }
 
   if ($('#informasi_produk').summernote('isEmpty')) {

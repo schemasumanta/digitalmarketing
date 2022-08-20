@@ -56,6 +56,8 @@
                   <th class="text-center" width="1%">No</th>
                   <th >Cabang</th>
                   <th >Telepon</th>
+                  <th >Alamat</th>
+
                   <th style="text-align: center;" width="10%" >Opsi</th>
                 </tr>
 
@@ -90,6 +92,11 @@
                  <div class="col-md-12 mb-3"> 
                    <label style="color:#343a40;" for="telp_cabang">Telepon</label>
                    <input type="text" class="form-control" id="telp_cabang"  name="telp_cabang" required>
+                 </div>   
+
+                 <div class="col-md-12 mb-3"> 
+                   <label style="color:#343a40;" for="alamat_cabang">Alamat</label>
+                   <textarea type="text" class="form-control" id="alamat_cabang"  name="alamat_cabang" required rows="5"></textarea>
                  </div>   
 
             </div>
@@ -228,6 +235,8 @@
   {'data':'no'},
   {'data':'nama_cabang'},
   {'data':'telp_cabang'},
+  {'data':'alamat_cabang'},
+
   {'data':'opsi',orderable:false},
 
   ],   
@@ -328,7 +337,7 @@
         $('#id_cabang').val(id_cabang);
         $('#nama_cabang').val(data[0].nama_cabang);
         $('#telp_cabang').val(data[0].telp_cabang);
-
+        $('#alamat_cabang').val(data[0].alamat_cabang);
       },
 
     });

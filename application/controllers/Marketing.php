@@ -73,11 +73,9 @@ public function detail_portofolio()
 			<div class="btn-group">
 			<a href="'.base_url().'marketing/bpr/'.$l->id_user.'" class="btn btn-sm btn-circle  btn-success" target="_blank"><i class="fa fa-eye"></i></a>';
 
-			if ($this->session->level=="Marketing") {
-				
+			if ($this->session->level=="Marketing" || $this->session->level=="Admin") {
 
 				$opsi .='<a href="javascript:;" class="btn btn-sm btn-circle  btn-primary   item_edit_portofolio" data="'.$l->id_portofolio.'"><i class="fa fa-edit"></i></a>';
-
 			}
 			$opsi .='</div>';
 			$l->opsi = $opsi;
