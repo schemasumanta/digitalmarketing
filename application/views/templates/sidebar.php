@@ -107,7 +107,7 @@
                     <span>Portofolio</span></a>
             </li>
 
-             <?php if ($this->session->level=="Admin" || $this->session->level=="Supervisor") { ?>
+             <?php if ($this->session->level=="Admin") { ?>
              <li class="nav-item">
                 <a class="nav-link" href="<?php echo base_url('produk/informasi') ?>">
                     <i class="fas fa-fw fa-database"></i>

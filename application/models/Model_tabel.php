@@ -338,7 +338,7 @@ class Model_tabel extends CI_Model {
             $this->db->join('tbl_master_user b','b.id_user=a.id_user','left');
             $this->db->join('tbl_master_produk c','c.id_produk=a.id_produk','left');
             $this->db->join('tbl_master_cabang d','d.id_cabang=a.id_cabang');
-            if ($this->session->level=="Marketing") {
+            if ($this->session->level=="Marketing" || $this->session->level=="Supervisor") {
                 $this->db->where('a.id_cabang',$this->session->cabang);
             //     $this->db->where('a.id_user',$this->session->id_user);
             }
@@ -352,7 +352,7 @@ class Model_tabel extends CI_Model {
             if ($search!=null && $search!='') {
                 $this->db->like('a.kode_pengajuan',$search);
                 $this->db->where('a.status!=','Realisasi');
-                if ($this->session->level=="Marketing") {
+                if ($this->session->level=="Marketing" || $this->session->level=="Supervisor") {
                     $this->db->where('a.id_cabang',$this->session->cabang);
             //     $this->db->where('a.id_user',$this->session->id_user);
                 }
@@ -360,7 +360,7 @@ class Model_tabel extends CI_Model {
                 $this->db->or_like('a.nama',$search);
                 $this->db->where('a.status!=','Realisasi');
                 $this->db->where('a.status!=','Tolak');
-                if ($this->session->level=="Marketing") {
+                if ($this->session->level=="Marketing" || $this->session->level=="Supervisor") {
                     $this->db->where('a.id_cabang',$this->session->cabang);
             //     $this->db->where('a.id_user',$this->session->id_user);
                 }
@@ -378,7 +378,7 @@ class Model_tabel extends CI_Model {
             $this->db->where('a.status_nasabah!=','Realisasi');
             $this->db->join('tbl_master_user b','b.id_user=a.id_user','left');
             $this->db->join('tbl_master_cabang c','c.id_cabang=a.id_cabang');
-            if ($this->session->level=="Marketing") {
+            if ($this->session->level=="Marketing" || $this->session->level=="Supervisor") {
                 $this->db->where('a.id_cabang',$this->session->cabang);
             }
 
@@ -392,13 +392,13 @@ class Model_tabel extends CI_Model {
             if ($search!=null && $search!='') {
                 $this->db->like('a.nama_nasabah',$search);
                 $this->db->where('a.status_nasabah!=','Realisasi');
-                if ($this->session->level=="Marketing") {
+                if ($this->session->level=="Marketing" || $this->session->level=="Supervisor") {
                     $this->db->where('a.id_cabang',$this->session->cabang);
                 }
                 
                 $this->db->or_like('a.usaha_nasabah',$search);
                 $this->db->where('a.status_nasabah!=','Realisasi');
-                if ($this->session->level=="Marketing") {
+                if ($this->session->level=="Marketing" || $this->session->level=="Supervisor") {
                     $this->db->where('a.id_cabang',$this->session->cabang);
                 }
 
@@ -426,12 +426,18 @@ class Model_tabel extends CI_Model {
             break;
 
             case 'portofolio':
-            $this->db->select('a.*,b.nama');
+            $this->db->select('a.*,b.nama,b.id_cabang');
             $this->db->join('tbl_master_user b','b.id_user=a.id_user');
             $this->db->from('tbl_portofolio a');
             if ($this->session->level=="Marketing") {
                 $this->db->where('a.id_user',$this->session->id_user);
             }
+
+            if ($this->session->level=="Supervisor") {
+                $this->db->where('b.id_cabang',$this->session->cabang);
+            }
+
+
             if($_GET['order'][0]['column'] == 0)
             {
                 $this->db->order_by('b.nama',$order);
@@ -441,9 +447,38 @@ class Model_tabel extends CI_Model {
 
             if ($search!=null && $search!='') {
                 $this->db->like('a.telepon_portofolio',$search);
+                if ($this->session->level=="Marketing") {
+                    $this->db->where('a.id_user',$this->session->id_user);
+                }
+
+                if ($this->session->level=="Supervisor") {
+                    $this->db->where('b.id_cabang',$this->session->cabang);
+                }
+
                 $this->db->or_like('a.sambutan_portofolio',$search);
+                if ($this->session->level=="Marketing") {
+                    $this->db->where('a.id_user',$this->session->id_user);
+                }
+
+                if ($this->session->level=="Supervisor") {
+                    $this->db->where('b.id_cabang',$this->session->cabang);
+                }
                 $this->db->or_like('a.alamat_portofolio',$search);
+                if ($this->session->level=="Marketing") {
+                    $this->db->where('a.id_user',$this->session->id_user);
+                }
+
+                if ($this->session->level=="Supervisor") {
+                    $this->db->where('b.id_cabang',$this->session->cabang);
+                }
                 $this->db->or_like('b.nama',$search);
+                if ($this->session->level=="Marketing") {
+                    $this->db->where('a.id_user',$this->session->id_user);
+                }
+
+                if ($this->session->level=="Supervisor") {
+                    $this->db->where('b.id_cabang',$this->session->cabang);
+                }
             }
             
             break;

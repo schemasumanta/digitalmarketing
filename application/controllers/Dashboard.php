@@ -23,6 +23,11 @@ class Dashboard extends CI_Controller {
 	{
 		$this->db->select('id_user,nama');
 		$this->db->where('level','Marketing');
+		if ($this->session->level=="Supervisor") {
+		$this->db->where('id_cabang',$this->session->cabang);
+		}
+		$this->db->where('level','Marketing');
+
 		$this->db->where('status_user',1);
 		$data['marketing'] = $this->db->get('tbl_master_user')->result();
 
@@ -158,6 +163,11 @@ class Dashboard extends CI_Controller {
 			$cabang = $this->session->cabang;
 			$marketing = $this->session->id_user;
 		}
+
+		if ($this->session->level=="Supervisor") {
+			$cabang = $this->session->cabang;
+		}
+
 		$tanggal_awal = $this->input->post('tanggal_awal_laporan');
 		$tanggal_akhir = $this->input->post('tanggal_akhir_laporan');
 
@@ -171,7 +181,7 @@ class Dashboard extends CI_Controller {
 				if ($marketing!='All') {
 					$this->db->where('a.id_user',$marketing);
 				}
-				if ($this->session->level=="Marketing") {
+				if ($this->session->level=="Marketing" || $this->session->level=="Supervisor") {
 					$this->db->where('a.id_cabang',$cabang);
 				}
 				$this->db->where('date(a.tanggal_input) >=',$tanggal_awal);
@@ -201,7 +211,7 @@ class Dashboard extends CI_Controller {
 			}
 
 			if ($jenis=="Periode") {
-				if ($this->session->level=="Marketing") {
+				if ($this->session->level=="Marketing"  || $this->session->level=="Supervisor") {
 					$this->db->where('a.id_cabang',$cabang);
 				}
 				$this->db->select('a.*,b.nama as nama_marketing, c.nama_cabang,d.nama_wilayah as kabupaten,e.nama_wilayah as kecamatan, f.nama_wilayah as kelurahan');
@@ -226,7 +236,7 @@ class Dashboard extends CI_Controller {
 					$this->db->where('a.id_user',$marketing);
 				}
 
-				if ($this->session->level=="Marketing") {
+				if ($this->session->level=="Marketing"  || $this->session->level=="Supervisor") {
 					$this->db->where('a.id_cabang',$cabang);
 				}
 				$this->db->where('date(a.tanggal_input) >=',$tanggal_awal);
@@ -254,7 +264,7 @@ class Dashboard extends CI_Controller {
 			}
 
 			if ($jenis=="Periode") {
-				if ($this->session->level=="Marketing") {
+				if ($this->session->level=="Marketing"  || $this->session->level=="Supervisor") {
 					$this->db->where('a.id_cabang',$cabang);
 				}
 				

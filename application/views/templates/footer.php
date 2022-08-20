@@ -72,13 +72,14 @@ aria-hidden="true">
     $('#jenis_laporan').on('change',function(){
         let jenis = $(this).val();
         let level = '<?php echo $this->session->level ?>';
-        if (level=="Admin" || level=="Supervisor") {
+        if (level=="Admin" || level=="PIC" || level=="Supervisor") {
             if (jenis=="Marketing") {
               $('.marketing_laporan').removeClass('d-none');
           }else{
               $('.marketing_laporan').addClass('d-none');
           }
-          if (jenis=="Cabang") {
+          
+          if (jenis=="Cabang" && level!="Supervisor") {
               $('.cabang_laporan').removeClass('d-none');
           }else{
               $('.cabang_laporan').addClass('d-none');
@@ -90,7 +91,7 @@ aria-hidden="true">
     $(document).on('click','.item_tarik_laporan',function(e){
         e.preventDefault();
         let level = '<?php echo $this->session->level ?>';
-        if (level=="Admin" || level=="Supervisor") {
+        if (level=="Admin" || level=="PIC" || level=="Supervisor") {
             $.ajax({
               type : "GET",
               url  : "<?php echo base_url('dashboard/get_option_laporan')?>",

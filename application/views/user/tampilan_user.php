@@ -115,11 +115,10 @@
                   <label style="color:#343a40;vertical-align:middle;" for="Level">Level User</label> 
                   <select type="text" class="form-control" id="level" name="level" required>
                     <option value="0" selected="selected" disabled="disabled">Pilih Level</option>
-                    <!-- <option value="superadmin">superadmin</option> -->
                     <option value="Admin">Admin</option>
                     <option value="Marketing">Marketing</option>
+                    <option value="PIC">PIC</option>
                     <option value="Supervisor">Supervisor</option>
-
                   </select>   
                 </div>
 
