@@ -379,6 +379,8 @@
 
     $('#btn_simpan').html('SIMPAN');
     $('#form_informasi').trigger("reset");
+    $('#informasi_produk').summernote('code','');
+
     $('#preview_lampiran_informasi').attr('src','<?php echo base_url()?>assets/img/img03.jpg');
     $('#label_header_produk').html('<i class="fas fa-database mr-2"></i> TAMBAH INFORMASI PRODUK');
     $('.id_produk').removeClass('d-none');
