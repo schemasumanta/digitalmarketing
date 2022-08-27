@@ -406,6 +406,35 @@ class Model_tabel extends CI_Model {
             }
             break;
 
+             case 'kunjungan_nasabah':
+            $this->db->select('a.*,b.nama as marketing,c.nama_cabang');
+            $this->db->from('tbl_kunjungan_nasabah a');
+            $this->db->join('tbl_master_user b','b.id_user=a.id_user','left');
+            $this->db->join('tbl_master_cabang c','c.id_cabang=a.id_cabang');
+            if ($this->session->level=="Marketing" || $this->session->level=="Supervisor") {
+                $this->db->where('a.id_cabang',$this->session->cabang);
+            }
+
+            if($_GET['order'][0]['column'] == 0)
+            {
+                $this->db->order_by('a.id_kunjungan',$order);
+            }else{
+                $this->db->order_by($sort,$order);
+            }
+            if ($search!=null && $search!='') {
+                $this->db->like('a.nama_nasabah',$search);
+                if ($this->session->level=="Marketing" || $this->session->level=="Supervisor") {
+                    $this->db->where('a.id_cabang',$this->session->cabang);
+                }
+                
+                $this->db->or_like('a.no_rekening',$search);
+                if ($this->session->level=="Marketing" || $this->session->level=="Supervisor") {
+                    $this->db->where('a.id_cabang',$this->session->cabang);
+                }
+
+            }
+            break;
+
             case 'cabang':
             $this->db->select('a.*');
             $this->db->from('tbl_master_cabang a');

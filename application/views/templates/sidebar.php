@@ -134,6 +134,12 @@
                     <span>Potensi Wilayah</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="<?php echo base_url('kunjungan') ?>">
+                    <i class="fa fa-fw fa-users"></i>
+                    <span>Kunjungan Nasabah</span></a>
+            </li>
+
             <hr class="sidebar-divider">
                 <div class="sidebar-heading">
                 Laporan
