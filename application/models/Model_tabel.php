@@ -395,17 +395,13 @@ class Model_tabel extends CI_Model {
                 if ($this->session->level=="Marketing" || $this->session->level=="Supervisor") {
                     $this->db->where('a.id_cabang',$this->session->cabang);
                 }
-                
                 $this->db->or_like('a.usaha_nasabah',$search);
                 $this->db->where('a.status_nasabah!=','Realisasi');
                 if ($this->session->level=="Marketing" || $this->session->level=="Supervisor") {
                     $this->db->where('a.id_cabang',$this->session->cabang);
                 }
-
-
             }
             break;
-
              case 'kunjungan_nasabah':
             $this->db->select('a.*,b.nama as marketing,c.nama_cabang');
             $this->db->from('tbl_kunjungan_nasabah a');

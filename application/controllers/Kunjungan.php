@@ -17,31 +17,31 @@ class Kunjungan extends CI_Controller {
 	public function detail_kunjungan()
 	{
 		$this->db->where('id_kunjungan',$this->input->get('id_kunjungan'));
-		$data = $this->db->get('tbl_nasabah')->result();
+		$data = $this->db->get('tbl_kunjungan_nasabah')->result();
 		echo json_encode($data);
 	}
 
 	public function detail_kunjungan_full()
 	{	$this->db->select('a.*,b.nama_wilayah as prov,c.nama_wilayah as kab,d.nama_wilayah as kec,e.nama_wilayah as kel');
 	$this->db->where('a.id_kunjungan',$this->input->get('id_kunjungan'));
-	$this->db->join('tbl_master_wilayah b','b.kode_wilayah=a.provinsi_nasabah');
-	$this->db->join('tbl_master_wilayah c','c.kode_wilayah=a.kabupaten_nasabah');
-	$this->db->join('tbl_master_wilayah d','d.kode_wilayah=a.kecamatan_nasabah');
-	$this->db->join('tbl_master_wilayah e','e.id_wilayah=a.kelurahan_nasabah');
-	$data['nasabah'] = $this->db->get('tbl_nasabah a')->result();
+	$this->db->join('tbl_master_wilayah b','b.kode_wilayah=a.provinsi_kunjungan');
+	$this->db->join('tbl_master_wilayah c','c.kode_wilayah=a.kabupaten_kunjungan');
+	$this->db->join('tbl_master_wilayah d','d.kode_wilayah=a.kecamatan_kunjungan');
+	$this->db->join('tbl_master_wilayah e','e.id_wilayah=a.kelurahan_kunjungan');
+	$data['nasabah'] = $this->db->get('tbl_kunjungan_nasabah a')->result();
 
 	$this->db->select('a.*,b.nama');
 	$this->db->where('a.id_kunjungan',$this->input->get('id_kunjungan'));
 	$this->db->join('tbl_master_user b','b.id_user=a.id_user');
-	$data['follow_up'] = $this->db->get('tbl_follow_up a')->result();
+	$data['follow_up'] = $this->db->get('tbl_follow_up_kunjungan a')->result();
 
 	echo json_encode($data);
 }
 
 public function cek_rekening()
 {
-	$this->db->where('telp_nasabah',$this->input->get('telp_nasabah'));
-	$data = $this->db->get('tbl_nasabah')->num_rows();
+	$this->db->where('no_rekening',$this->input->get('no_rekening'));
+	$data = $this->db->get('tbl_kunjungan_nasabah')->num_rows();
 	echo json_encode($data);
 }
 public function tabel_kunjungan_nasabah(){
@@ -99,50 +99,6 @@ public function index()
 
 
 
-public function realisasi()
-{
-	$data_realisasi = array(
-		'id_user_deal' =>$this->session->id_user,
-		'no_referensi' =>$this->input->post('no_ref'), 
-		'tgl_realisasi' =>date('Y-m-d H:i:s'), 
-		'status_nasabah' =>'Realisasi', 
-	);
-	$this->db->where('id_kunjungan',$this->input->post('id_kunjungan_realisasi'));
-	$result= $this->db->update('tbl_nasabah', $data_realisasi);
-	if ($result) {
-
-		$data_fu = array(
-			'id_user' =>$this->session->id_user,
-			'id_kunjungan' =>$this->input->post('id_kunjungan_realisasi'), 
-			'hasil_fu' =>$this->input->post('no_ref'), 
-			'tanggal_fu' =>date('Y-m-d H:i:s'), 
-		);
-
-		$result= $this->db->insert('tbl_follow_up', $data_fu);
-
-		
-		$data_history = array(
-			'id_user' => $this->session->id_user, 
-			'ip_address'=>get_ip(),
-			'aktivitas' => "Realisasi Nasabah ".$this->input->post('id_kunjungan_realisasi'),
-		);
-		$this->db->insert('tbl_history', $data_history);
-		$data['title'] = 'Berhasil';
-		$data['text'] = 'Data Realisasi Berhasil Disimpan!';
-		$data['icon'] = 'success';
-	}else{
-		$data['title'] = 'Gagal';
-		$data['text'] = 'Data Realisasi Gagal Disimpan!';
-		$data['icon'] = 'error';
-	}	
-	$this->session->set_flashdata($data);
-	redirect('kunjungan','refresh');
-
-
-
-}
-
-
 public function simpan_fu()
 {
 	if (!is_dir('assets/img/foto_fu/')) {
@@ -168,20 +124,23 @@ public function simpan_fu()
 	$data_fu = array(
 		'id_user' =>$this->session->id_user,
 		'id_kunjungan' =>$this->input->post('id_kunjungan_follow_up'), 
-		'hasil_fu' =>$this->input->post('hasil_follow_up'), 
-		'tanggal_fu' =>date('Y-m-d H:i:s'), 
-		'lampiran_fu' =>$foto, 
+		'hasil_kunjungan' =>$this->input->post('hasil_follow_up'), 
+		'status_fu' =>$this->input->post('status_kolektibilitas_fu'), 
+		'tanggal_kunjungan' =>date('Y-m-d H:i:s'), 
+		'lampiran_kunjungan' =>$foto, 
+		'latitude_kunjungan' =>$this->input->post('latitude_gps'), 
+		'longitude_kunjungan' =>$this->input->post('longitude_gps'), 
 	);
 
-	$result= $this->db->insert('tbl_follow_up', $data_fu);
+	$result= $this->db->insert('tbl_follow_up_kunjungan', $data_fu);
 	if ($result) {
 		$this->db->where('id_kunjungan',$this->input->post('id_kunjungan_follow_up'));
-		$this->db->update('tbl_nasabah', array('status_nasabah' =>'Follow UP'));
+		$this->db->update('tbl_kunjungan_nasabah', array('status_kolektibilitas' =>$this->input->post('status_kolektibilitas_fu')));
 
 		$data_history = array(
 			'id_user' => $this->session->id_user, 
 			'ip_address'=>get_ip(),
-			'aktivitas' => "Menambah Data Follow UP Potensi Wilayah Baru dengan ID Nasabah ".$this->input->post('id_kunjungan_follow_up'),
+			'aktivitas' => "Menambah Data Follow UP Kunjungan Nasabah Baru dengan ID Kunjungan ".$this->input->post('id_kunjungan_follow_up'),
 		);
 		$this->db->insert('tbl_history', $data_history);
 		$data['title'] = 'Berhasil';
@@ -199,16 +158,6 @@ public function simpan_fu()
 
 }
 
-
-public function aktivasi_cabang()
-{
-
-	$this->db->set('status_cabang',$this->input->post('isi'));
-	$this->db->where('id_cabang',$this->input->post('kode'));
-	$data = $this->db->update('tbl_master_cabang');
-	echo json_encode($data);
-
-}
 
 public function get_kab()
 {
@@ -237,122 +186,77 @@ public function get_kel()
 
 public function simpan()
 {
-
-	if (!is_dir('assets/img/foto_potensi/')) {
-		mkdir('assets/img/foto_potensi/');
-	}
-
-	$foto = '';
-
-	if($_FILES['lampiran_usaha']['name'] != '')
-	{
-		$filename = trim($_FILES['lampiran_usaha']['name']);
-		$location ='assets/img/foto_potensi/usaha_'.time().$filename;
-		$file_extension = pathinfo($location, PATHINFO_EXTENSION);
-		$file_extension = strtolower($file_extension);
-		$image_ext = array("jpg", "png", "jpeg", "gif");
-		if (in_array($file_extension, $image_ext)) {
-			if (move_uploaded_file($_FILES['lampiran_usaha']['tmp_name'], $location)) {
-				$foto = $location;
-			}
-		}
-	}
-
-
 	$data_nasabah = array(
 		'id_cabang' => $this->session->cabang,
 		'id_user' => $this->session->id_user,
 		'nama_nasabah' => $this->input->post('nama_nasabah'),
-		'telp_nasabah' => $this->input->post('telp_nasabah'),
-		'provinsi_nasabah' => $this->input->post('prov_nasabah'),
-		'kabupaten_nasabah' => $this->input->post('kab_nasabah'),
-		'kecamatan_nasabah' => $this->input->post('kec_nasabah'),
-		'kelurahan_nasabah' => $this->input->post('kel_nasabah'),
-		'usaha_nasabah' => $this->input->post('usaha_nasabah'),
-		'omset_nasabah' => str_replace('.','',$this->input->post('omset_nasabah')),
+		'no_rekening' => $this->input->post('no_rekening'),
+		'provinsi_kunjungan' => $this->input->post('prov_nasabah'),
+		'kabupaten_kunjungan' => $this->input->post('kab_nasabah'),
+		'kecamatan_kunjungan' => $this->input->post('kec_nasabah'),
+		'kelurahan_kunjungan' => $this->input->post('kel_nasabah'),
 		'alamat_nasabah' => $this->input->post('alamat_nasabah'),
-		'latitude' => $this->input->post('latitude_gps'),
-		'longitude' => $this->input->post('longitude_gps'),
-		'tanggal_input' => date('Y-m-d H:i:s'),
-		'foto_usaha' => $foto,
-		'status_nasabah' =>'Nasabah Baru',
+		'plafon' => str_replace('.', '',$this->input->post('plafon')),
+		'tgl_realisasi' => $this->input->post('tgl_realisasi'),
+		'tgl_input' => date('Y-m-d H:i:s'),
+		'status_kolektibilitas' => $this->input->post('status_kolektibilitas'),
 	);
-	$result= $this->db->insert('tbl_nasabah', $data_nasabah);
+	$result= $this->db->insert('tbl_kunjungan_nasabah', $data_nasabah);
 	if ($result) {
 		$data_history = array(
 			'id_user' => $this->session->id_user, 
 			'ip_address'=>get_ip(),
-			'aktivitas' => "Menambah Data Potensi Wilayah Baru dengan nama ".$this->input->post('nama_nasabah'),
+			'aktivitas' => "Menambah Data Kunjungan Baru dengan nama ".$this->input->post('nama_nasabah'),
 		);
 		$this->db->insert('tbl_history', $data_history);
 		$data['title'] = 'Berhasil';
-		$data['text'] = 'Data Potensi Wilayah Berhasil Ditambahkan!';
+		$data['text'] = 'Data Kunjungan Berhasil Ditambahkan!';
 		$data['icon'] = 'success';
 	}else{
 		$data['title'] = 'Gagal';
-		$data['text'] = 'Data Potensi Wilayah Gagal Ditambahkan!';
+		$data['text'] = 'Data Kunjungan Gagal Ditambahkan!';
 		$data['icon'] = 'error';
 	}	
 	$this->session->set_flashdata($data);
 	redirect('kunjungan','refresh');
-
 }
 
 public function ubah()
 {
-
-	if (!is_dir('assets/img/foto_potensi/')) {
-		mkdir('assets/img/foto_potensi/');
-	}
-
-	$foto = $this->input->post('lampiran_usaha_lama');
-
-	if($_FILES['lampiran_usaha']['name'] != '')
-	{
-		$filename = trim($_FILES['lampiran_usaha']['name']);
-		$location ='assets/img/foto_potensi/usaha_'.time().$filename;
-		$file_extension = pathinfo($location, PATHINFO_EXTENSION);
-		$file_extension = strtolower($file_extension);
-		$image_ext = array("jpg", "png", "jpeg", "gif");
-		if (in_array($file_extension, $image_ext)) {
-			if (move_uploaded_file($_FILES['lampiran_usaha']['tmp_name'], $location)) {
-				$foto = $location;
-			}
-		}
-	}
-
 	$data_nasabah = array(
+		'id_cabang' => $this->session->cabang,
+		'id_user' => $this->session->id_user,
 		'nama_nasabah' => $this->input->post('nama_nasabah'),
-		'telp_nasabah' => $this->input->post('telp_nasabah'),
-		'provinsi_nasabah' => $this->input->post('prov_nasabah'),
-		'kabupaten_nasabah' => $this->input->post('kab_nasabah'),
-		'kecamatan_nasabah' => $this->input->post('kec_nasabah'),
-		'kelurahan_nasabah' => $this->input->post('kel_nasabah'),
-		'usaha_nasabah' => $this->input->post('usaha_nasabah'),
-		'omset_nasabah' => str_replace('.','',$this->input->post('omset_nasabah')),
+		'no_rekening' => $this->input->post('no_rekening'),
+		'provinsi_kunjungan' => $this->input->post('prov_nasabah'),
+		'kabupaten_kunjungan' => $this->input->post('kab_nasabah'),
+		'kecamatan_kunjungan' => $this->input->post('kec_nasabah'),
+		'kelurahan_kunjungan' => $this->input->post('kel_nasabah'),
 		'alamat_nasabah' => $this->input->post('alamat_nasabah'),
-		'foto_usaha' => $foto,
+		'plafon' => str_replace('.', '',$this->input->post('plafon')),
+		'tgl_realisasi' => $this->input->post('tgl_realisasi'),
+		'tgl_input' => date('Y-m-d H:i:s'),
+		'status_kolektibilitas' => $this->input->post('status_kolektibilitas'),
 	);
 	$this->db->where('id_kunjungan',$this->input->post('id_kunjungan'));
-	$result= $this->db->update('tbl_nasabah', $data_nasabah);
+	$result= $this->db->update('tbl_kunjungan_nasabah', $data_nasabah);
 	if ($result) {
 		$data_history = array(
 			'id_user' => $this->session->id_user, 
 			'ip_address'=>get_ip(),
-			'aktivitas' => "Mengubah Data Potensi Wilayah Baru dengan nama ".$this->input->post('id_kunjungan'),
+			'aktivitas' => "Mengubah Data Kunjungan dengan nama ".$this->input->post('nama_nasabah'),
 		);
 		$this->db->insert('tbl_history', $data_history);
 		$data['title'] = 'Berhasil';
-		$data['text'] = 'Data Potensi Wilayah Berhasil Diubah!';
+		$data['text'] = 'Data Kunjungan Berhasil Diubah!';
 		$data['icon'] = 'success';
 	}else{
 		$data['title'] = 'Gagal';
-		$data['text'] = 'Data Potensi Wilayah Gagal Diubah!';
+		$data['text'] = 'Data Kunjungan Gagal Diubah!';
 		$data['icon'] = 'error';
 	}	
 	$this->session->set_flashdata($data);
 	redirect('kunjungan','refresh');
-
 }
 
 

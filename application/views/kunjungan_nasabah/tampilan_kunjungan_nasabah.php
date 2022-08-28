@@ -204,7 +204,19 @@
      <form class="form-horizontal" method="post" id="form_followup" action="<?php echo base_url('kunjungan/simpan_fu') ?>" enctype="multipart/form-data">
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-9">
+         <div class="col-md-12 mb-3"> 
+           <label style="color:#343a40;" for="status_kolektibilitas_fu">Status Kolektibilitas</label>
+           <select class="form-control" id="status_kolektibilitas_fu"  name="status_kolektibilitas_fu">
+             <option value="0" selected disabled>Pilih Status</option>
+             <option value="L">L</option>
+             <option value="DP">DP</option>
+             <option value="KL">KL</option>
+             <option value="D">D</option>
+             <option value="M">M</option>
+           </select>
+         </div>
+
+         <div class="col-md-9">
            <label style="color:#343a40;" for="hasil_follow_up">Hasil Follow UP</label>
            <input type="hidden" name="latitude_gps" id="latitude_gps">
            <input type="hidden" name="longitude_gps" id="longitude_gps">
@@ -252,21 +264,20 @@
             <span style="width: 150px;font-weight: bold;display: inline-block;">Provinsi</span><span class=" provinsi_nasabah"></span>
           </div>
           <div class="col-md-6 mb-3">
-            <span style="width: 150px;font-weight: bold;display: inline-block;">Telepon</span><span class=" telp_nasabah"></span>
+            <span style="width: 150px;font-weight: bold;display: inline-block;">No. Rekening</span><span class=" no_rekening"></span>
           </div>
-
 
           <div class="col-md-6 mb-3">
             <span style="width: 150px;font-weight: bold;display: inline-block;">Kabupaten</span><span class=" kabupaten_nasabah"></span>
           </div>
           <div class="col-md-6 mb-3">
-            <span style="width: 150px;font-weight: bold;display: inline-block;">Usaha</span><span class=" usaha_nasabah"></span>
+            <span style="width: 150px;font-weight: bold;display: inline-block;">Plafon</span><span class=" plafon"></span>
           </div>
           <div class="col-md-6 mb-3">
             <span style="width: 150px;font-weight: bold;display: inline-block;">Kecamatan</span><span class=" kecamatan_nasabah"></span>
           </div>
           <div class="col-md-6 mb-3">
-            <span style="width: 150px;font-weight: bold;display: inline-block;">Omset</span><span class=" omset_nasabah"></span>
+            <span style="width: 150px;font-weight: bold;display: inline-block;">Tgl Realisasi</span><span class=" tgl_realisasi"></span>
           </div>
           <div class="col-md-6 mb-3">
             <span style="width: 150px;font-weight: bold;display: inline-block;">Kelurahan</span><span class=" kelurahan_nasabah"></span>
@@ -279,30 +290,20 @@
 
 
 
-          <div class="col-md-6 mb-3 mt-3">
-            <div class="row">
-              <div class="col-md-12"  id="mapid" style="height:300px;">
-
-              </div>
-              <div class="col-md-12 mt-3 btn-group align-items-center">
-                <a href="javascript:;" target="_blank" id="foto_usaha" class="btn btn-success w-50 mr-3">Lihat Foto Usaha</a>
-                <a href="" id="lihat_map" class="btn btn-primary w-50" target="_blank">Lihat Map</a>
-              </div>
-            </div>
-
-          </div>
-          <div class="col-md-6 mb-3 mt-3">
+         
+          <div class="col-md-12 mb-3 mt-3">
             <table class="table table-bordered table-striped display table-sm">
               <thead>
                 <tr>
-                  <th class="bg-primary text-light text-center" colspan="5">History Follow UP</th>
+                  <th class="bg-primary text-light text-center" colspan="6">History Follow UP</th>
                 </tr>
                 <tr class="bg-danger text-light ">
-                  <th class="text-center">No</th>
-                  <th class="text-center">Tanggal</th>
-                  <th>Marketing</th>
-                  <th>Hasil</th>
-                  <th class="text-center">#</th>
+                  <th class="text-center" width="5%">No</th>
+                  <th class="text-center" width="10%">Tanggal</th>
+                  <th width="25%">Marketing</th>
+                  <th width="35%">Hasil</th>
+                  <th width="10%">Status</th>
+                  <th class="text-center" width="15%">Opsi</th>
                 </tr>
               </thead>
               <tbody id="list_fu">
@@ -437,10 +438,7 @@ $('#plafon').maskNumber({
   integer:true,
 });
 
-$('#no_rekening').maskNumber({
-  thousands:'.',
-  integer:true,
-});
+$('#no_rekening').mask('00.00.00000');
 
 $('#prov_nasabah').select2({
   placeholder :'Pilih Provinsi',
@@ -522,11 +520,11 @@ $(".refresh").click(function(){
 
 
 
-$('#show_data').on('click','.item_edit_kunjungan_wilayah',function(){
+$('#show_data').on('click','.item_edit_kunjungan',function(){
   let id_kunjungan = $(this).attr('data');
   $.ajax({
     type : "GET",
-    url  : "<?php echo base_url('kunjungan/detail_kunjungan_wilayah')?>",
+    url  : "<?php echo base_url('kunjungan/detail_kunjungan')?>",
     dataType : "JSON",
     data : {'id_kunjungan':id_kunjungan},
     success: function(data){
@@ -534,25 +532,19 @@ $('#show_data').on('click','.item_edit_kunjungan_wilayah',function(){
       $('#modal_kunjungan').modal('show');
       $('#form_kunjungan').attr('action','<?php echo base_url('kunjungan/ubah') ?>');
       $('#btn_simpan').html('UBAH');
-      $('#label_header_produk').html('<i class="fas fa-id-card mr-2"></i> UBAH POTENSI WILAYAH');
+      $('#label_header_produk').html('<i class="fas fa-id-card mr-2"></i> UBAH DATA KUNJUNGAN');
       $('#id_kunjungan').val(id_kunjungan);
       $('#nama_nasabah').val(data[0].nama_nasabah);
-      $('#telp_nasabah').val(data[0].telp_nasabah);
-      $('#telp_nasabah_lama').val(data[0].telp_nasabah);
+      $('#no_rekening').val(data[0].no_rekening);
+      $('#no_rekening_lama').val(data[0].no_rekening);
       $('#alamat_nasabah').val(data[0].alamat_nasabah);
-      SeparatorRibuan(data[0].omset_nasabah.toString(),'omset_nasabah');
-      $('#usaha_nasabah').val(data[0].usaha_nasabah);
-      $('#prov_nasabah').val(data[0].provinsi_nasabah).trigger('change');
-      get_kab_edit(data[0].provinsi_nasabah,data[0].kabupaten_nasabah);
-      get_kec_edit(data[0].kabupaten_nasabah,data[0].kecamatan_nasabah);
-      get_kel_edit(data[0].kecamatan_nasabah,data[0].kelurahan_nasabah);
-
-      if (data[0].foto_usaha!='') {
-        $('#preview_lampiran_usaha').attr('src','<?php echo base_url()?>'+data[0].foto_usaha);
-      }
-      $('#kab_nasabah').val(data[0].kabupaten_nasabah).trigger('change');
-
-      $('#lampiran_usaha_lama').val(data[0].foto_usaha);
+      $('#tgl_realisasi').val(data[0].tgl_realisasi);
+      $('#status_kolektibilitas').val(data[0].status_kolektibilitas).trigger('change');
+      SeparatorRibuan(data[0].plafon.toString(),'plafon');
+      $('#prov_nasabah').val(data[0].provinsi_kunjungan).trigger('change');
+      get_kab_edit(data[0].provinsi_kunjungan,data[0].kabupaten_kunjungan);
+      get_kec_edit(data[0].kabupaten_kunjungan,data[0].kecamatan_kunjungan);
+      get_kel_edit(data[0].kecamatan_kunjungan,data[0].kelurahan_kunjungan);
 
     },
 
@@ -561,9 +553,9 @@ $('#show_data').on('click','.item_edit_kunjungan_wilayah',function(){
   return false;
 });
 $('#show_data').on('click','.item_follow_up',function(){
-  let id_kunjungan = $(this).attr('data');
-  $('#modalfollowup').modal('show');
-  $('#id_kunjungan_follow_up').val(id_kunjungan);
+ let id_kunjungan = $(this).attr('data');
+ $('#id_kunjungan_follow_up').val(id_kunjungan);
+ getLocation();
 });
 
 $('#show_data').on('click','.item_realisasi_nasabah',function(){
@@ -571,55 +563,40 @@ $('#show_data').on('click','.item_realisasi_nasabah',function(){
   $('#modalrealisasi').modal('show');
   $('#id_kunjungan_realisasi').val(id_kunjungan);
 });
-$('#show_data').on('click','.item_detail_kunjungan_wilayah',function(){
+$('#show_data').on('click','.item_detail_kunjungan',function(){
   let id_kunjungan = $(this).attr('data');
   $.ajax({
     type : "GET",
-    url  : "<?php echo base_url('kunjungan/detail_kunjungan_wilayah_full')?>",
+    url  : "<?php echo base_url('kunjungan/detail_kunjungan_full')?>",
     dataType : "JSON",
     data : {'id_kunjungan':id_kunjungan},
     success: function(data){
       $('#modal_detail').modal('show');
       $('.nama_nasabah').html(data.nasabah[0].nama_nasabah);
-      $('.telp_nasabah').html(data.nasabah[0].telp_nasabah);
+      $('.no_rekening').html(data.nasabah[0].no_rekening);
+      $('.tgl_realisasi').html(data.nasabah[0].tgl_realisasi);
       $('.provinsi_nasabah').html(data.nasabah[0].prov);
       $('.kabupaten_nasabah').html(data.nasabah[0].kab);
       $('.kecamatan_nasabah').html(data.nasabah[0].kec);
       $('.kelurahan_nasabah').html(data.nasabah[0].kel);
       $('.alamat_nasabah').html(data.nasabah[0].alamat_nasabah);
-      $('.usaha_nasabah').html(data.nasabah[0].usaha_nasabah);
-      SeparatorRibuanClass(data.nasabah[0].omset_nasabah.toString(),'omset_nasabah');
-      var options = {
-        center: [data.nasabah[0].latitude, data.nasabah[0].longitude],
-        zoom: 13,
-        minZoom: 6
-      }
-      
-      var mapid = new L.map('mapid', options);
-      var marker = L.marker([data.nasabah[0].latitude, data.nasabah[0].longitude]).addTo(mapid);
-      L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibmFiaWxjaGVuIiwiYSI6ImNrOWZzeXh5bzA1eTQzZGxpZTQ0cjIxZ2UifQ.1YMI-9pZhxALpQ_7x2MxHw', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 20,
-        id: 'mapbox/streets-v11',
-        tileSize: 512,
-        zoomOffset: -1,
-        accessToken: 'pk.eyJ1IjoiYXRob3h6b2VtYW50YSIsImEiOiJjbDI3bW82cnMwMHhjM2JwMXl2ajByNDN3In0.Esx5r-0LHnwqqgiO8DOfYA'
-      }).addTo(mapid);
+      SeparatorRibuanClass(data.nasabah[0].plafon.toString(),'plafon');
 
-      $('#lihat_map').attr('href','http://maps.google.com/maps?q='+data.nasabah[0].latitude+', '+data.nasabah[0].longitude);
-
-      if (data.nasabah[0].foto_usaha!='') {
-        $('#foto_usaha').attr('href','<?php echo  base_url(); ?>'+data.nasabah[0].foto_usaha);
-      }
       let fu ='';
       for (var i = 0; i < data.follow_up.length; i++) {
         fu+=`<tr>
-        <td>`+(i+1)+`</td>
-        <td>`+data.follow_up[i].tanggal_fu.split(' ')[0]+`</td>
+        <td class="text-center">`+(i+1)+`</td>
+        <td>`+data.follow_up[i].tanggal_kunjungan.split(' ')[0]+`</td>
         <td>`+data.follow_up[i].nama+`</td>
-        <td>`+data.follow_up[i].hasil_fu+`</td> <td>`;
-        if (data.follow_up[i].lampiran_fu!='') {
-          fu+=`<a href="<?php echo base_url() ?>`+data.follow_up[i].lampiran_fu+`" target="_blank" class="btn btn-success btn-circle btn-sm"><i class="fa fa-eye"></i></a>`;
+        <td>`+data.follow_up[i].hasil_kunjungan+`</td>
+        <td class="text-center">`+data.follow_up[i].status_fu+`</td> <td class="text-center">`;
+
+        if (data.follow_up[i].lampiran_kunjungan!='') {
+          fu+=`<a href="<?php echo base_url() ?>`+data.follow_up[i].lampiran_kunjungan+`" target="_blank" class="btn btn-success btn-sm mr-2"><i class="fa fa-paperclip"></i></a>`;
+        }
+
+         if (data.follow_up[i].latitude_gps!='') {
+          fu+=`<a href="http://maps.google.com/maps?q=`+data.follow_up[i].latitude_kunjungan+', '+data.follow_up[i].longitude_kunjungan+`" target="_blank" class="btn btn-primary btn-sm"><i class="fa fa-map"></i></a>`;
         }
         fu+=`</td></tr>`;
       }
@@ -668,6 +645,21 @@ $('#form_realisasi').submit();
 
 
 $('#btn_simpan_followup').on('click',function(){
+   let status_kolektibilitas_fu = $('#status_kolektibilitas_fu').val();
+ if (status_kolektibilitas_fu==null) {
+  $('#status_kolektibilitas_fu').focus();
+  Swal.fire({
+    title:'Status Kolektibilitas Kosong',
+    text:'Silahkan Pilih Status Kolektibilitas!',
+    icon:'error'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.close();
+    }
+  });
+  return false;
+}
+
  let hasil_follow_up = $('#hasil_follow_up').val();
  if (hasil_follow_up=="") {
   $('#hasil_follow_up').focus();
@@ -745,10 +737,10 @@ $.ajax({
 
 
 if (cek > 0) {
- $('#telp_nasabah').focus();
+ $('#no_rekening').focus();
  Swal.fire({
-  title:'Nomor Telepon Sudah Digunakan',
-  text:'Silahkan Masukkan Nomor Telepon Lainnya!',
+  title:'Nomor Rekening Sudah Digunakan',
+  text:'Silahkan Masukkan Nomor Rekening Lainnya!',
   icon:'error'
 }).then((result) => {
   if (result.isConfirmed) {
@@ -833,22 +825,52 @@ if (alamat_nasabah=="") {
   return false;
 }
 
-if (link.includes('simpan')!==false) {
-  let lampiran_usaha = $('#lampiran_usaha').val();
-  if (lampiran_usaha=="") {
-    $('#lampiran_usaha').focus();
-    Swal.fire({
-      title:'Foto Usaha Kosong',
-      text:'Silahkan Upload Foto Usaha!',
-      icon:'error'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.close();
-      }
-    });
-    return false;
-  }
+let plafon = $('#plafon').val();
+if (plafon=="") {
+  $('#plafon').focus();
+  Swal.fire({
+    title:'Plafon Kosong',
+    text:'Silahkan Masukkan Plafon!',
+    icon:'error'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.close();
+    }
+  });
+  return false;
 }
+
+let tgl_realisasi = $('#tgl_realisasi').val();
+if (tgl_realisasi=="") {
+  $('#tgl_realisasi').focus();
+  Swal.fire({
+    title:'Tanggal Realisasi Kosong',
+    text:'Silahkan Masukkan Tanggal Realisasi!',
+    icon:'error'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.close();
+    }
+  });
+  return false;
+}
+
+let status_kolektibilitas = $('#status_kolektibilitas').val();
+if (status_kolektibilitas==null) {
+  $('#status_kolektibilitas').focus();
+  Swal.fire({
+    title:'Tanggal Realisasi Kosong',
+    text:'Silahkan Masukkan Tanggal Realisasi!',
+    icon:'error'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.close();
+    }
+  });
+  return false;
+}
+
+
 $('#btn_simpan').attr('disabled','disabled');
 $('#btn_simpan').html('<img src="<?php echo base_url() ?>assets/img/spinner.gif">');
 
@@ -859,7 +881,7 @@ function showPosition(position) {
 
   $('#latitude_gps').val(position.coords.latitude);
   $('#longitude_gps').val(position.coords.longitude);
-
+  $('#modalfollowup').modal('show');
 
 }
 

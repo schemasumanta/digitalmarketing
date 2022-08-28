@@ -64,7 +64,7 @@ aria-hidden="true">
 <script src="<?php echo base_url(); ?>assets/modules/datatables/DataTables-1.10.16/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/modules/datatables/Select-1.2.4/js/dataTables.select.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/modules-datatables.js"></script>
-
+<script src="<?php echo base_url(); ?>assets/js/jquery.mask.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
 

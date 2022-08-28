@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `activity` (
   PRIMARY KEY (`id_activity`)
 ) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=latin1;
 
--- Membuang data untuk tabel market_db.activity: ~16 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.activity: ~14 rows (lebih kurang)
 INSERT INTO `activity` (`id_activity`, `user_activity`, `date_activity`, `time_activity`, `activity`) VALUES
 	(2, 16, '2022-02-17', '07:22:49', 'Mengubah profil akun'),
 	(50, 24, '2022-02-27', '16:19:43', 'Mengubah profil akun'),
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `syarat_ketentuan` (
   PRIMARY KEY (`id_syarat`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.syarat_ketentuan: ~1 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.syarat_ketentuan: ~0 rows (lebih kurang)
 INSERT INTO `syarat_ketentuan` (`id_syarat`, `syarat`) VALUES
 	(1, '<p>Dengan menekan tombol "Setuju &amp; Ajukan Pinjaman" di bawah ini, saya menyatakan hal-hal sebagai berikut :</p><ol><li>Data dan informasi yang saya berikan dalam pengajuan ini adalah sesuai keadaaan yang sebenar-benarnya.<br><br></li><li>Saya menyetujui bahwa PT. BPR BKK Karangmalang (Perseroda) , selanjutnya disebut Bank, berwenang untuk:<br><br><ul style="list-style-type:disc;"><li>Memeriksa kebenaran data yang saya sampaikan dalam pengajuan ini.</li><br><li>Mencari dan memperoleh keterangan dan referensi dari sumber manapun dengan cara yang dianggap sah oleh Bank. </li><br><li>Menyetujui atau menolak pengajuan pinjaman saya berdasarkan analisa Bank.</li><br><li>Tidak mengembalikan seluruh dokumen yang telah saya serahkan kepada Bank.</li></ul><br><br></li><li>Memberikan secara terbatas dan/atau tidak terbatas data yang telah saya sampaikan dalam pengajuan ini kepada pihak ketiga dalam rangka       kepentingan pemrosesan pengajuan pinjaman.<br><br></li><li>Saya memahami dan mengerti bahwa Bank tidak berkewajiban untuk memberikan fasilitas kredit kepada saya hingga saya memenuhi semua       persyaratan yang berlaku pada Bank dan telah menandatangani dokumen yang diperlukan Bank dalam pemberian kredit.<br><br></li><li>Apabila ternyata data dan informasi, serta pernyataan yang saya berikan/buat tidak sesuai dengan keadaan yang sebenarnya, maka segala risiko dan       konsekuensi yang diakibatkannya menjadi sepenuhnya tanggung jawab saya.<br></li></ol><p><br></p><p><br></p>');
 
@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `tbl_about_us` (
   PRIMARY KEY (`about_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.tbl_about_us: ~1 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_about_us: ~0 rows (lebih kurang)
 INSERT INTO `tbl_about_us` (`about_id`, `about_isi`, `about_foto`) VALUES
 	(2, '<p style="text-align: justify; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px 0px 10px; color: rgb(71, 71, 71); font-family: open_sansregular; font-size: 15px;"><span style="font-size: 14px; font-family: Helvetica;"><b>Sekilas Tentang BPR BKK KARANGMALANG</b></span></p><p style="text-align: justify; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px 0px 10px; color: rgb(71, 71, 71); font-family: open_sansregular; font-size: 15px;"><span style="font-size: 14px; font-family: Helvetica;">Berdiri pada tahun 1974 bernama Badan Kredit Kecamatan (BKK) Karangmalang yang merupakan Proyek Officer Jawa Tengah atas kuasa Undang-undang No 5 Tahun 1974 tentang Pokok-pokok Pemerintahan di Daerah.</span></p><p style="text-align: justify; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px 0px 10px; color: rgb(71, 71, 71); font-family: open_sansregular; font-size: 15px;"><span style="font-size: 14px; font-family: Helvetica;">Modal awal berupa pinjaman dari Anggaran Pendapatan Belanja Daerah (APBD) Provinsi Jawa Tengah yang dipisahkan pada tanggal 28 Oktober 1974 sebesar Rp. 1.000.000,- (Satu juta rupiah) dengan suku bunga 12% per tahun, jangka waktu 5(lima) tahun. Pinjaman tersebut telah lunas pada tanggal 20 Maret 1979.</span></p><p style="text-align: justify; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px 0px 10px; color: rgb(71, 71, 71); font-family: open_sansregular; font-size: 15px;"><span style="font-size: 14px; font-family: Helvetica;">Pada tahun 1981 meningkat statusnya menjadi Badan Usaha Milik Daerah (BUMD) sesuai dengan Perda No. 11 Tahun 1981.</span></p><p style="text-align: justify; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px 0px 10px; color: rgb(71, 71, 71); font-family: open_sansregular; font-size: 15px;"><span style="font-size: 14px; font-family: Helvetica;">Pada 11 Juni 1985, menempati gedung yang merupakan paket pembangunan dari Provinsi Jawa Tengah.</span></p><p style="text-align: justify; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px 0px 10px; color: rgb(71, 71, 71); font-family: open_sansregular; font-size: 15px;"><span style="font-size: 14px; font-family: Helvetica;">Pada 8 Oktober 1991 Badan Kredit Kecamatan Karangmalang ( BKK Karangmalang) berubah statusnya menjadi Bank Perkreditan Rakyat Badan Kredit Kecamatan Karangmalang ( BPR BKK Karangmalang ) sesuai dengan Keputusan Menteri Keuangan Republik Indonesia No. : KEP.486/KM.13/1991 Tentang Pemberian Izin Sebagai Bank Perkreditan Rakyat Kepada Badan Kredit Kecamatan (BKK) Karangmalang</span></p>', 'assets/img/about/foto_about1659126063EP2C-Energy_background18-1080x675.jpg');
 
@@ -133,14 +133,46 @@ CREATE TABLE IF NOT EXISTS `tbl_follow_up` (
   `hasil_fu` text NOT NULL,
   `lampiran_fu` text NOT NULL,
   PRIMARY KEY (`id_fu`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.tbl_follow_up: ~4 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_follow_up: ~17 rows (lebih kurang)
 INSERT INTO `tbl_follow_up` (`id_fu`, `id_user`, `id_nasabah`, `tanggal_fu`, `hasil_fu`, `lampiran_fu`) VALUES
 	(7, 23, '16', '2022-07-06 03:48:05', 'Telepon untuk schedule meeting', 'assets/img/foto_fu/fu_1657054085Kusaka.Kabane.full.3096562.png'),
 	(8, 26, 'NSB-2207-00001', '2022-07-15 09:48:57', 'Pengajuan', 'assets/img/foto_fu/fu_16578533378ede4d440c9402d8d9eac223dcb1b715.jpg'),
 	(9, 26, 'NSB-2207-00001', '2022-07-15 10:17:37', 'Test', 'assets/img/foto_fu/fu_1657855057A20Y7LcCMAAeaEC.jpg'),
-	(10, 26, 'NSB-2207-00001', '2022-07-15 10:18:32', 'test', 'assets/img/foto_fu/fu_16578551128ede4d440c9402d8d9eac223dcb1b715.jpg');
+	(10, 26, 'NSB-2207-00001', '2022-07-15 10:18:32', 'test', 'assets/img/foto_fu/fu_16578551128ede4d440c9402d8d9eac223dcb1b715.jpg'),
+	(11, 23, 'NSB-2208-00003', '2022-08-15 13:56:06', 'test', 'assets/img/foto_fu/fu_1660546566noimagesampul.jpg'),
+	(12, 23, 'NSB-2208-00002', '2022-08-15 13:58:40', 'test', 'assets/img/foto_fu/fu_1660546720noimagesampul.jpg'),
+	(13, 23, 'NSB-2208-00002', '2022-08-15 13:58:58', 'TESTREALISASI', ''),
+	(14, 23, '17', '2022-08-15 14:00:15', 'TEST', 'assets/img/foto_fu/fu_1660546815noimagesampul.jpg'),
+	(15, 23, '17', '2022-08-15 14:01:33', 'testrealisasipotensi', ''),
+	(16, 23, 'NSB-2208-00001', '2022-08-15 14:07:50', 'sdsds', 'assets/img/foto_fu/fu_1660547270noimagesampul.jpg'),
+	(17, 23, 'NSB-2208-00004', '2022-08-15 14:22:09', 'sdsdsds', ''),
+	(18, 23, 'NSB-2208-00004', '2022-08-17 14:26:04', 'REALISASIMG09789', ''),
+	(19, 26, 'NSB-2207-00002', '2022-08-17 14:27:45', 'TEST', ''),
+	(20, 26, 'NSB-2207-00002', '2022-08-17 14:27:51', 'TESTREALISASI', ''),
+	(21, 26, 'NSB-2207-00003', '2022-08-17 14:28:15', 'TEST', ''),
+	(22, 26, 'NSB-2207-00003', '2022-08-17 14:28:27', 'testrealisasiPENGAJUAN', ''),
+	(23, 26, 'NSB-2207-00004', '2022-08-17 14:32:11', 'TEST', '');
+
+-- membuang struktur untuk table market_db.tbl_follow_up_kunjungan
+CREATE TABLE IF NOT EXISTS `tbl_follow_up_kunjungan` (
+  `id_follow_up_kunjungan` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kunjungan` int(11) DEFAULT NULL,
+  `latitude_kunjungan` varchar(50) DEFAULT NULL,
+  `longitude_kunjungan` varchar(50) DEFAULT NULL,
+  `lampiran_kunjungan` text DEFAULT NULL,
+  `hasil_kunjungan` text DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `tanggal_kunjungan` timestamp NULL DEFAULT NULL,
+  `status_fu` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id_follow_up_kunjungan`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+
+-- Membuang data untuk tabel market_db.tbl_follow_up_kunjungan: ~0 rows (lebih kurang)
+INSERT INTO `tbl_follow_up_kunjungan` (`id_follow_up_kunjungan`, `id_kunjungan`, `latitude_kunjungan`, `longitude_kunjungan`, `lampiran_kunjungan`, `hasil_kunjungan`, `id_user`, `tanggal_kunjungan`, `status_fu`) VALUES
+	(1, 1, '-6.3488038', '106.2405961', 'assets/img/foto_fu/fu_16616711634799408 1.png', 'test', 23, '2022-08-28 07:19:23', 'DP'),
+	(2, 1, '-6.3488038', '106.2405961', 'assets/img/foto_fu/fu_1661672011WhatsApp Image 2021-09-08 at 09.50.06(1).jpeg', 'test', 23, '2022-08-28 07:33:31', 'KL');
 
 -- membuang struktur untuk table market_db.tbl_galeri_foto
 CREATE TABLE IF NOT EXISTS `tbl_galeri_foto` (
@@ -167,9 +199,9 @@ CREATE TABLE IF NOT EXISTS `tbl_history` (
   `id_user` int(11) DEFAULT NULL,
   `aktivitas` text NOT NULL,
   PRIMARY KEY (`kode_history`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=latin1;
 
--- Membuang data untuk tabel market_db.tbl_history: ~85 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_history: ~117 rows (lebih kurang)
 INSERT INTO `tbl_history` (`kode_history`, `tanggal`, `ip_address`, `id_user`, `aktivitas`) VALUES
 	(1, '2022-07-03 23:48:20', '::1', 23, 'Menambah Data Potensi Wilayah Baru dengan nama Suhenda'),
 	(2, '2022-07-04 00:40:55', '::1', 23, 'Mengubah Data Potensi Wilayah Baru dengan nama 13'),
@@ -255,7 +287,66 @@ INSERT INTO `tbl_history` (`kode_history`, `tanggal`, `ip_address`, `id_user`, `
 	(82, '2022-07-30 07:35:24', '::1', 15, 'Menambah Data Fitur'),
 	(83, '2022-07-30 07:38:40', '::1', 15, 'Mengubah Data Fitur'),
 	(84, '2022-07-30 07:38:49', '::1', 15, 'Mengubah Data Fitur'),
-	(85, '2022-07-30 07:41:24', '::1', 15, 'Menghapus Data Feature');
+	(85, '2022-07-30 07:41:24', '::1', 15, 'Menghapus Data Feature'),
+	(86, '2022-07-30 15:14:44', '::1', 15, 'Menambah Data Cabang Baru dengan nama Kantor Pusat Operasional'),
+	(87, '2022-07-30 15:14:52', '::1', 15, 'Menambah Data Cabang Baru dengan nama Kantor Pusat Manajemen'),
+	(88, '2022-08-01 01:55:38', '::1', 15, 'Mengubah Status Terbaik 25'),
+	(89, '2022-08-01 01:56:03', '::1', 15, 'Mengubah Status Terbaik 25'),
+	(90, '2022-08-01 01:56:08', '::1', 15, 'Mengubah Status Terbaik 24'),
+	(91, '2022-08-01 01:56:11', '::1', 15, 'Mengubah Status Terbaik 24'),
+	(92, '2022-08-01 01:56:17', '::1', 15, 'Mengubah Status Terbaik 25'),
+	(93, '2022-08-01 01:56:40', '::1', 15, 'Mengubah Status Terbaik 25'),
+	(94, '2022-08-15 06:56:06', '::1', 23, 'Menambah Data Follow UP Pengajuan Baru dengan ID Nasabah NSB-2208-00003'),
+	(95, '2022-08-15 06:56:27', '::1', 23, 'Realisasi Nasabah NSB-2208-00003'),
+	(96, '2022-08-15 06:58:40', '::1', 23, 'Menambah Data Follow UP Pengajuan Baru dengan ID Nasabah NSB-2208-00002'),
+	(97, '2022-08-15 06:58:58', '::1', 23, 'Realisasi Nasabah NSB-2208-00002'),
+	(98, '2022-08-15 07:00:05', '::1', 23, 'Menambah Data Potensi Wilayah Baru dengan nama Suhenda'),
+	(99, '2022-08-15 07:00:15', '::1', 23, 'Menambah Data Follow UP Potensi Wilayah Baru dengan ID Nasabah 17'),
+	(100, '2022-08-15 07:01:33', '::1', 23, 'Realisasi Nasabah 17'),
+	(101, '2022-08-15 07:05:56', '::1', 23, 'Menambah Data Potensi Wilayah Baru dengan nama Suhenda'),
+	(102, '2022-08-15 07:07:50', '::1', 23, 'Menambah Data Follow UP Pengajuan Baru dengan ID Nasabah NSB-2208-00001'),
+	(103, '2022-08-15 07:19:02', '::1', 23, 'Menolak Pengajuan Nasabah dengan ID Pengajuan NSB-2208-00001'),
+	(104, '2022-08-15 07:19:58', '::1', 23, 'Menolak Pengajuan Nasabah dengan ID Pengajuan NSB-2208-00001'),
+	(105, '2022-08-15 07:21:06', '::1', 23, 'Menolak Pengajuan Nasabah dengan Kode Pengajuan NSB-2208-00001'),
+	(106, '2022-08-15 07:22:09', '::1', 23, 'Menambah Data Follow UP Pengajuan Baru dengan ID Nasabah NSB-2208-00004'),
+	(107, '2022-08-15 08:20:24', '::1', 15, 'Mengubah Data Produk Baru dengan ID 1'),
+	(108, '2022-08-15 08:49:49', '::1', 15, 'Mengubah Data Produk Baru dengan ID 1'),
+	(109, '2022-08-17 07:26:04', '::1', 23, 'Realisasi Nasabah NSB-2208-00004'),
+	(110, '2022-08-17 07:27:45', '::1', 26, 'Menambah Data Follow UP Pengajuan Baru dengan ID Nasabah NSB-2207-00002'),
+	(111, '2022-08-17 07:27:51', '::1', 26, 'Realisasi Nasabah NSB-2207-00002'),
+	(112, '2022-08-17 07:28:15', '::1', 26, 'Menambah Data Follow UP Pengajuan Baru dengan ID Nasabah NSB-2207-00003'),
+	(113, '2022-08-17 07:28:27', '::1', 26, 'Realisasi Nasabah NSB-2207-00003'),
+	(114, '2022-08-17 07:32:12', '::1', 26, 'Menambah Data Follow UP Pengajuan Baru dengan ID Nasabah NSB-2207-00004'),
+	(115, '2022-08-17 07:56:42', '::1', 15, 'Menambah Data Informasi Produk Baru dengan nama 1'),
+	(116, '2022-08-17 08:07:34', '::1', 15, 'Mengubah Data Informasi Produk dengan ID 1'),
+	(117, '2022-08-17 08:12:09', '::1', 15, 'Menghapus Data Informasi Produk dengan ID 1'),
+	(118, '2022-08-17 08:12:29', '::1', 15, 'Menambah Data Informasi Produk Baru dengan nama 1'),
+	(119, '2022-08-17 08:12:40', '::1', 15, 'Mengubah Data Informasi Produk dengan ID 1'),
+	(120, '2022-08-17 08:12:46', '::1', 15, 'Menghapus Data Informasi Produk dengan ID 2'),
+	(121, '2022-08-17 08:13:34', '::1', 15, 'Menambah Data Informasi Produk Baru dengan nama 1'),
+	(122, '2022-08-17 08:41:16', '::1', 15, 'Menambah Data Informasi Produk Baru dengan nama '),
+	(123, '2022-08-17 08:43:31', '::1', 15, 'Menambah Data Informasi Produk Baru dengan nama 2'),
+	(124, '2022-08-20 08:01:01', '::1', 15, 'Mengubah Data Cabang dengan ID 1'),
+	(125, '2022-08-20 08:03:56', '::1', 15, 'Mengubah Data Informasi Produk dengan ID '),
+	(126, '2022-08-20 08:32:40', '::1', 15, 'Menambah Data user Baru atas nama samsul'),
+	(127, '2022-08-28 07:01:45', '::1', 23, 'Menambah Data Kunjungan Baru dengan nama Suhenda'),
+	(128, '2022-08-28 07:19:23', '::1', 23, 'Menambah Data Follow UP Kunjungan Nasabah Baru dengan ID Kunjungan 1'),
+	(129, '2022-08-28 07:33:31', '::1', 23, 'Menambah Data Follow UP Kunjungan Nasabah Baru dengan ID Kunjungan 1'),
+	(130, '2022-08-28 07:40:32', '::1', 23, 'Mengubah Data Kunjungan dengan nama Suhenda');
+
+-- membuang struktur untuk table market_db.tbl_informasi_produk
+CREATE TABLE IF NOT EXISTS `tbl_informasi_produk` (
+  `id_informasi` int(11) NOT NULL AUTO_INCREMENT,
+  `id_produk` int(11) NOT NULL,
+  `informasi_produk` text NOT NULL,
+  `informasi_foto` text NOT NULL,
+  PRIMARY KEY (`id_informasi`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+-- Membuang data untuk tabel market_db.tbl_informasi_produk: ~2 rows (lebih kurang)
+INSERT INTO `tbl_informasi_produk` (`id_informasi`, `id_produk`, `informasi_produk`, `informasi_foto`) VALUES
+	(3, 1, '<p style="text-align: left;"><strong style="margin: 0px; padding: 0px; color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; text-align: justify;">Lorem Ipsum</strong><span style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; text-align: justify;">&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</span><br></p>', 'assets/img/foto_informasi/produk_1660724014noimagesampul.jpg'),
+	(5, 2, '<span style="color: rgb(0, 0, 0); font-family: &quot;Open Sans&quot;, Arial, sans-serif; font-size: 14px; text-align: justify;"><b>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using \'Content here, content here\', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for \'lorem ipsum\' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</b></span>', 'assets/img/foto_informasi/produk_1660725811WhatsApp Image 2021-09-08 at 09.50.06(1).jpeg');
 
 -- membuang struktur untuk table market_db.tbl_kategori_produk
 CREATE TABLE IF NOT EXISTS `tbl_kategori_produk` (
@@ -271,6 +362,29 @@ INSERT INTO `tbl_kategori_produk` (`id_kategori`, `nama_kategori`, `status_kateg
 	(2, 'Simpanan', 1),
 	(3, 'Lainnya', 1);
 
+-- membuang struktur untuk table market_db.tbl_kunjungan_nasabah
+CREATE TABLE IF NOT EXISTS `tbl_kunjungan_nasabah` (
+  `id_kunjungan` int(11) NOT NULL AUTO_INCREMENT,
+  `no_rekening` varchar(16) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  `id_cabang` int(11) DEFAULT NULL,
+  `nama_nasabah` varchar(250) DEFAULT NULL,
+  `provinsi_kunjungan` varchar(50) DEFAULT NULL,
+  `kabupaten_kunjungan` varchar(50) DEFAULT NULL,
+  `kecamatan_kunjungan` varchar(50) DEFAULT NULL,
+  `kelurahan_kunjungan` varchar(50) DEFAULT NULL,
+  `alamat_nasabah` text DEFAULT NULL,
+  `plafon` varchar(50) DEFAULT NULL,
+  `tgl_realisasi` date DEFAULT NULL,
+  `tgl_input` datetime DEFAULT NULL,
+  `status_kolektibilitas` varchar(150) DEFAULT NULL,
+  PRIMARY KEY (`id_kunjungan`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+-- Membuang data untuk tabel market_db.tbl_kunjungan_nasabah: ~0 rows (lebih kurang)
+INSERT INTO `tbl_kunjungan_nasabah` (`id_kunjungan`, `no_rekening`, `id_user`, `id_cabang`, `nama_nasabah`, `provinsi_kunjungan`, `kabupaten_kunjungan`, `kecamatan_kunjungan`, `kelurahan_kunjungan`, `alamat_nasabah`, `plafon`, `tgl_realisasi`, `tgl_input`, `status_kolektibilitas`) VALUES
+	(1, '11.11.11111', 23, 3, 'Suhenda', '20000', '20500', '20510', '528', 'Jl. Seni Budaya Raya No. IX', '50000000', '2022-08-01', '2022-08-28 14:40:32', 'KL');
+
 -- membuang struktur untuk table market_db.tbl_master_cabang
 CREATE TABLE IF NOT EXISTS `tbl_master_cabang` (
   `id_cabang` int(11) NOT NULL AUTO_INCREMENT,
@@ -279,14 +393,16 @@ CREATE TABLE IF NOT EXISTS `tbl_master_cabang` (
   `telp_cabang` text NOT NULL,
   `status_cabang` int(11) NOT NULL,
   PRIMARY KEY (`id_cabang`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.tbl_master_cabang: ~4 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_master_cabang: ~6 rows (lebih kurang)
 INSERT INTO `tbl_master_cabang` (`id_cabang`, `nama_cabang`, `alamat_cabang`, `telp_cabang`, `status_cabang`) VALUES
-	(1, 'Gemolong', 'Gemolong', '123456789', 1),
+	(1, 'Gemolong', 'Gemolong 2', '123456789', 1),
 	(2, 'Plupuh', 'Jl. Plupuh', '987654122', 1),
 	(3, 'Kalijambe', 'Jl. Kalijambe', '654987', 1),
-	(4, 'Masaran', 'Jl. Masaran', '081225658252', 1);
+	(4, 'Masaran', 'Jl. Masaran', '081225658252', 1),
+	(6, 'Kantor Pusat Operasional', '', '', 1),
+	(7, 'Kantor Pusat Manajemen', '', '', 1);
 
 -- membuang struktur untuk table market_db.tbl_master_jabatan
 CREATE TABLE IF NOT EXISTS `tbl_master_jabatan` (
@@ -347,7 +463,7 @@ CREATE TABLE IF NOT EXISTS `tbl_master_produk` (
 
 -- Membuang data untuk tabel market_db.tbl_master_produk: ~10 rows (lebih kurang)
 INSERT INTO `tbl_master_produk` (`id_produk`, `id_kategori`, `nama_produk`, `keterangan_produk`, `foto_produk`, `status_produk`) VALUES
-	(1, 1, 'Kredit Bulanan', NULL, NULL, 1),
+	(1, 1, 'Kredit Bulanan', '<p style="margin-right: 0px; margin-bottom: 0px; margin-left: 35.45pt; padding: 0px 0px 15px; line-height: 1.7em; color: rgb(82, 82, 82); font-family: open_sansregular; font-size: 15px;">Tabungan Masyarakat Desa yang selanjutnya disingkat TAMADES adalah tabungan dalam mata uang rupiah yang ditujukan untuk masyarakat khususnya masyarakat pedesaan.</p><p style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px 0px 15px; line-height: 1.7em; color: rgb(82, 82, 82); font-family: open_sansregular; font-size: 15px;"><strong style="font-weight: bold;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Syarat</strong></p><ul style="margin-right: 0px; margin-bottom: 0px; margin-left: 0px; padding: 0px; color: rgb(82, 82, 82); font-family: open_sansregular; font-size: 15px;"><li style="margin: 0px 0px 0px 15px; padding: 0px 0px 15px 5px;">Calon nasabah menyerahkan&nbsp; foto copy KTP untuk nasabah perorangan;</li><li style="margin: 0px 0px 0px 15px; padding: 0px 0px 15px 5px;">Calon untuk nasabah atas nama perusahaan, Dinas Instansi, LSM, Badan Usaha, ataupun Yayasan wajib didukung dengan dokumen&nbsp;&nbsp;identitas antara lain sebagai berikut :&nbsp;&nbsp;&nbsp;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;a)&nbsp;Foto copy&nbsp; akta pendirian;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; b)&nbsp;Foto copy Tanda Daftar Perusahaan/ TDP ;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c)&nbsp;Foto copy NPWP;<br>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; d)&nbsp;Foto copy SIUP;<br>&nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;e)&nbsp;Surat&nbsp; Kuasa.</li><li style="margin: 0px 0px 0px 15px; padding: 0px 0px 15px 5px;">Mengisi formulir Identitas calon nasabah bagi perorangan, yayasan, lembaga, perusahaan/badan usaha.<br><br><strong style="font-weight: bold;">Ketentua</strong><strong style="font-weight: bold;">n</strong></li><li style="margin: 0px 0px 0px 15px; padding: 0px 0px 15px 5px;">Setoran pertama sekurang-kurangnya Rp.10.000,- (sepuluh ribu rupiah);</li><li style="margin: 0px 0px 0px 15px; padding: 0px 0px 15px 5px;">Tabungan dapat diambil setiap saat dengan saldo minimal Rp. 10.000,- (sepuluh ribu rupiah);</li><li style="margin: 0px 0px 0px 15px; padding: 0px 0px 15px 5px;">Bunga dihitung dan dibukukan setiap akhir bulan dengan perhitungan saldo terendah;</li><li style="margin: 0px 0px 0px 15px; padding: 0px 0px 15px 5px;">Perubahan suku bunga tanpa pemberitahuan terlebih dahulu;</li><li style="margin: 0px 0px 0px 15px; padding: 0px 0px 15px 5px;">Penutupan rekening hanya dapat dilakukan pada kantor tempat pembukuan rekening.<br><br><strong style="font-weight: bold;">Biaya Ringan dan Mur</strong><strong style="font-weight: bold;">ah</strong></li><li style="margin: 0px 0px 0px 15px; padding: 0px 0px 15px 5px;">Tidak ada Biaya pengelolaan rekeningbulanan</li><li style="margin: 0px 0px 0px 15px; padding: 0px 0px 15px 5px;">Bagi nasabah yang tidak ada transaksi setoran selama 6 bulan berturut-turut dikenakan biaya sebesar Rp 5.000,-</li><li style="margin: 0px 0px 0px 15px; padding: 0px 0px 15px 5px;">Saldo rekening kurang dari Rp. 5.000,- (lima ribu rupiah) maka rekening akan ditutup oleh sistem dengan biaya penutupan rekening sebesar sisa saldo;</li><li style="margin: 0px 0px 0px 15px; padding: 0px 0px 15px 5px;">Biaya administrasi tutup rekening sebesar Rp. 2.500,- (dua ribu lima ratus rupiah).<br><br><strong style="font-weight: bold;">Keunggulan</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li style="margin: 0px 0px 0px 15px; padding: 0px 0px 15px 5px;">Suku bunga tinggi (Kompetitif);</li><li style="margin: 0px 0px 0px 15px; padding: 0px 0px 15px 5px;">Berhak mengikuti undian berhadiah</li><li style="margin: 0px 0px 0px 15px; padding: 0px 0px 15px 5px;">Simpanan aman dan dijamin oleh LPS</li></ul>', 'assets/img/foto_produk/produk_1660551624pngtree-vector-illustration-lovely-mother-png-image_1115780.jpg', 1),
 	(2, 1, 'Kredit Musiman', NULL, NULL, 1),
 	(3, 1, 'Kredit KPR', NULL, NULL, 1),
 	(4, 2, 'Deposito', NULL, NULL, 1),
@@ -390,19 +506,20 @@ CREATE TABLE IF NOT EXISTS `tbl_master_user` (
   `status_user` int(2) NOT NULL,
   `status_login` int(2) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
--- Membuang data untuk tabel market_db.tbl_master_user: ~9 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_master_user: ~10 rows (lebih kurang)
 INSERT INTO `tbl_master_user` (`id_user`, `nama`, `email`, `username`, `password`, `level`, `id_cabang`, `id_jabatan`, `terbaik`, `date_created`, `foto`, `status_user`, `status_login`) VALUES
-	(15, 'Dicky Candra Kusuma', 'admin@gmail.com', 'dicky', 'fbade9e36a3f36d3d676c1b808451dd7', 'Admin', 1, '5', 0, '2022-02-24', 'assets/dist/img/profile/avatar5.png', 1, 1),
-	(23, 'Ratna Damayanti', 'marketing@gmail.com', 'ratna', 'fbade9e36a3f36d3d676c1b808451dd7', 'Marketing', 3, '1', 1, '2022-02-24', 'assets/dist/img/profile/team-4.jpg', 1, 0),
+	(15, 'Dicky Candra Kusuma', 'admin@gmail.com', 'dicky', 'fbade9e36a3f36d3d676c1b808451dd7', 'Admin', 1, '5', 0, '2022-02-24', 'assets/img/foto_user/logo1660550175pngtree-vector-illustration-lovely-mother-png-image_1115780.jpg', 1, 0),
+	(23, 'Ratna Damayanti', 'marketing@gmail.com', 'ratna', '03c7c0ace395d80182db07ae2c30f034', 'Marketing', 3, '1', 1, '2022-02-24', 'assets/dist/img/profile/team-4.jpg', 1, 0),
 	(24, 'Harjo Winangun', 'harjo@gmail.com', 'harjo', 'fbade9e36a3f36d3d676c1b808451dd7', 'Marketing', 2, '4', 1, '2022-02-27', 'assets/dist/img/profile/team-1.jpg', 1, 0),
-	(25, 'Arnold Jumangin', 'arnold@gmail.com', 'arnold', 'fbade9e36a3f36d3d676c1b808451dd7', 'Marketing', 3, '3', 1, '2022-02-27', 'assets/dist/img/profile/team-3.jpg', 1, 0),
+	(25, 'Arnold Jumangin', 'arnold@gmail.com', 'arnold', 'fbade9e36a3f36d3d676c1b808451dd7', 'Marketing', 3, '3', 1, '2022-02-27', 'assets/dist/img/profile/team-3.jpg', 1, 1),
 	(26, 'Paijo Van Hallen', 'paijo@gmail.com', 'paijo', 'fbade9e36a3f36d3d676c1b808451dd7', 'Marketing', 1, '3', 1, '2022-02-28', 'assets/dist/img/profile/testimonials-4.jpg', 1, 0),
 	(27, 'AHMAD', 'ahmad@acd.com', 'ahmad', '25d55ad283aa400af464c76d713c07ad', 'Supervisor', 2, '5', 0, '2022-03-19', 'assets/dist/img/profile/default.png', 1, 0),
 	(28, 'Sumanta', 'athoxusdah@gmail.com', 'sumanta', 'fbade9e36a3f36d3d676c1b808451dd7', 'Admin', 4, '5', 0, '2022-03-24', 'assets/dist/img/profile/default.png', 1, 0),
 	(29, 'chandra', 'athoxusdah@gmail.com', 'chandra', 'fbade9e36a3f36d3d676c1b808451dd7', 'Supervisor', 3, '2', 0, '2022-03-24', 'assets/dist/img/profile/default.png', 1, 0),
-	(31, 'Sumanta', 'athoxzoemanta@yahoo.co.id', 'sumanta2', 'fbade9e36a3f36d3d676c1b808451dd7', 'Admin', 1, '1', 0, '2022-05-29', 'assets/img/foto_user/logo1653831317minusca.png', 1, 0);
+	(31, 'Sumanta', 'athoxzoemanta@yahoo.co.id', 'sumanta2', 'fbade9e36a3f36d3d676c1b808451dd7', 'Admin', 1, '1', 0, '2022-05-29', 'assets/img/foto_user/logo1653831317minusca.png', 1, 0),
+	(33, 'samsul', 'samsul@gmail.com', 'samsul', 'fbade9e36a3f36d3d676c1b808451dd7', 'PIC', 7, '5', 0, '2022-08-20', 'assets/img/foto_user/logo16609843604799408 1.png', 1, 0);
 
 -- membuang struktur untuk table market_db.tbl_master_wilayah
 CREATE TABLE IF NOT EXISTS `tbl_master_wilayah` (
@@ -414,7 +531,7 @@ CREATE TABLE IF NOT EXISTS `tbl_master_wilayah` (
   PRIMARY KEY (`id_wilayah`)
 ) ENGINE=InnoDB AUTO_INCREMENT=280302 DEFAULT CHARSET=latin1;
 
--- Membuang data untuk tabel market_db.tbl_master_wilayah: ~91.653 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_master_wilayah: ~92.078 rows (lebih kurang)
 INSERT INTO `tbl_master_wilayah` (`id_wilayah`, `kode_wilayah`, `sub_wilayah`, `nama_wilayah`, `level`) VALUES
 	(1, 10000, 0, ' D.K.I. JAKARTA', 1),
 	(2, 20000, 0, ' JAWA BARAT', 1),
@@ -92086,7 +92203,7 @@ CREATE TABLE IF NOT EXISTS `tbl_nasabah` (
   `tanggal_input` datetime DEFAULT NULL,
   `id_cabang` int(11) NOT NULL,
   `nama_nasabah` text NOT NULL,
-  `telp_nasabah` text NOT NULL,
+  `telp_nasabah` varchar(50) NOT NULL DEFAULT '',
   `alamat_nasabah` text NOT NULL,
   `provinsi_nasabah` text DEFAULT NULL,
   `kabupaten_nasabah` text NOT NULL,
@@ -92102,11 +92219,13 @@ CREATE TABLE IF NOT EXISTS `tbl_nasabah` (
   `id_user_deal` int(11) DEFAULT NULL,
   `longitude` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`id_nasabah`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.tbl_nasabah: ~1 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_nasabah: ~3 rows (lebih kurang)
 INSERT INTO `tbl_nasabah` (`id_nasabah`, `id_user`, `tanggal_input`, `id_cabang`, `nama_nasabah`, `telp_nasabah`, `alamat_nasabah`, `provinsi_nasabah`, `kabupaten_nasabah`, `kecamatan_nasabah`, `kelurahan_nasabah`, `usaha_nasabah`, `omset_nasabah`, `foto_usaha`, `status_nasabah`, `tgl_realisasi`, `no_referensi`, `latitude`, `id_user_deal`, `longitude`) VALUES
-	(16, 23, '2022-07-04 10:16:40', 3, 'Suhenda', '085921923978', 'JL, SUNAN GIRI', '280000', '280200', '280218', '85588', 'Peternakan Ayam', '5000000', 'assets/img/foto_potensi/usaha_1656904600beninca.jpg', 'Realisasi', '2022-07-06', 'X12120-1212344', '-6.1669376', 23, '106.74176');
+	(16, 23, '2022-07-04 10:16:40', 3, 'Suhenda', '085921923978', 'JL, SUNAN GIRI', '280000', '280200', '280218', '85588', 'Peternakan Ayam', '5000000', 'assets/img/foto_potensi/usaha_1656904600beninca.jpg', 'Realisasi', '2022-07-06', 'X12120-1212344', '-6.1669376', 23, '106.74176'),
+	(17, 23, '2022-08-15 14:00:05', 3, 'Suhenda', '085921923978', 'TEST', '10000', '16000', '16001', '57', 'Peternakan Ayam', '50000000', 'assets/img/foto_potensi/usaha_1660546805noimagesampul.jpg', 'Realisasi', '2022-08-15', 'testrealisasipotensi', '-6.2087634', 23, '106.845599'),
+	(18, 23, '2022-08-15 14:05:56', 3, 'Suhenda', '085921923978', 'sdsdsd', '10000', '10100', '10101', '44', 'sdsdsds', '5000000', 'assets/img/foto_potensi/usaha_1660547156noimagesampul.jpg', 'Nasabah Baru', NULL, NULL, '-6.2087634', NULL, '106.845599');
 
 -- membuang struktur untuk table market_db.tbl_pengajuan
 CREATE TABLE IF NOT EXISTS `tbl_pengajuan` (
@@ -92132,15 +92251,20 @@ CREATE TABLE IF NOT EXISTS `tbl_pengajuan` (
   `no_referensi` text DEFAULT NULL,
   `ttd` text DEFAULT NULL,
   PRIMARY KEY (`id_pengajuan`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.tbl_pengajuan: ~5 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_pengajuan: ~10 rows (lebih kurang)
 INSERT INTO `tbl_pengajuan` (`id_pengajuan`, `kode_pengajuan`, `nik`, `nama`, `nama_suami_istri`, `nama_ibu_kandung`, `alamat_rumah`, `foto_ktp`, `nama_usaha_pekerjaan`, `alamat_usaha_pekerjaan`, `omset_usaha`, `besar_plafon`, `foto_usaha`, `id_cabang`, `id_user`, `id_produk`, `tanggal_input`, `tgl_realisasi`, `status`, `no_referensi`, `ttd`) VALUES
 	(34, 'NSB-2207-00001', '0100023659658974', 'Suhenda', 'Saemi', 'Suebah', 'Tangerang', 'assets/img/foto_pengajuan/ktp1657806090A20Y7LcCMAAeaEC.jpg', 'Manta Apps', 'Lebak - Banten', 500000, 50000, 'assets/img/foto_pengajuan/usaha16578060905f160edaa66efa16bfa0be2b51333b92.jpg', 1, 26, 1, '2022-07-14 20:41:30', '2022-07-15 10:22:09', 'Realisasi', 'RTEG', 'assets/img/foto_pengajuan/ttd_nasabah1657806090.png'),
-	(35, 'NSB-2207-00002', '3602240741952000', 'Sajidin', 'Marni', 'Muniah', 'Tangerang', 'assets/img/foto_pengajuan/ktp1657806238A20Y7LcCMAAeaEC.jpg', 'wiraswasta', 'Banten', 50000000, 5000000, 'assets/img/foto_pengajuan/usaha1657806238__inazuma_eleven_ares_no_tenbin_ff_stadium___by_zafiro_satoshi-db8vi5c.png', 1, 26, 1, '2022-07-14 20:43:58', NULL, 'Nasabah Baru', NULL, 'assets\\img\\foto_pengajuan\\ttd_nasabah1657806238.png'),
-	(36, 'NSB-2207-00003', '0100023659658974', 'Suhenda', 'Saemi', 'sapa\'ah', 'test', 'assets/img/foto_pengajuan/ktp165780637513.jpg', 'wiraswasta', 'sfssf', 2540000, 34343434, 'assets/img/foto_pengajuan/usaha16578063755f160edaa66efa16bfa0be2b51333b92.jpg', 1, 26, 1, '2022-07-14 20:46:15', NULL, 'Nasabah Baru', NULL, 'assets\\img\\foto_pengajuan\\ttd_nasabah1657806375.png'),
-	(37, 'NSB-2207-00004', '2313654912100003', 'iwi', 'atox', 'markonah', 'palembang', 'assets/img/foto_pengajuan/ktp16578065845f160edaa66efa16bfa0be2b51333b92.jpg', 'nganngur', 'jakarta', 3000000, 200000, 'assets/img/foto_pengajuan/usaha1657806584__inazuma_eleven_ares_no_tenbin_ff_stadium___by_zafiro_satoshi-db8vi5c.png', 1, 26, 1, '2022-07-14 20:49:44', NULL, 'Nasabah Baru', NULL, 'assets\\img\\foto_pengajuan\\ttd_nasabah1657806584.png'),
-	(38, 'NSB-2207-00005', '0100023659658974', 'Suhenda', 'Saemi', 'sapa\'ah', 'TEST', 'assets/img/foto_pengajuan/ktp1657809575__inazuma_eleven_ares_no_tenbin_ff_stadium___by_zafiro_satoshi-db8vi5c.png', 'Manta Apps', 'TEST', 2540000, 5000000, 'assets/img/foto_pengajuan/usaha1657809575ashley.jpg', 1, 26, 1, '2022-07-14 21:39:35', NULL, 'Nasabah Baru', NULL, 'assets\\img\\foto_pengajuan\\ttd_nasabah1657809575.png');
+	(35, 'NSB-2207-00002', '3602240741952000', 'Sajidin', 'Marni', 'Muniah', 'Tangerang', 'assets/img/foto_pengajuan/ktp1657806238A20Y7LcCMAAeaEC.jpg', 'wiraswasta', 'Banten', 50000000, 5000000, 'assets/img/foto_pengajuan/usaha1657806238__inazuma_eleven_ares_no_tenbin_ff_stadium___by_zafiro_satoshi-db8vi5c.png', 1, 26, 1, '2022-07-14 20:43:58', '2022-08-17 14:27:51', 'Realisasi', 'TESTREALISASI', 'assets\\img\\foto_pengajuan\\ttd_nasabah1657806238.png'),
+	(36, 'NSB-2207-00003', '0100023659658974', 'Suhenda', 'Saemi', 'sapa\'ah', 'test', 'assets/img/foto_pengajuan/ktp165780637513.jpg', 'wiraswasta', 'sfssf', 2540000, 34343434, 'assets/img/foto_pengajuan/usaha16578063755f160edaa66efa16bfa0be2b51333b92.jpg', 1, 26, 1, '2022-07-14 20:46:15', '2022-08-17 14:28:27', 'Realisasi', 'testrealisasiPENGAJUAN', 'assets\\img\\foto_pengajuan\\ttd_nasabah1657806375.png'),
+	(37, 'NSB-2207-00004', '2313654912100003', 'iwi', 'atox', 'markonah', 'palembang', 'assets/img/foto_pengajuan/ktp16578065845f160edaa66efa16bfa0be2b51333b92.jpg', 'nganngur', 'jakarta', 3000000, 200000, 'assets/img/foto_pengajuan/usaha1657806584__inazuma_eleven_ares_no_tenbin_ff_stadium___by_zafiro_satoshi-db8vi5c.png', 1, 26, 1, '2022-07-14 20:49:44', NULL, 'Follow UP', NULL, 'assets\\img\\foto_pengajuan\\ttd_nasabah1657806584.png'),
+	(38, 'NSB-2207-00005', '0100023659658974', 'Suhenda', 'Saemi', 'sapa\'ah', 'TEST', 'assets/img/foto_pengajuan/ktp1657809575__inazuma_eleven_ares_no_tenbin_ff_stadium___by_zafiro_satoshi-db8vi5c.png', 'Manta Apps', 'TEST', 2540000, 5000000, 'assets/img/foto_pengajuan/usaha1657809575ashley.jpg', 1, 26, 1, '2022-07-14 21:39:35', NULL, 'Nasabah Baru', NULL, 'assets\\img\\foto_pengajuan\\ttd_nasabah1657809575.png'),
+	(39, 'NSB-2208-00001', '0100023659658974', 'Suhenda', 'Saemi', 'sapa\'ah', 'sdsdsd', 'assets/img/foto_pengajuan/ktp1660544296kota_tangerang_text (1).png', 'wiraswasta', 'sdsd', 2540000, 5000000, 'assets/img/foto_pengajuan/usaha1660544296noimagesampul.jpg', 3, 23, 1, '2022-08-15 13:18:16', NULL, 'Tolak', NULL, 'assets\\img\\foto_pengajuan\\ttd_nasabah1660544296.png'),
+	(40, 'NSB-2208-00002', '0100023659658974', 'sdsds', 'ererer', 'fdfdf', 'dsffds', 'assets/img/foto_pengajuan/ktp1660544570noimagesampul.jpg', 'sdsd', 'sdsds', 2540000, 50000000, 'assets/img/foto_pengajuan/usaha1660544570noimagesampul.jpg', 3, 23, 1, '2022-08-15 13:22:50', '2022-08-15 13:58:58', 'Realisasi', 'TESTREALISASI', 'assets\\img\\foto_pengajuan\\ttd_nasabah1660544570.png'),
+	(41, 'NSB-2208-00003', '0100023659658974', 'Suhenda', 'Saemi', 'sapa\'ah', 'sdsd', 'assets/img/foto_pengajuan/ktp1660544669noimagesampul.jpg', 'Manta Appssdsd', 'sdsdsd', 2540000, 2147483647, 'assets/img/foto_pengajuan/usaha1660544669noimagesampul.jpg', 3, 23, 1, '2022-08-15 13:24:29', '2022-08-15 13:56:27', 'Realisasi', 'RTEG', 'assets\\img\\foto_pengajuan\\ttd_nasabah1660544669.png'),
+	(42, 'NSB-2208-00004', '0100023659658974', 'sumanta', 'Saemi', 'sapa\'ah', 'sdsdsd', 'assets/img/foto_pengajuan/ktp1660548109noimagesampul.jpg', 'wiraswasta', 'sdsd', 232323232, 232323232, 'assets/img/foto_pengajuan/usaha1660548109noimagesampul.jpg', 3, 23, 1, '2022-08-15 14:21:49', '2022-08-17 14:26:04', 'Realisasi', 'REALISASIMG09789', 'assets\\img\\foto_pengajuan\\ttd_nasabah1660548109.png'),
+	(43, 'NSB-2208-00005', '0100023659658974', 'Supardi', 'Marni', 'Suebah', 'Tangerang', 'assets/img/foto_pengajuan/ktp16608803234799408 1.png', 'PT. SUBLIMASI', 'Bogor', 50000000, 50000000, 'assets/img/foto_pengajuan/usaha1660880323WhatsApp Image 2021-09-08 at 09.50.06(1).jpeg', 1, 26, 1, '2022-08-19 10:38:43', NULL, 'Nasabah Baru', NULL, 'assets\\img\\foto_pengajuan\\ttd_nasabah1660880323.png');
 
 -- membuang struktur untuk table market_db.tbl_pengawas
 CREATE TABLE IF NOT EXISTS `tbl_pengawas` (
@@ -92172,13 +92296,14 @@ CREATE TABLE IF NOT EXISTS `tbl_portofolio` (
   `instagram_portofolio` text DEFAULT NULL,
   `linkedin_portofolio` text DEFAULT NULL,
   `foto_portofolio` text DEFAULT NULL,
+  `terbaik` int(11) DEFAULT 0,
   PRIMARY KEY (`id_portofolio`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 -- Membuang data untuk tabel market_db.tbl_portofolio: ~2 rows (lebih kurang)
-INSERT INTO `tbl_portofolio` (`id_portofolio`, `id_user`, `sambutan_portofolio`, `alamat_portofolio`, `telepon_portofolio`, `twitter_portofolio`, `facebook_portofolio`, `instagram_portofolio`, `linkedin_portofolio`, `foto_portofolio`) VALUES
-	(5, 23, 'I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.', 'Jl. Mongodiharjo No 54 ', '08112818682', 'https://twitter.com/donny_mey', 'https://www.facebook.com/adoniasite/', 'https://www.instagram.com/adoniasite/', 'https://www.youtube.com/channel/UCWj2iwDR67AnGiJS2xT-24Q', 'assets/dist/img/profile/team-4.jpg'),
-	(6, 26, 'Saya Seorang Digital Marketing dan Branding', 'Tangerang 2', '085921923979', 'https://twitter.com/athoxeuy', 'https://facebook.com/athoxzoemanta', '', '', 'assets/img/foto_portofolio/pp_1656496452WhatsApp Image 2022-06-23 at 18.59.09.jpeg');
+INSERT INTO `tbl_portofolio` (`id_portofolio`, `id_user`, `sambutan_portofolio`, `alamat_portofolio`, `telepon_portofolio`, `twitter_portofolio`, `facebook_portofolio`, `instagram_portofolio`, `linkedin_portofolio`, `foto_portofolio`, `terbaik`) VALUES
+	(5, 23, 'I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition.', 'Jl. Mongodiharjo No 54 ', '08112818682', 'https://twitter.com/donny_mey', 'https://www.facebook.com/adoniasite/', 'https://www.instagram.com/adoniasite/', 'https://www.youtube.com/channel/UCWj2iwDR67AnGiJS2xT-24Q', 'assets/dist/img/profile/team-4.jpg', 0),
+	(6, 26, 'Saya Seorang Digital Marketing dan Branding', 'Tangerang 2', '085921923979', 'https://twitter.com/athoxeuy', 'https://facebook.com/athoxzoemanta', '', '', 'assets/img/foto_portofolio/pp_1656496452WhatsApp Image 2022-06-23 at 18.59.09.jpeg', 0);
 
 -- membuang struktur untuk table market_db.tbl_profile
 CREATE TABLE IF NOT EXISTS `tbl_profile` (
@@ -92202,7 +92327,7 @@ CREATE TABLE IF NOT EXISTS `tbl_profile` (
   PRIMARY KEY (`id_profile`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.tbl_profile: ~1 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_profile: ~0 rows (lebih kurang)
 INSERT INTO `tbl_profile` (`id_profile`, `nama_website`, `sambutan`, `pemilik`, `alamat_profile`, `email_profile`, `telp_profile`, `map_profile`, `website`, `logo_profile`, `facebook`, `instagram`, `twitter`, `youtube`, `skype`, `lat`, `long`) VALUES
 	(1, 'PT. BPR BKK Karangmalang (Perseroda)', 'Dapatkan pelayanan dengan kualitas terbaik', 'PT. BPR BKK Karangmalang (Perseroda)', 'Jl. Dewi Sartika Puro Karangmalang', 'bprkarangmalang@gmail.comm', '08112818682', 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3956.1683310974527!2d111.02541591420632!3d-7.446620875445263!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a1cc63d46e543%3A0xc4d7e6091129de5d!2sPD.%20BPR%20BKK%20Karangmalang%20(Kantor%20Pusat)!5e0!3m2!1sid!2sid!4v1646798240116!5m2!1sid!2sid', 'www.bprbkk-karangmalang.com', 'assets_landing/img/logo_bkk.svg', 'https://www.facebook.com/BPRKARANGMALANG', 'https://www.instagram.com/bpr_bkk_karangmalang/?hl=id', '', 'https://www.youtube.com/channel/UCp2wWU4N-Jp3z9NntK4YpFg', '', '', '');
 
@@ -92213,11 +92338,12 @@ CREATE TABLE IF NOT EXISTS `tbl_subscribe` (
   `email_subscribe` text NOT NULL,
   `status_subscribe` int(11) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id_subscribe`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.tbl_subscribe: ~1 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_subscribe: ~0 rows (lebih kurang)
 INSERT INTO `tbl_subscribe` (`id_subscribe`, `tgl_subscribe`, `email_subscribe`, `status_subscribe`) VALUES
-	(13, '2022-07-26', 'a@b.com', 1);
+	(13, '2022-07-26', 'a@b.com', 1),
+	(14, '2022-08-09', 'a@b.com', 1);
 
 -- membuang struktur untuk table market_db.tbl_testimoni
 CREATE TABLE IF NOT EXISTS `tbl_testimoni` (
@@ -92229,7 +92355,7 @@ CREATE TABLE IF NOT EXISTS `tbl_testimoni` (
   PRIMARY KEY (`testimoni_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.tbl_testimoni: ~1 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_testimoni: ~0 rows (lebih kurang)
 INSERT INTO `tbl_testimoni` (`testimoni_id`, `testimoni_nama`, `testimoni_jabatan`, `testimoni_foto`, `testimoni_isi`) VALUES
 	(1, 'Suherman', 'CEO & Director', 'assets/img/foto_testimoni/galeri1658864202background.png', 'Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic qua');
 
@@ -92239,9 +92365,9 @@ CREATE TABLE IF NOT EXISTS `tbl_visitor` (
   `visitor_ip` varchar(50) NOT NULL DEFAULT '',
   `visitor_date` datetime NOT NULL,
   PRIMARY KEY (`visitor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=179 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.tbl_visitor: ~62 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tbl_visitor: ~177 rows (lebih kurang)
 INSERT INTO `tbl_visitor` (`visitor_id`, `visitor_ip`, `visitor_date`) VALUES
 	(1, '::1', '2022-07-26 21:09:24'),
 	(2, '::1', '2022-07-26 21:09:39'),
@@ -92304,7 +92430,123 @@ INSERT INTO `tbl_visitor` (`visitor_id`, `visitor_ip`, `visitor_date`) VALUES
 	(59, '::1', '2022-07-30 09:35:36'),
 	(60, '::1', '2022-07-30 15:12:32'),
 	(61, '::1', '2022-07-30 15:15:19'),
-	(62, '::1', '2022-07-30 15:24:40');
+	(62, '::1', '2022-07-30 15:24:40'),
+	(63, '::1', '2022-07-30 17:14:07'),
+	(64, '::1', '2022-07-30 17:14:09'),
+	(65, '::1', '2022-07-30 17:18:36'),
+	(66, '::1', '2022-07-30 17:18:37'),
+	(67, '::1', '2022-07-30 17:23:27'),
+	(68, '::1', '2022-07-30 17:25:48'),
+	(69, '::1', '2022-07-30 17:26:12'),
+	(70, '::1', '2022-07-30 17:27:14'),
+	(71, '::1', '2022-07-30 17:28:12'),
+	(72, '::1', '2022-07-30 17:28:52'),
+	(73, '::1', '2022-07-30 17:29:15'),
+	(74, '::1', '2022-07-30 17:29:21'),
+	(75, '::1', '2022-07-30 17:29:50'),
+	(76, '::1', '2022-07-30 17:30:38'),
+	(77, '::1', '2022-07-30 17:31:06'),
+	(78, '::1', '2022-07-30 17:31:22'),
+	(79, '::1', '2022-07-30 17:31:41'),
+	(80, '::1', '2022-07-30 17:32:00'),
+	(81, '::1', '2022-07-30 17:32:12'),
+	(82, '::1', '2022-07-30 17:32:21'),
+	(83, '::1', '2022-07-30 17:32:35'),
+	(84, '::1', '2022-07-30 17:42:08'),
+	(85, '::1', '2022-07-30 17:54:43'),
+	(86, '::1', '2022-07-30 17:55:07'),
+	(87, '::1', '2022-07-30 17:55:22'),
+	(88, '::1', '2022-07-30 17:55:36'),
+	(89, '::1', '2022-07-30 17:55:50'),
+	(90, '::1', '2022-07-30 17:55:55'),
+	(91, '::1', '2022-07-30 17:56:16'),
+	(92, '::1', '2022-07-30 17:57:13'),
+	(93, '::1', '2022-07-30 17:58:31'),
+	(94, '::1', '2022-07-30 18:00:11'),
+	(95, '::1', '2022-07-30 18:02:24'),
+	(96, '::1', '2022-07-30 18:02:59'),
+	(97, '::1', '2022-07-30 18:03:35'),
+	(98, '::1', '2022-07-30 18:03:49'),
+	(99, '::1', '2022-07-30 18:04:47'),
+	(100, '::1', '2022-07-30 18:05:30'),
+	(101, '::1', '2022-07-30 18:05:56'),
+	(102, '::1', '2022-07-30 18:06:24'),
+	(103, '::1', '2022-07-30 18:08:51'),
+	(104, '::1', '2022-07-30 18:11:25'),
+	(105, '::1', '2022-07-30 18:11:52'),
+	(106, '::1', '2022-07-30 18:18:32'),
+	(107, '::1', '2022-07-30 18:22:32'),
+	(108, '::1', '2022-07-30 18:22:54'),
+	(109, '::1', '2022-07-30 18:24:02'),
+	(110, '::1', '2022-07-30 18:25:39'),
+	(111, '::1', '2022-07-30 18:25:46'),
+	(112, '::1', '2022-07-30 18:26:02'),
+	(113, '::1', '2022-07-30 18:26:19'),
+	(114, '::1', '2022-07-30 18:27:56'),
+	(115, '::1', '2022-07-30 18:28:30'),
+	(116, '::1', '2022-07-30 18:29:05'),
+	(117, '::1', '2022-08-01 03:42:16'),
+	(118, '::1', '2022-08-01 03:56:21'),
+	(119, '::1', '2022-08-01 03:56:55'),
+	(120, '::1', '2022-08-01 04:43:31'),
+	(121, '::1', '2022-08-01 04:45:53'),
+	(122, '::1', '2022-08-09 05:47:31'),
+	(123, '::1', '2022-08-09 05:47:31'),
+	(124, '127.0.0.1', '2022-08-15 04:53:28'),
+	(125, '::1', '2022-08-15 04:54:15'),
+	(126, '::1', '2022-08-15 08:17:25'),
+	(127, '::1', '2022-08-15 08:18:25'),
+	(128, '::1', '2022-08-15 08:23:45'),
+	(129, '::1', '2022-08-15 08:26:52'),
+	(130, '::1', '2022-08-15 08:26:55'),
+	(131, '::1', '2022-08-15 08:48:58'),
+	(132, '::1', '2022-08-15 10:12:31'),
+	(133, '::1', '2022-08-15 10:13:39'),
+	(134, '::1', '2022-08-15 10:13:40'),
+	(135, '::1', '2022-08-15 10:14:11'),
+	(136, '::1', '2022-08-15 10:14:16'),
+	(137, '::1', '2022-08-15 10:14:37'),
+	(138, '::1', '2022-08-15 10:16:22'),
+	(139, '::1', '2022-08-15 10:16:29'),
+	(140, '::1', '2022-08-15 10:16:34'),
+	(141, '::1', '2022-08-15 10:16:42'),
+	(142, '::1', '2022-08-15 10:19:49'),
+	(143, '::1', '2022-08-17 08:55:28'),
+	(144, '::1', '2022-08-17 10:44:47'),
+	(145, '::1', '2022-08-17 10:46:31'),
+	(146, '::1', '2022-08-17 10:46:50'),
+	(147, '::1', '2022-08-17 10:47:01'),
+	(148, '::1', '2022-08-17 10:47:15'),
+	(149, '::1', '2022-08-17 10:47:46'),
+	(150, '::1', '2022-08-17 10:48:52'),
+	(151, '::1', '2022-08-17 10:49:24'),
+	(152, '::1', '2022-08-17 10:49:45'),
+	(153, '::1', '2022-08-17 10:50:25'),
+	(154, '::1', '2022-08-19 04:54:57'),
+	(155, '::1', '2022-08-19 05:37:28'),
+	(156, '::1', '2022-08-19 05:37:32'),
+	(157, '::1', '2022-08-19 05:37:38'),
+	(158, '::1', '2022-08-19 06:04:39'),
+	(159, '::1', '2022-08-19 06:04:39'),
+	(160, '::1', '2022-08-19 06:10:49'),
+	(161, '::1', '2022-08-19 06:10:49'),
+	(162, '::1', '2022-08-19 06:36:47'),
+	(163, '::1', '2022-08-19 06:36:48'),
+	(164, '::1', '2022-08-19 09:26:06'),
+	(165, '::1', '2022-08-19 09:26:06'),
+	(166, '::1', '2022-08-19 09:42:24'),
+	(167, '::1', '2022-08-19 09:42:24'),
+	(168, '::1', '2022-08-19 13:58:45'),
+	(169, '::1', '2022-08-20 05:15:37'),
+	(170, '::1', '2022-08-20 05:15:37'),
+	(171, '::1', '2022-08-20 09:40:30'),
+	(172, '::1', '2022-08-20 09:40:30'),
+	(173, '::1', '2022-08-20 11:06:51'),
+	(174, '::1', '2022-08-20 11:06:51'),
+	(175, '::1', '2022-08-25 13:36:20'),
+	(176, '::1', '2022-08-25 13:36:20'),
+	(177, '::1', '2022-08-28 08:36:07'),
+	(178, '::1', '2022-08-28 08:36:26');
 
 -- membuang struktur untuk table market_db.tb_hero
 CREATE TABLE IF NOT EXISTS `tb_hero` (
@@ -92353,7 +92595,7 @@ CREATE TABLE IF NOT EXISTS `tb_relation_link` (
   PRIMARY KEY (`id_relation`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Membuang data untuk tabel market_db.tb_relation_link: ~1 rows (lebih kurang)
+-- Membuang data untuk tabel market_db.tb_relation_link: ~0 rows (lebih kurang)
 INSERT INTO `tb_relation_link` (`id_relation`, `nama_link1`, `url_link1`, `nama_link2`, `url_link2`, `nama_link3`, `url_link3`, `nama_link4`, `url_link4`, `nama_link5`, `url_link5`) VALUES
 	(1, 'Web 1', 'https://bprbkk-karangmalang.com/', 'Web 2', 'https://bprbkk-karangmalang.com/', 'Web 3', 'https://bprbkk-karangmalang.com/', 'Web 4', 'https://bprbkk-karangmalang.com/', 'Web 4', 'https://bprbkk-karangmalang.com/');
 
