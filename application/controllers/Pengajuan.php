@@ -198,7 +198,7 @@ class Pengajuan extends CI_Controller {
 			$opsi ='
 			<div class="btn-group">
 			<a href="javascript:;" class="btn btn-sm btn-circle  btn-success  item_detail_pengajuan" data="'.$l->kode_pengajuan.'"><i class="fa fa-eye"></i></a>';
-			if ($l->id_cabang==$this->session->cabang) {
+			if ($l->id_cabang==$this->session->cabang && $this->session->level=="marketing" || $l->id_cabang==$this->session->cabang && $this->session->level=="Supervisor") {
 				if ($l->status!='Realisasi') {
 
 					$opsi.='<a href="javascript:;" class="btn btn-sm btn-circle  btn-info  item_follow_up" data="'.$l->kode_pengajuan.'"><i class="fa fa-bullhorn" aria-hidden="true"></i>

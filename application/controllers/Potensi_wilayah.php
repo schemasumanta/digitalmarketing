@@ -60,13 +60,13 @@ public function tabel_potensi_wilayah(){
 		$opsi ='
 		<div class="btn-group">
 		<a href="javascript:;" class="btn btn-sm btn-circle  btn-success  item_detail_potensi_wilayah" data="'.$l->id_nasabah.'"><i class="fa fa-eye"></i></a>';
-		if ($l->id_cabang==$this->session->cabang) {
+		if ($l->id_user==$this->session->id_user) {
 			if ($l->status_nasabah!='Realisasi') {
 				$opsi.='<a href="javascript:;" class="btn btn-sm btn-circle  btn-primary  item_edit_potensi_wilayah" data="'.$l->id_nasabah.'"><i class="fa fa-edit"></i></a>';
 			}
 			
 		}
-		if ($this->session->level=="Marketing") {
+		if ($this->session->level=="Marketing" || $this->session->level=="Supervisor") {
 			if ($l->status_nasabah!='Realisasi') {
 				
 				$opsi.='<a href="javascript:;" class="btn btn-sm btn-circle  btn-info  item_follow_up" data="'.$l->id_nasabah.'"><i class="fa fa-bullhorn" aria-hidden="true"></i>
@@ -81,11 +81,6 @@ public function tabel_potensi_wilayah(){
 		}
 
 
-			// if ($l->status_cabang == 1) {
-			// 	$opsi .='<a href="javascript:;" class="btn btn-danger btn-sm btn-circle  item_aktivasi_cabang" data="'.$l->id_cabang.'"><i class="fa fa-times-circle"></i></a>';
-			// }else{
-			// 	$opsi .='<a href="javascript:;" class="btn btn-success btn-sm btn-circle  item_aktivasi_cabang" data="'.$l->id_cabang.'"><i class="fa fa-check-circle"></i></a>';
-			// }
 		$opsi .='</div>';
 		$l->opsi = $opsi;
 

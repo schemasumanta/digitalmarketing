@@ -39,7 +39,7 @@
             </div>
             <div class="col-sm-12"> 
              <!-- Button trigger modal -->
-             <?php if ($this->session->level=="Marketing") { ?>
+             <?php if ($this->session->level=="Marketing" || $this->session->level=="Supervisor" ) { ?>
                <button id="btn_tambah" class="btn btn-success btn-sm btn-md btn  mr-2" ><i class="fa fa-plus mr-2"></i> Kunjungan Nasabah</button>
              <?php  } ?>
              <button id="export" name="export" class="btn btn-sm refresh btn-info btn-md"  ><i class="fas fa-sync-alt" style="margin-right: 10px"></i>Refresh Data</button>
@@ -52,9 +52,9 @@
               <thead>
                 <tr class="bg-primary text-light ">
                   <th class="text-center" width="1%">No</th>
+                  <th >Tanggal</th>
                   <th >Marketing</th>
                   <th >Cabang</th>
-                  <th >Tanggal</th>
                   <th >No Rekening</th>
                   <th >Nama Nasabah</th>
                   <th >Plafon</th>
@@ -483,9 +483,9 @@ dataTable = $('#tabel_kunjungan_nasabah').DataTable( {
 order: [1, 'asc'],
 columns: [
 {'data':'no'},
+{'data':'tgl_input'},
 {'data':'marketing'},
 {'data':'nama_cabang'},
-{'data':'tgl_input'},
 {'data':'no_rekening'},
 {'data':'nama_nasabah'},
 {'data':'plafon'},
@@ -503,6 +503,13 @@ columnDefs: [
   targets: [6],
   className: 'text-right'
 },
+
+<?php if ($this->session->level=="Marketing" || $this->session->level=="Supervisor" ) { ?>
+{
+  targets: [1,2,3,4],
+  visible: false,
+},
+<?php } ?>
 ]
 });
 
@@ -697,6 +704,22 @@ $('#btn_simpan').on('click',function(){
   });
   return false;
 }
+
+ if (no_rekening.length <11) {
+  $('#no_rekening').focus();
+  Swal.fire({
+    title:'Error',
+    text:'Nomor Rekening Tidak Valid!',
+    icon:'error'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      Swal.close();
+    }
+  });
+  return false;
+}
+
+
 let nama_nasabah = $('#nama_nasabah').val();
 if (nama_nasabah=="") {
   $('#nama_nasabah').focus();

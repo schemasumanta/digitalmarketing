@@ -64,7 +64,7 @@ public function tabel_kunjungan_nasabah(){
 			$opsi.='<a href="javascript:;" class="btn btn-sm btn-circle  btn-primary  item_edit_kunjungan" data="'.$l->id_kunjungan.'"><i class="fa fa-edit"></i></a>';
 		}
 
-		if ($this->session->level=="Marketing") {
+		if ($this->session->level=="Marketing" || $this->session->level=="Supervisor" ) {
 			$opsi.='<a href="javascript:;" class="btn btn-sm btn-circle  btn-info  item_follow_up" data="'.$l->id_kunjungan.'"><i class="fa fa-bullhorn" aria-hidden="true"></i>
 			</a>';
 		}

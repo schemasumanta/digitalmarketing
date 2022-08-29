@@ -168,22 +168,26 @@
       <form method="post" target="_blank" class="form-horizontal" id="form_tarik_laporan" action="<?php echo base_url('dashboard/tarik_laporan') ?>">
         <div class="modal-body">
           <div class="row"> 
+            <div class="col-md-6 mb-3" >
+                <span class="input-group-text bg-primary text-light" id="basic-addon3" >Kategori</span>
+                <select class="form-control" id="kategori_laporan" name="kategori_laporan">
+                  <option value="0" disabled selected>Pilih Kategori</option>
+                  <option value="Pengajuan Online">Pengajuan Online</option>
+                  <option value="Potensi Wilayah">Potensi Wilayah</option> 
+                  <option value="Kunjungan Nasabah">Kunjungan Nasabah</option>  
+                </select>
+            </div>
               <div class="col-md-6 mb-3" >
                 <span class="input-group-text bg-primary text-light" id="basic-addon3" >Laporan</span>
-                <select class="form-control" id="jenis_laporan" name="jenis_laporan">
+                <select class="form-control" id="jenis_laporan" name="jenis_laporan" disabled>
                   <option value="0" disabled selected>Pilih Laporan</option>
                   <option value="Marketing">Per Marketing</option>  
                   <option value="Cabang">Per Cabang</option>  
                   <option value="Periode">Per Periode</option>  
+                  <option value="Nasabah">Per Nasabah</option>  
                 </select>
             </div>
-              <div class="col-md-6 mb-3" >
-                <span class="input-group-text bg-primary text-light" id="basic-addon3" >Kategori</span>
-                <select class="form-control" id="kategori_laporan" name="kategori_laporan">
-                  <option value="Pengajuan Online">Pengajuan Online</option>
-                  <option value="Potensi Wilayah">Potensi Wilayah</option>  
-                </select>
-            </div>
+              
 
              <div class="col-md-12 mb-3 marketing_laporan d-none" >
                 <span class="input-group-text bg-primary text-light" id="basic-addon3" >Marketing</span>
@@ -200,7 +204,13 @@
 
             </div>
 
-            
+             <div class="col-md-12 mb-3  nasabah_kunjungan d-none" >
+                <span class="input-group-text bg-primary text-light" id="basic-addon3" >Nasabah</span>
+                <select class="form-control" id="nasabah_kunjungan" name="nasabah_kunjungan" style="width: 100%">
+                  <option value="All">All</option>
+                </select>
+
+            </div>
 
 
             <div class="col-md-6 mb-3">

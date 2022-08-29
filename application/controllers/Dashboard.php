@@ -24,7 +24,7 @@ class Dashboard extends CI_Controller {
 		$this->db->select('id_user,nama');
 		$this->db->where('level','Marketing');
 		if ($this->session->level=="Supervisor") {
-		$this->db->where('id_cabang',$this->session->cabang);
+			$this->db->where('id_cabang',$this->session->cabang);
 		}
 		$this->db->where('level','Marketing');
 
@@ -36,6 +36,17 @@ class Dashboard extends CI_Controller {
 		$data['cabang'] = $this->db->get('tbl_master_cabang')->result();
 		echo json_encode($data);
 	}
+
+	public function get_nasabah_kunjungan()
+	{
+		$this->db->select('id_kunjungan,no_rekening,nama_nasabah');
+		if ($this->session->level=="Marketing" || $this->session->level=="Supervisor") {
+			$this->db->where('id_cabang',$this->session->cabang);
+		}
+		$data['nasabah'] = $this->db->get('tbl_kunjungan_nasabah')->result();
+		echo json_encode($data);
+	}
+
 	public function index()
 	{
 		$this->db->select('sum(besar_plafon) as jumlah');
@@ -228,7 +239,7 @@ class Dashboard extends CI_Controller {
 			$this->load->view('laporan/draft_laporan_potensi',$data);
 
 
-		}else{
+		}elseif($kategori=="Pengajuan Online"){
 
 			if ($jenis=="Marketing") {
 				$this->db->select('a.*,b.nama as nama_marketing, c.nama_cabang');
@@ -277,6 +288,80 @@ class Dashboard extends CI_Controller {
 			}
 
 			$this->load->view('laporan/draft_laporan_pengajuan',$data);
+		}else{
+
+			if ($jenis=="Marketing") {
+				$this->db->select('a.*,b.nama as nama_marketing, c.nama_cabang,d.nama_wilayah as kabupaten,e.nama_wilayah as kecamatan, f.nama_wilayah as kelurahan');
+				if ($marketing!='All') {
+					$this->db->where('a.id_user',$marketing);
+				}
+				if ($this->session->level=="Marketing" || $this->session->level=="Supervisor") {
+					$this->db->where('a.id_cabang',$cabang);
+				}
+				$this->db->where('date(a.tanggal_input) >=',$tanggal_awal);
+				$this->db->where('date(a.tanggal_input) <=',$tanggal_akhir);
+				$this->db->join('tbl_master_user b','b.id_user=a.id_user');
+				$this->db->join('tbl_master_cabang c','c.id_cabang=a.id_cabang');
+				$this->db->join('tbl_master_wilayah d','d.kode_wilayah=a.kabupaten_nasabah');
+				$this->db->join('tbl_master_wilayah e','e.sub_wilayah=a.kabupaten_nasabah AND e.kode_wilayah=a.kecamatan_nasabah');
+				$this->db->join('tbl_master_wilayah f','f.id_wilayah=a.kelurahan_nasabah');
+				$data['laporan'] = $this->db->get('tbl_nasabah a')->result();
+				$this->load->view('laporan/draft_laporan_kunjungan',$data);
+
+			}
+
+			if ($jenis=="Cabang") {
+				$this->db->select('a.*,b.nama as nama_marketing, c.nama_cabang,d.nama_wilayah as kabupaten,e.nama_wilayah as kecamatan, f.nama_wilayah as kelurahan');
+				if ($cabang!='All') {
+					$this->db->where('a.id_cabang',$cabang);
+				}
+				
+				$this->db->where('date(a.tanggal_input) >=',$tanggal_awal);
+				$this->db->where('date(a.tanggal_input) <=',$tanggal_akhir);
+				$this->db->join('tbl_master_user b','b.id_user=a.id_user');
+				$this->db->join('tbl_master_cabang c','c.id_cabang=a.id_cabang');
+				$this->db->join('tbl_master_wilayah d','d.kode_wilayah=a.kabupaten_nasabah');
+				$this->db->join('tbl_master_wilayah e','e.sub_wilayah=a.kabupaten_nasabah AND e.kode_wilayah=a.kecamatan_nasabah');
+				$this->db->join('tbl_master_wilayah f','f.id_wilayah=a.kelurahan_nasabah');
+				$data['laporan'] = $this->db->get('tbl_nasabah a')->result();
+				$this->load->view('laporan/draft_laporan_kunjungan',$data);
+
+			}
+
+			if ($jenis=="Periode") {
+				if ($this->session->level=="Marketing"  || $this->session->level=="Supervisor") {
+					$this->db->where('a.id_cabang',$cabang);
+				}
+				$this->db->select('a.*,b.nama as nama_marketing, c.nama_cabang,d.nama_wilayah as kabupaten,e.nama_wilayah as kecamatan, f.nama_wilayah as kelurahan');
+				$this->db->where('date(a.tanggal_input) >=',$tanggal_awal);
+				$this->db->where('date(a.tanggal_input) <=',$tanggal_akhir);
+				$this->db->join('tbl_master_user b','b.id_user=a.id_user');
+				$this->db->join('tbl_master_cabang c','c.id_cabang=a.id_cabang');
+				$this->db->join('tbl_master_wilayah d','d.kode_wilayah=a.kabupaten_nasabah');
+				$this->db->join('tbl_master_wilayah e','e.sub_wilayah=a.kabupaten_nasabah AND e.kode_wilayah=a.kecamatan_nasabah');
+				$this->db->join('tbl_master_wilayah f','f.id_wilayah=a.kelurahan_nasabah');
+				$data['laporan'] = $this->db->get('tbl_nasabah a')->result();
+				$this->load->view('laporan/draft_laporan_kunjungan',$data);
+
+			}
+
+			if ($jenis=="Nasabah") {
+				$nasabah = $this->input->post('nasabah_kunjungan');
+				$this->db->where('id_kunjungan',$nasabah);
+				$data['nasabah'] = $this->db->get('tbl_kunjungan_nasabah')->result();
+
+				$this->db->select('a.*,b.nama as nama_marketing');
+				$this->db->where('date(a.tanggal_kunjungan) >=',$tanggal_awal);
+				$this->db->where('date(a.tanggal_kunjungan) <=',$tanggal_akhir);
+				$this->db->join('tbl_master_user b','b.id_user=a.id_user');
+				$data['laporan'] = $this->db->get('tbl_follow_up_kunjungan a')->result();
+				$this->load->view('laporan/draft_laporan_kunjungan_pernasabah',$data);
+
+			}
+
+
+
+
 		}
 	}
 
