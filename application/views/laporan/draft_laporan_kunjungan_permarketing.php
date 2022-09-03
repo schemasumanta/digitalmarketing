@@ -96,6 +96,8 @@
 
 													echo $tgl[2]." ".$bulan[$tgl[1]]." ".$tgl[0]
 													?></span>
+													<br>
+													<span style="text-align: right;">Marketing</span><span>&nbsp;&nbsp;:&nbsp;<?php echo  $marketing[0]->nama; ?></span>
 
 												</div>
 											</div>
@@ -105,45 +107,24 @@
 									<tr style="border-top:0px solid black;border-bottom: 0px solid black">
 										<th colspan="7" style="border-top: 0px solid black;border-bottom: 0px solid black"></th>
 									</tr>
-									<?php foreach ($nasabah as $nb): ?>
-										<tr style="border: 0px solid black;">
-											<th style="border: 0px solid black;"></th>
-											<td style="border: 0px solid black;">No Rekening</td>
-											<th style="border: 0px solid black;" colspan="5">: <?php echo $nb->no_rekening; ?></th>
-										</tr>
-										<tr style="border: 0px solid black;">
-											<th style="border: 0px solid black;"></th>
-											<td style="border: 0px solid black;">Nama Nasabah</td>
-											<th style="border: 0px solid black;" colspan="5">: <?php echo $nb->nama_nasabah; ?></th>
-										</tr>
-										<tr style="border: 0px solid black;">
-											<th style="border: 0px solid black;"></th>
-											<td style="border: 0px solid black;">Alamat</td>
-											<th style="border: 0px solid black;" colspan="5">: <?php echo $nb->alamat_nasabah; ?></th>
-										</tr>
-										<tr style="border: 0px solid black;">
-											<th style="border: 0px solid black;"></th>
-											<td style="border: 0px solid black;">Plafon</td>
-											<th style="border: 0px solid black;" colspan="5">: <?php echo  number_format($nb->plafon,0,",",".");  ?></th>
-										</tr>
-
-										<tr style="border: 0px solid black;">
-											<th style="border: 0px solid black;"></th>
-											<td style="border: 0px solid black;">Tanggal Realisasi</td>
-											<th style="border: 0px solid black;" colspan="5">: <?php echo date_format(date_create($nb->tgl_realisasi),'d')." ".$bulan[date_format(date_create($nb->tgl_realisasi),'m')]." ".date_format(date_create($nb->tgl_realisasi),'Y')  ?></th>
-										</tr>
-
-									<?php endforeach ?>
+									
 									<tr style="border-top:0px solid black;border-bottom: 0px solid black">
 										<th colspan="7" style="border-top: 0px solid black;border-bottom: 0px solid black"></th>
 									</tr>
 									<tr style="font-size: 12px;text-align: center;">
 										<th width="2%">No</th>
-										<th width="15%">Tanggal</th> 
-										<th width="20%">Marketing</th> 
-										<th width="30%">Hasil Kunjungan</th> 
+										<th width="8%">Tanggal</th> 
+										<?php if ($this->session->level=="Admin" || $this->session->level=="PIC") { ?>
+											<th width="10%">Rekening</th>
+										<?php } ?>
+										
+										<th width="10%">Nasabah</th> 
+										<th width="10%">Plafon</th>
+										<th width="10%">Tanggal Realisasi</th> 
+										<th width="10%">Alamat</th> 
+										<th width="20%">Hasil Kunjungan</th> 
 										<th width="8%">Status</th>
-										<th width="15%">Lampiran</th>
+										<th width="10%">Lampiran</th>
 									</tr>
 								</thead> 
 								<tbody id="show_data" style="font-size: 10px;"> 
@@ -152,18 +133,24 @@
 										<?php $no=1; foreach ($laporan as $key): ?>
 										<tr>
 											<td class="text-center"><?php echo $no++;  ?></td>
-											<td ><?php echo $key->tanggal_kunjungan;  ?></td>
-											<td ><?php echo $key->nama_marketing;  ?></td>
+											<td class="text-center"><?php echo $key->tanggal_kunjungan;  ?></td>
+											<?php if ($this->session->level=="Admin" || $this->session->level=="PIC") { ?>
+												
+												<td class="text-center"><?php echo $key->no_rekening;  ?></td>
+											<?php } ?>
+											<td ><?php echo $key->nama_nasabah;  ?></td>
+											<td class="text-right"><?php echo number_format($key->plafon,0,',','.');  ?></td>
+											<td class="text-center"><?php echo $key->tgl_realisasi;  ?></td>
+
+
+											<td ><?php echo $key->alamat_nasabah;  ?></td>
 											<td ><?php echo $key->hasil_kunjungan;  ?></td>
 											<td class="text-center"><?php echo $key->status_fu;  ?></td>
 											<td class="text-center">
 												<?php if ($key->lampiran_kunjungan!='') { ?>
 													<img src="<?php echo base_url().$key->lampiran_kunjungan ?>" width="200px">
 												<?php } ?>
-												
 											</td>
-											
-
 										</tr>
 									<?php endforeach ?>
 									<?php else : ?>

@@ -75,6 +75,18 @@ aria-hidden="true">
     if (level=="Admin" || level=="PIC" || level=="Supervisor") {
       if (jenis=="Marketing") {
         $('.marketing_laporan').removeClass('d-none');
+        let kategori = $('#kategori_laporan').val();
+        if (kategori=="Kunjungan Nasabah") {
+          $('#allmarketing').html('Pilih Marketing');
+          $('#allmarketing').val('0');
+          $('#allmarketing').attr('disabled','disabled');
+        }else{
+          $('#allmarketing').html('All');
+          $('#allmarketing').val('All');
+          $('#allmarketing').removeAttr('disabled');
+
+
+        }
       }else{
         $('.marketing_laporan').addClass('d-none');
       }
@@ -89,10 +101,10 @@ aria-hidden="true">
     }
 
     if (jenis=="Nasabah") {
-        $('.nasabah_kunjungan').removeClass('d-none');
-      }else{
-        $('.nasabah_kunjungan').addClass('d-none');
-      }
+      $('.nasabah_kunjungan').removeClass('d-none');
+    }else{
+      $('.nasabah_kunjungan').addClass('d-none');
+    }
   });
 
   $('#kategori_laporan').on('change',function(){
@@ -107,6 +119,7 @@ aria-hidden="true">
     <option value="Cabang">Per Cabang</option>  
     <option value="Periode">Per Periode</option>`;
     if (kategori=="Kunjungan Nasabah") {
+
       $.ajax({
         type : "GET",
         url  : "<?php echo base_url('dashboard/get_nasabah_kunjungan')?>",
@@ -124,8 +137,9 @@ aria-hidden="true">
             dropdownParent:$('#ModalLaporan'),
           });
 
+          laporan =`<option value="0" disabled selected>Pilih Laporan</option>
+          <option value="Marketing">Per Marketing</option><option value="Nasabah">Per Nasabah</option>`;
 
-          laporan+=`<option value="Nasabah">Per Nasabah</option>`;
           $('#jenis_laporan').html(laporan);
 
         },
@@ -151,7 +165,7 @@ aria-hidden="true">
 
           $('.cabang_laporan').addClass('d-none');
           $('.marketing_laporan').addClass('d-none');
-          let marketing ='<option value="All">All</option>';
+          let marketing ='<option value="All" id="allmarketing">All</option>';
           for (var i = 0; i <data.marketing.length; i++) {
             marketing+='<option value="'+data.marketing[i].id_user+'">'+data.marketing[i].nama+'</option>';
           }
@@ -261,6 +275,7 @@ aria-hidden="true">
     }
 
     if (jenis=="Nasabah") {
+
       let nasabah = $('#nasabah_kunjungan').val();
       if (nasabah==null) {
 
@@ -277,6 +292,28 @@ aria-hidden="true">
         return false;
       }
     }
+
+    if (jenis=="Marketing" && kategori_laporan=="Kunjungan Nasabah") {
+      let level ='<?php echo $this->session->level ?>';
+      if (level!="Marketing") {
+      }
+      let marketing = $('#nama_marketing_laporan').val();
+      if (marketing==null) {
+
+        $('#nama_marketing_laporan').focus();
+        Swal.fire({
+          title:'Error',
+          text:'Silahkan Pilih Marketing!',
+          icon:'error'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.close();
+          }
+        });
+        return false;
+      }
+    }
+
 
     let tanggal_awal_laporan = $('#tanggal_awal_laporan').val();
     if (tanggal_awal_laporan=='') {
