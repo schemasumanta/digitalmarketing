@@ -82,7 +82,7 @@
                           <ul class="nav-menu">
                             <li class=""><a class="active" href="<?php echo base_url('landing') ?>">Home</a></li>
                             <li><a href="<?php echo base_url() ?>marketing/bpr/<?php echo $marketing ?>#produk_layanan">Produk dan Layanan</a></li>
-                            <li><a href="<?php echo base_url() ?>landing/simulasi_kredit">Simulasi Kredit</a></li>
+                            <li><a href="https://bprbkk-karangmalang.com/simulasikredit.php" target="_blank">Simulasi Kredit</a></li>
                           </ul>
                         </nav>
                       </div>
