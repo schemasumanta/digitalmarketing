@@ -320,9 +320,12 @@ class Dashboard extends CI_Controller {
 				$nasabah = $this->input->post('nasabah_kunjungan');
 				$this->db->where('id_kunjungan',$nasabah);
 				$data['nasabah'] = $this->db->get('tbl_kunjungan_nasabah')->result();
+
+
 				$this->db->select('a.*,b.nama as nama_marketing');
 				$this->db->where('date(a.tanggal_kunjungan) >=',$tanggal_awal);
 				$this->db->where('date(a.tanggal_kunjungan) <=',$tanggal_akhir);
+				$this->db->where('a.id_kunjungan',$nasabah);
 				$this->db->join('tbl_master_user b','b.id_user=a.id_user');
 				$data['laporan'] = $this->db->get('tbl_follow_up_kunjungan a')->result();
 
