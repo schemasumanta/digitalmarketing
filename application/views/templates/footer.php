@@ -170,7 +170,11 @@ aria-hidden="true">
             marketing+='<option value="'+data.marketing[i].id_user+'">'+data.marketing[i].nama+'</option>';
           }
           $('#nama_marketing_laporan').html(marketing);
-
+          $('#nama_marketing_laporan').select2({
+            placeholder:'Pilih Marketing',
+            allowClear:true,
+            dropdownParent:$('#ModalLaporan'),
+          });
           let cabang ='<option value="All">All</option>';
           for (var i = 0; i <data.cabang.length; i++) {
             cabang+='<option value="'+data.cabang[i].id_cabang+'">'+data.cabang[i].nama_cabang+'</option>';

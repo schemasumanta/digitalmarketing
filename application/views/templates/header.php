@@ -191,7 +191,7 @@
 
              <div class="col-md-12 mb-3 marketing_laporan d-none" >
                 <span class="input-group-text bg-primary text-light" id="basic-addon3" >Marketing</span>
-                <select class="form-control" id="nama_marketing_laporan" name="nama_marketing_laporan">
+                <select class="form-control" id="nama_marketing_laporan" name="nama_marketing_laporan" style="width: 100%">
                   <option value="All">All</option>
                 </select>
             </div>
